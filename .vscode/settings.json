@@ -3,11 +3,20 @@
         "autobuy",
         "buyables",
         "clickables",
+        "Cooldown",
+        "Disp",
+        "extradata",
+        "infoboxes",
+        "layerdata",
         "microtabs",
         "mult",
+        "Nalert",
+        "Ncheck",
         "Oomps",
+        "playerdata",
         "Respec",
         "softcap",
-        "subtab"
+        "subtab",
+        "subtabs"
     ]
 }
