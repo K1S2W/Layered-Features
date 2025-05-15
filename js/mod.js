@@ -25,7 +25,7 @@ let changelog = `<h1>Changelog:</h1><br>
 	<h3>v0.2</h3><br>
 		- 2 New Themes.<br>
 		- Removed a Old Theme.<br>
-		- Added 5 New Upgrades.`
+		- Added 4 New Upgrades.`
 	
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
