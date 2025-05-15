@@ -1,26 +1,36 @@
 // ************ Themes ************
-var themes = ["default", "aqua"]
+var themes = ["default", "grayscale", "inverted"]
 
 var colors = {
 	default: {
-		1: "#ffffff",//Branch color 1
-		2: "#bfbfbf",//Branch color 2
-		3: "#7f7f7f",//Branch color 3
-		color: "#dfdfdf",
-		points: "#ffffff",
-		locked: "#bf8f8f",
-		background: "#0f0f0f",
-		background_tooltip: "rgba(0, 0, 0, 0.75)",
+		1: "rgba(255, 255, 255, 1)",//Branch color 1
+		2: "rgba(191, 191, 191, 1)",//Branch color 2
+		3: "rgba(127, 127, 127, 1)",//Branch color 3
+		color: "rgba(223, 223, 223, 1)",
+		points: "rgba(255, 255, 255, 1)",
+		locked: "rgba(191, 143, 143, 1)",
+		background: "rgba(15, 15, 15, 1)",
+		background_tooltip: "rgba(0, 0, 0, 1)",
 	},
-	aqua: {
-		1: "#bfdfff",
-		2: "#8fa7bf",
-		3: "#5f6f7f",
-		color: "#bfdfff",
-		points: "#dfefff",
-		locked: "#c4a7b3",
-		background: "#001f3f",
-		background_tooltip: "rgba(0, 15, 31, 0.75)",
+	grayscale: {
+		1: "rgba(255, 255, 255, 1)",
+		2: "rgba(191, 191, 191, 1)",
+		3: "rgba(127, 127, 127, 1)",
+		color: "rgba(223, 223, 223, 1)",
+		points: "rgba(255, 255, 255, 1)",
+		locked: "rgba(159, 159, 159, 1)",
+		background: "rgba(15, 15, 15, 1)",
+		background_tooltip: "rgba(0, 0, 0, 1)",
+	},
+	inverted: {
+		1: "rgba(0, 0, 0, 1)",
+		2: "rgba(64, 64, 64, 1)",
+		3: "rgba(128, 128, 128, 1)",
+		color: "rgba(32, 32, 32, 1)",
+		points: "rgba(0, 0, 0, 1)",
+		locked: "rgba(64, 112, 112, 1)",
+		background: "rgba(240, 240, 240, 1)",
+		background_tooltip: "rgba(255, 255, 255, 1)",
 	},
 }
 function changeTheme() {
@@ -44,7 +54,6 @@ function switchTheme() {
 	else {
 		index ++;
 		options.theme = themes[index];
-		options.theme = themes[1];
 	}
 	changeTheme();
 	resizeCanvas();
