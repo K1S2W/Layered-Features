@@ -24,7 +24,8 @@ let changelog = `<h1>Changelog:</h1><br>
 		- First Upgrade!<br>
 	<h3>v0.2<h3><br>
 		- 2 New Themes.<br>
-		- Removed a Old Theme.`
+		- Removed a Old Theme.<br>
+		- Added 5 New Upgrades.`
 	
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
@@ -48,6 +49,10 @@ function getPointGen() {
 		return new Decimal(0)
 	let gain = new Decimal(1)
 	if (hasUpgrade('p', 11)) gain = gain.times(2) //Upgrade 11 (check layers.js for details)
+	if (hasUpgrade('p', 12)) gain = gain.times(3)
+	if (hasUpgrade('p', 13)) gain = gain.times(4)
+	if (hasUpgrade('p', 14)) gain = gain.times(5)
+	if (hasUpgrade('p', 15)) gain = gain.times(6) //row 1 upgrades end
 	return gain
 }
 
@@ -61,7 +66,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("25"))
+	return player.points.gte(new Decimal("10000"))
 }
 
 
