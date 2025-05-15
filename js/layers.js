@@ -31,5 +31,25 @@ addLayer("p", {
             description: "Double points gain.",
             cost: new Decimal(1),
         },
+        12: {
+            title: "Basic Multiplier Again",
+            description: "Triple points gain.",
+            cost: new Decimal(2),
+        },
+        13: {
+            title: "Same As Before",
+            description: "Quadruple points gain.",
+            cost: new Decimal(6),
+        },
+        14: {
+            title: "Over and Over",
+            description: "Quintuple points gain.",
+            cost: new Decimal(24),
+        },
+        15: {
+            title: "I Got Lazy",
+            description: "Sextuple points gain.",
+            cost: new Decimal(120),
+        },
     }
 })
