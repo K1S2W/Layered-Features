@@ -1,25 +1,28 @@
 let modInfo = {
-	name: "The ??? Tree",
-	author: "nobody",
+	name: "Some Random Idle Upgrade Game",
+	author: "K1S2W",
 	pointsName: "points",
 	modFiles: ["layers.js", "tree.js"],
 
 	discordName: "",
 	discordLink: "",
-	initialStartPoints: new Decimal (10), // Used for hard resets and new players
+	initialStartPoints: new Decimal (0), // Used for hard resets and new players
 	offlineLimit: 1,  // In hours
 }
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.0",
-	name: "Literally nothing",
+	num: "0.1",
+	name: "Nothing Yet",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
 	<h3>v0.0</h3><br>
-		- Added things.<br>
-		- Added stuff.`
+		- Setting Names.<br>
+		- Added Nothing.
+	<h3>v0.1</h3><br>
+		- First Upgrade!`
+	
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
@@ -40,8 +43,8 @@ function canGenPoints(){
 function getPointGen() {
 	if(!canGenPoints())
 		return new Decimal(0)
-
 	let gain = new Decimal(1)
+	if (hasUpgrade('p', 11)) gain = gain.times(2) //Upgrade 11 (check layers.js for details)
 	return gain
 }
 
