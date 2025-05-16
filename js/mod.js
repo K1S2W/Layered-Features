@@ -12,22 +12,23 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.3",
+	num: "0.2.1",
 	name: "The Start",
 }
 
 let changelog = `<h1>Changelog:</h1><br><br>
-	<h3>v0.0</h3><br>
+	<h2>v0.0</h2><br>
 		- Setting Names.<br>
 		- Added Nothing.<br><br>
-	<h3>v0.1</h3><br>
+	<h2>v0.1</h2><br>
 		- First Upgrade!<br><br>
-	<h3>v0.2</h3><br>
+	<h2>v0.2</h2><br>
 		- 2 New Themes.<br>
 		- Removed a Old Theme.<br>
 		- Added 4 New Upgrades.<br><br>
-	<h3>v0.3</h3><br>
-		- Changed Themes a Bit.`
+	<h3>v0.2.1</h3><br>
+		- Changed Themes a Bit.<br>
+		- Bug Fixes for Mobile.`
 	
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
