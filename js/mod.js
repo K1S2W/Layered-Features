@@ -1,5 +1,5 @@
 let modInfo = {
-	name: "Some Random Idle Upgrade Game",
+	name: "A Generic Idle Upgrade Game",
 	author: "K1S2W",
 	pointsName: "points",
 	modFiles: ["layers.js", "tree.js"],
