@@ -96,7 +96,7 @@ addLayer("p", {
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
             title: "Direct Multiplier",
             description: "Multiply Points By Prestige Upgrades Bought",
-            cost: new Decimal(7500),
+            cost: new Decimal(25000),
         },
     }
     
