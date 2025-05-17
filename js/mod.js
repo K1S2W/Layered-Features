@@ -12,7 +12,7 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.3",
+	num: "0.3.1",
 	name: "The Start",
 }
 
@@ -31,7 +31,10 @@ let changelog = `<h1>Changelog:</h1><br><br>
 		- Bug Fixes for Mobile.<br><br>
 	<h2>v0.3</h2><br>
 		- 5 New Upgrades Again.<br>
-		- Internal Changes.`
+		- Internal Changes.<br><br>
+	<h3>v0.3.1</h3><br>
+		- Changed The Name Of Prestige Points To Upgrade Points.<br>
+		- Put Formulas For Upgrades Into Tooltips.`
 	
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
@@ -54,14 +57,14 @@ function getPointGen() {
 	if(!canGenPoints())
 		return new Decimal(0)
 	let gain = new Decimal(1)
-	if (hasUpgrade('p', 11)) gain = gain.times(2) //Upgrade 11 (check layers.js for details)
-	if (hasUpgrade('p', 12)) gain = gain.times(3)
-	if (hasUpgrade('p', 13)) gain = gain.times(4)
-	if (hasUpgrade('p', 14)) gain = gain.times(5)
-	if (hasUpgrade('p', 15)) gain = gain.times(6) //row 1 upgrades end
-	if (hasUpgrade('p', 21)) gain = gain.times(upgradeEffect('p', 21))
-	if (hasUpgrade('p', 22)) gain = gain.times(upgradeEffect('p', 22))
-	if (hasUpgrade('p', 25)) gain = gain.times(upgradeEffect('p', 25))
+	if (hasUpgrade('u', 11)) gain = gain.times(2) //Upgrade 11 (check layers.js for details)
+	if (hasUpgrade('u', 12)) gain = gain.times(3)
+	if (hasUpgrade('u', 13)) gain = gain.times(4)
+	if (hasUpgrade('u', 14)) gain = gain.times(5)
+	if (hasUpgrade('u', 15)) gain = gain.times(6) //row 1 upgrades end
+	if (hasUpgrade('u', 21)) gain = gain.times(upgradeEffect('u', 21))
+	if (hasUpgrade('u', 22)) gain = gain.times(upgradeEffect('u', 22))
+	if (hasUpgrade('u', 25)) gain = gain.times(upgradeEffect('u', 25))
 	return gain
 }
 
