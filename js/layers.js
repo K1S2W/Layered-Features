@@ -15,6 +15,8 @@ addLayer("p", {
     exponent: 0.5, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
+        if (hasUpgrade('p', 23)) mult = mult.times(upgradeEffect('p', 23))
+        if (hasUpgrade('p', 24)) mult = mult.times(upgradeEffect('p', 24))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -51,5 +53,51 @@ addLayer("p", {
             description: "Sextuple points gain.",
             cost: new Decimal(120),
         },
+        21: {
+            effect() {
+                return player[this.layer].points.add(10).log10(0.5)
+                },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+            title: "New Type!",
+            description: "Multiply Points By Log10(Prestige Points + 10)",
+            cost: new Decimal(500),
+        },
+        22: {
+            effect() {
+                return player.points.add(10).log10(0.5)
+                },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+            title: "Self Powered",
+            description: "Multiply Points By Log10(Points + 10)",
+            cost: new Decimal(1000),
+        },
+        23: {
+            effect() {
+                return player[this.layer].points.add(10).log10(0.5)
+                },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+            title: "Copy Paste",
+            description: "Multiply Prestige Points By Log10(Prestige Points + 10)",
+            cost: new Decimal(2500),
+        },
+        24: {
+            effect() {
+                return player.points.add(10).log10(0.5)
+                },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+            title: "Once Again",
+            description: "Multiply Prestige Points By Log10(Points + 10)",
+            cost: new Decimal(7500),
+        },
+        25: {
+            effect() {
+                return player["p"].upgrades.length
+                },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+            title: "Direct Multiplier",
+            description: "Multiply Points By Prestige Upgrades Bought",
+            cost: new Decimal(7500),
+        },
     }
+    
 })

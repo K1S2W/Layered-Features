@@ -12,7 +12,7 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.2.1",
+	num: "0.3",
 	name: "The Start",
 }
 
@@ -28,7 +28,10 @@ let changelog = `<h1>Changelog:</h1><br><br>
 		- Added 4 New Upgrades.<br><br>
 	<h3>v0.2.1</h3><br>
 		- Changed Themes a Bit.<br>
-		- Bug Fixes for Mobile.`
+		- Bug Fixes for Mobile.<br><br>
+	<h2>v0.3</h2><br>
+		- 5 New Upgrades Again.<br>
+		- Internal Changes.`
 	
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
@@ -56,6 +59,9 @@ function getPointGen() {
 	if (hasUpgrade('p', 13)) gain = gain.times(4)
 	if (hasUpgrade('p', 14)) gain = gain.times(5)
 	if (hasUpgrade('p', 15)) gain = gain.times(6) //row 1 upgrades end
+	if (hasUpgrade('p', 21)) gain = gain.times(upgradeEffect('p', 21))
+	if (hasUpgrade('p', 22)) gain = gain.times(upgradeEffect('p', 22))
+	if (hasUpgrade('p', 25)) gain = gain.times(upgradeEffect('p', 25))
 	return gain
 }
 
