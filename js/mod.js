@@ -25,7 +25,7 @@ let changelog = `<h1>Changelog:</h1><br><br>
 		- Uploaded To galaxy.click!<br><br>
 	<h2>v0.4 (5/18)</h2><br>
 		- Added Dates To The Changelog.<br>
-		- Added 5 New Upgrades, This Feels Repetitive.<br>
+		- Added 5 New Upgrades Again.<br>
 		- New Layer(?) Achievements!<br>
 		- Flipped Order Of Changelog.<br>
 		- Changed Themes To Also Effect Colors Of Layers.<br><br>
@@ -33,7 +33,7 @@ let changelog = `<h1>Changelog:</h1><br><br>
 		- Changed The Name Of Prestige Points To Upgrade Points.<br>
 		- Put Formulas For Upgrades Into Tooltips.<br><br>
 	<h2>v0.3 (5/16)</h2><br>
-		- 5 New Upgrades Again.<br>
+		- 5 New Upgrades.<br>
 		- Internal Changes.<br><br>
 	<h3>v0.2.1 (5/15)</h3><br>
 		- Changed Themes a Bit.<br>
