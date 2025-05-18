@@ -170,15 +170,15 @@ addLayer("a", {
     startData() { return {unlocked: true}},
     color: () => colors[getThemeName()].a, // Dynamic color based on theme
     tooltip: "Achievements",
-    layerShown() { return hasUpgrade("u", 35) },
+    layerShown() {return hasUpgrade("u", 35)},
     achievements: {
         11: {
             name: "Passive Generation",
+            unlocked: true,
             done() {return player.points.gte(10000000) && hasUpgrade("u", 35)}, // Check if player has 10M points and has the upgrade
             goalTooltip: "Reach 10M Points.",
             reward: "Generates 1% of Upgrade Point gain per second.",
         },
-        // Add more achievements here
     },
     update(diff) {
         // If achievement 11 is unlocked, generate 1% of Upgrade Point gain per second
