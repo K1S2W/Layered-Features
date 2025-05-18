@@ -31,27 +31,27 @@ addLayer("u", {
     upgrades: {
         11: {
             title: "Basic Multiplier",
-            description: "Double points gain.",
+            description: "Double Points Gain.",
             cost: new Decimal(1),
         },
         12: {
             title: "Basic Multiplier Again",
-            description: "Triple points gain.",
+            description: "Triple Points Gain.",
             cost: new Decimal(2),
         },
         13: {
             title: "Same As Before",
-            description: "Quadruple points gain.",
+            description: "Quadruple Points Gain.",
             cost: new Decimal(6),
         },
         14: {
             title: "Over and Over",
-            description: "Quintuple points gain.",
+            description: "Quintuple Points Gain.",
             cost: new Decimal(24),
         },
         15: {
             title: "I Got Lazy",
-            description: "Sextuple points gain.",
+            description: "Sextuple Points Gain.",
             cost: new Decimal(120),
         },
         21: {
