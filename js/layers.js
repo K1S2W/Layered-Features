@@ -121,10 +121,9 @@ addLayer("u", {
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
             title: "Direct Multiplier",
-            description: "Multiply Points By Upgrades Bought.",
             description() {
-                if (hasUpgrade(this.layer, 35)) return "Multiply Points And Upgrade Points By Upgrades Bought."
-                return "Multiply Points By Upgrades Bought."
+                if (hasUpgrade(this.layer, 35)) return "Multiply Points And Upgrade Points By Upgrade Upgrades Bought."
+                return "Multiply Points By UpgradeUpgrades Bought."
             },
             tooltip: "(Upgrade Upgrades)^1",
             cost: new Decimal(25000),
