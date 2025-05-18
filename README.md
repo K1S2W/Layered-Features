@@ -1,5 +1,5 @@
 # A Fork Of The Modding Tree
 
-I will update this infrequently :D
+Trying To Update Daily
 
-I have no idea what I'm doing
+Idk
