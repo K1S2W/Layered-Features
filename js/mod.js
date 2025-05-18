@@ -1,5 +1,5 @@
 let modInfo = {
-	name: "A Generic Idle Upgrade Game",
+	name: "Layered Features",
 	author: "K1S2W",
 	pointsName: "points",
 	modFiles: ["layers.js", "tree.js"],
@@ -12,11 +12,17 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.4",
-	name: "The Start",
+	num: "0.4.1",
+	name: "The Achievements",
 }
 
 let changelog = `<h1>Changelog:</h1><br><br>
+	<h3>v0.4.1 (5/18)</h3><br>
+		- Fixed Bug With First Achievement.<br>
+		- Added 3 New Themes.<br>
+		- Changed How Upgrades Are Unlocked.<br>
+		- Changed Name Of The Game.<br>
+		- Uploaded To galaxy.click!<br><br>
 	<h2>v0.4 (5/18)</h2><br>
 		- Added Dates To The Changelog.<br>
 		- Added 5 New Upgrades, This Feels Repetitive.<br>

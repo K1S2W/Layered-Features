@@ -55,6 +55,7 @@ addLayer("u", {
             cost: new Decimal(120),
         },
         21: {
+            unlocked() {return hasUpgrade('u', 15)},
             effect() {
                 if (hasUpgrade(this.layer, 31)) return player[this.layer].points.add(9).log(9)
                 return player[this.layer].points.add(10).log(10)
@@ -69,6 +70,7 @@ addLayer("u", {
             cost: new Decimal(500),
         },
         22: {
+            unlocked() {return hasUpgrade('u', 15)},
             effect() {
                 if (hasUpgrade(this.layer, 32)) return player.points.add(9).log(9)
                 return player.points.add(10).log(10)
@@ -83,6 +85,7 @@ addLayer("u", {
             cost: new Decimal(1000),
         },
         23: {
+            unlocked() {return hasUpgrade('u', 15)},
             effect() {
                 if (hasUpgrade(this.layer, 33)) return player[this.layer].points.add(9).log(9)
                 return player[this.layer].points.add(10).log(10)
@@ -97,6 +100,7 @@ addLayer("u", {
             cost: new Decimal(2500),
         },
         24: {
+            unlocked() {return hasUpgrade('u', 15)},
             effect() {
                 if (hasUpgrade(this.layer, 34)) return player.points.add(9).log(9)
                 return player.points.add(10).log(10)
@@ -111,6 +115,7 @@ addLayer("u", {
             cost: new Decimal(7500),
         },
         25: {
+            unlocked() {return hasUpgrade('u', 15)},
             effect() {
                 return player["u"].upgrades.length
             },
@@ -125,26 +130,31 @@ addLayer("u", {
             cost: new Decimal(25000),
         },
         31: {
+            unlocked() {return hasUpgrade('u', 25)},
             title: "Improvement",
             description: "Improves \"New Type!\" Formula.",
             cost: new Decimal(75000),
         },
         32: {
+            unlocked() {return hasUpgrade('u', 25)},
             title: "<-",
             description: "Improves \"Self Powered\" Formula.",
             cost: new Decimal(125000),
         },
         33: {
+            unlocked() {return hasUpgrade('u', 25)},
             title: "These Are Useless",
             description: "Improves \"Copy Paste\" Formula.",
             cost: new Decimal(175000),
         },
         34: {
+            unlocked() {return hasUpgrade('u', 25)},
             title: "Why?",
             description: "Improves \"Once Again\" Formula.",
             cost: new Decimal(225000),
         },
         35: {
+            unlocked() {return hasUpgrade('u', 25)},
             title: "Worth The Wait",
             description: "\"Direct Multiplier\" Also Applies To Upgrade Point Gain, Unlock Achievements.",
             cost: new Decimal(300000),
@@ -165,7 +175,7 @@ addLayer("a", {
     achievements: {
         11: {
             name: "Passive Generation",
-            done() { return player.points.gte(1) },
+            done() {return player.points.gte(10000000) && hasUpgrade("u", 35)}, // Check if player has 10M points and has the upgrade
             goalTooltip: "Reach 10M Points.",
             reward: "Generates 1% of Upgrade Point gain per second.",
         },

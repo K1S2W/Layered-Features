@@ -1,5 +1,5 @@
 // ************ Themes ************
-var themes = ["default", "grayscale", "inverted"]
+var themes = ["default", "grayscale", "inverted", "redverted", "greenverted", "blueverted"];
 
 var colors = {
 	default: {
@@ -43,6 +43,48 @@ var colors = {
 		upgText: "rgba(255, 255, 255, 1)",
 		u: "rgba(255, 55, 255, 1)",
 		a: "rgba(0, 0, 255, 1)",
+	},
+	redverted: {
+		1: "rgba(0, 255, 255, 1)",
+		2: "rgba(64, 191, 191, 1)",
+		3: "rgba(128, 127, 127, 1)",
+		color: "rgba(32, 223, 223, 1)",
+		points: "rgba(0, 255, 255, 1)",
+		locked: "rgba(64, 143, 143, 1)",
+		bought: "rgba(255, 255, 0, 1)",
+		background: "rgba(240, 15, 15, 1)",
+		background_tooltip: "rgba(255, 0, 0, 1)",
+		upgText: "rgba(255, 0, 0, 1)",
+		u: "rgba(255, 200, 0, 1)",
+		a: "rgba(0, 255, 0, 1)",
+	},
+	greenverted: {
+		1: "rgba(255, 0, 255, 1)",
+		2: "rgba(191, 64, 191, 1)",
+		3: "rgba(127, 128, 127, 1)",
+		color: "rgba(223, 32, 223, 1)",
+		points: "rgba(255, 0, 255, 1)",
+		locked: "rgba(191, 112, 143, 1)",
+		bought: "rgba(0, 0, 0, 1)",
+		background: "rgba(15, 240, 15, 1)",
+		background_tooltip: "rgba(0, 255, 0, 1)",
+		upgText: "rgba(0, 255, 0, 1)",
+		u: "rgba(0, 55, 0, 1)",
+		a: "rgba(255, 0, 0, 1)",
+	},
+	blueverted: {
+		1: "rgba(255, 255, 0, 1)",
+		2: "rgba(191, 191, 64, 1)",
+		3: "rgba(127, 127, 128, 1)",
+		color: "rgba(223, 223, 32, 1)",
+		points: "rgba(255, 255, 0, 1)",
+		locked: "rgba(191, 143, 112, 1)",
+		bought: "rgba(0, 255, 255, 1)",
+		background: "rgba(15, 15, 240, 1)",
+		background_tooltip: "rgba(0, 0, 255, 1)",
+		upgText: "rgba(0, 0, 255, 1)",
+		u: "rgba(0, 200, 255, 1)",
+		a: "rgba(255, 255, 255, 1)",
 	},
 }
 function changeTheme() {
