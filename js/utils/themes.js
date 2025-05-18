@@ -13,6 +13,8 @@ var colors = {
 		background: "rgba(15, 15, 15, 1)",
 		background_tooltip: "rgba(0, 0, 0, 1)",
 		upgText: "rgba(0, 0, 0, 1)", // Upgrade text color
+		u: "rgba(0, 200, 0, 1)", // Upgrade layer color
+		a: "rgba(255, 255, 0, 1)", // Achievements layer color
 	},
 	grayscale: {
 		1: "rgba(255, 255, 255, 1)",
@@ -25,6 +27,8 @@ var colors = {
 		background: "rgba(15, 15, 15, 1)",
 		background_tooltip: "rgba(0, 0, 0, 1)",
 		upgText: "rgba(0, 0, 0, 1)",
+		u: "rgba(67, 67, 67, 1)",
+		a: "rgba(170, 170, 170, 1)",
 	},
 	inverted: {
 		1: "rgba(0, 0, 0, 1)",
@@ -37,6 +41,8 @@ var colors = {
 		background: "rgba(240, 240, 240, 1)",
 		background_tooltip: "rgba(255, 255, 255, 1)",
 		upgText: "rgba(255, 255, 255, 1)",
+		u: "rgba(255, 55, 255, 1)",
+		a: "rgba(0, 0, 255, 1)",
 	},
 }
 function changeTheme() {
@@ -49,6 +55,8 @@ function changeTheme() {
 	document.body.style.setProperty("--locked", colors_theme["locked"]);
 	document.body.style.setProperty("--bought", colors_theme["bought"]);
 	document.body.style.setProperty('--upgText', colors_theme["upgText"]);
+	document.body.style.setProperty('--upgradeColor', colors_theme["u"]);
+	document.body.style.setProperty('--achievementColor', colors_theme["a"]);
 }
 function getThemeName() {
 	return options.theme? options.theme : "default";

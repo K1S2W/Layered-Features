@@ -12,29 +12,35 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.3.1",
+	num: "0.4",
 	name: "The Start",
 }
 
 let changelog = `<h1>Changelog:</h1><br><br>
-	<h2>v0.0</h2><br>
-		- Setting Names.<br>
-		- Added Nothing.<br><br>
-	<h2>v0.1</h2><br>
-		- First Upgrade!<br><br>
-	<h2>v0.2</h2><br>
+	<h2>v0.4 (5/18)</h2><br>
+		- Added Dates To The Changelog.<br>
+		- Added 5 New Upgrades, This Feels Repetitive.<br>
+		- New Layer(?) Achievements!<br>
+		- Flipped Order Of Changelog.<br>
+		- Changed Themes To Also Effect Colors Of Layers.<br><br>
+	<h3>v0.3.1 (5/17)</h3><br>
+		- Changed The Name Of Prestige Points To Upgrade Points.<br>
+		- Put Formulas For Upgrades Into Tooltips.<br><br>
+	<h2>v0.3 (5/16)</h2><br>
+		- 5 New Upgrades Again.<br>
+		- Internal Changes.<br><br>
+	<h3>v0.2.1 (5/15)</h3><br>
+		- Changed Themes a Bit.<br>
+		- Bug Fixes for Mobile.<br><br>
+	<h2>v0.2 (5/15)</h2><br>
 		- 2 New Themes.<br>
 		- Removed a Old Theme.<br>
 		- Added 4 New Upgrades.<br><br>
-	<h3>v0.2.1</h3><br>
-		- Changed Themes a Bit.<br>
-		- Bug Fixes for Mobile.<br><br>
-	<h2>v0.3</h2><br>
-		- 5 New Upgrades Again.<br>
-		- Internal Changes.<br><br>
-	<h3>v0.3.1</h3><br>
-		- Changed The Name Of Prestige Points To Upgrade Points.<br>
-		- Put Formulas For Upgrades Into Tooltips.`
+	<h2>v0.1 (5/14)</h2><br>
+		- First Upgrade!<br><br>
+	<h2>v0.0 (5/13)</h2><br>
+		- Setting Names.<br>
+		- Added Nothing.`
 	
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
@@ -78,7 +84,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("10000000"))
+	return player.points.gte(new Decimal("100000000"))
 }
 
 
