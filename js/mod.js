@@ -19,7 +19,8 @@ let VERSION = {
 let changelog = `<h1>Changelog:</h1><br><br>
 	<h3>v0.4.2 (5/18)</h3><br>
 		- Quick Change To Bought Upgrade Formatting.<br>
-		- Capitalization Fixes For First 5 Upgrades.<br><br>
+		- Capitalization Fixes For First 5 Upgrades.<br>
+		- Changed Description Of "Direct Multiplier".<br><br>
 	<h3>v0.4.1 (5/18)</h3><br>
 		- Fixed Bug With First Achievement.<br>
 		- Added 3 New Themes.<br>
