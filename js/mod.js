@@ -12,11 +12,15 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.4.2",
+	num: "0.4.3",
 	name: "The Achievements",
 }
-
 let changelog = `<h1>Changelog:</h1><br><br>
+	<h3>v0.4.3 (5/19)</h3><br>
+		- Fixed A Bug For Achievement Layer.<br>
+		- 2 New Themes.<br>
+		- Added A Description For The First Achievement.<br>
+		- Bug With The First Achievement?<br><br>
 	<h3>v0.4.2 (5/18)</h3><br>
 		- Quick Change To Bought Upgrade Formatting.<br>
 		- Capitalization Fixes For First 5 Upgrades.<br>
@@ -33,7 +37,7 @@ let changelog = `<h1>Changelog:</h1><br><br>
 		- Added 5 New Upgrades Again.<br>
 		- New Layer(?) Achievements!<br>
 		- Flipped Order Of Changelog.<br>
-		- Changed Themes To Also Effect Colors Of Layers.<br><br>
+		- Changed Themes To Also Affect Colors Of Layers.<br><br>
 	<h3>v0.3.1 (5/17)</h3><br>
 		- Changed The Name Of Prestige Points To Upgrade Points.<br>
 		- Put Formulas For Upgrades Into Tooltips.<br><br>

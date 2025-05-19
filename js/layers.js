@@ -20,6 +20,12 @@ addLayer("u", {
         if (hasUpgrade('u', 35)) mult = mult.times(upgradeEffect('u', 25))
         return mult
     },
+    update(diff) {
+        if (hasAchievement("a", 11)) {
+            let gain = tmp.u.resetGain.times(0.01).times(diff)
+            player.u.points = player.u.points.add(gain)
+        }
+    },
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
@@ -160,31 +166,27 @@ addLayer("u", {
         },
     },
 })
-
 // Global Achievements Layer
 addLayer("a", {
     name: "Achievements",
     symbol: "A",
     position: 1,
     row: "side", // Side layer for achievements
-    startData() { return {unlocked: true}},
+    type: "none",
+    startData() {return {unlocked: true}},
     color: () => colors[getThemeName()].a, // Dynamic color based on theme
     tooltip: "Achievements",
     layerShown() {return hasUpgrade("u", 35)},
+    unlocked: true,
     achievements: {
         11: {
             name: "Passive Generation",
-            unlocked: true,
-            done() {return player.points.gte(10000000) && hasUpgrade("u", 35)}, // Check if player has 10M points and has the upgrade
-            goalTooltip: "Reach 10M Points.",
-            reward: "Generates 1% of Upgrade Point gain per second.",
+            done() {return player.points.gte(10000000) && hasUpgrade("u", 35)},
+            description() {
+                if(hasAchievement("a", 11)) return "Generate 1% Of Upgrade Points Per Second."
+                return "Reach 10M(10,000,000) Points."
+            },
+            unlocked() {return true},
         },
-    },
-    update(diff) {
-        // If achievement 11 is unlocked, generate 1% of Upgrade Point gain per second
-        if (hasAchievement("a", 11)) {
-            let gain = tmp.u.resetGain.times(0.01).times(diff)
-            player.u.points = player.u.points.add(gain)
-        }
     },
 })

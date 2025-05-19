@@ -1,5 +1,4 @@
 // ************ Big Feature related ************
-
 function respecBuyables(layer) {
 	if (!layers[layer].buyables) return
 	if (!layers[layer].buyables.respec) return
@@ -8,7 +7,6 @@ function respecBuyables(layer) {
 	updateBuyableTemp(layer)
 	document.activeElement.blur()
 }
-
 function canAffordUpgrade(layer, id) {
 	let upg = tmp[layer].upgrades[id]
 	if(tmp[layer].deactivated) return false
@@ -19,14 +17,10 @@ function canAffordUpgrade(layer, id) {
 
 	return true
 }
-
 function canBuyBuyable(layer, id) {
 	let b = temp[layer].buyables[id]
 	return (b.unlocked && run(b.canAfford, b) && player[layer].buyables[id].lt(b.purchaseLimit) && !tmp[layer].deactivated)
 }
-
-
-
 function canAffordPurchase(layer, thing, cost) {
 	if (thing.currencyInternalName) {
 		let name = thing.currencyInternalName
@@ -45,11 +39,9 @@ function canAffordPurchase(layer, thing, cost) {
 		return !(player[layer].points.lt(cost))
 	}
 }
-
 function buyUpgrade(layer, id) {
 	buyUpg(layer, id)
 }
-
 function buyUpg(layer, id) {
 	if (!tmp[layer].upgrades || !tmp[layer].upgrades[id]) return
 	let upg = tmp[layer].upgrades[id]
@@ -89,7 +81,6 @@ function buyUpg(layer, id) {
 		run(upg.onPurchase, upg)
 	needCanvasUpdate = true
 }
-
 function buyMaxBuyable(layer, id) {
 	if (!player[layer].unlocked) return
 	if (!tmp[layer].buyables[id].unlocked) return
@@ -99,7 +90,6 @@ function buyMaxBuyable(layer, id) {
 	run(layers[layer].buyables[id].buyMax, layers[layer].buyables[id])
 	updateBuyableTemp(layer)
 }
-
 function buyBuyable(layer, id) {
 	if (!player[layer].unlocked) return
 	if (!tmp[layer].buyables[id].unlocked) return
@@ -108,7 +98,6 @@ function buyBuyable(layer, id) {
 	run(layers[layer].buyables[id].buy, layers[layer].buyables[id])
 	updateBuyableTemp(layer)
 }
-
 function clickClickable(layer, id) {
 	if (!player[layer].unlocked || tmp[layer].deactivated) return
 	if (!tmp[layer].clickables[id].unlocked) return
@@ -117,7 +106,6 @@ function clickClickable(layer, id) {
 	run(layers[layer].clickables[id].onClick, layers[layer].clickables[id])
 	updateClickableTemp(layer)
 }
-
 function clickGrid(layer, id) {
 	if (!player[layer].unlocked  || tmp[layer].deactivated) return
 	if (!run(layers[layer].grid.getUnlocked, layers[layer].grid, id)) return
@@ -125,7 +113,6 @@ function clickGrid(layer, id) {
 
 	gridRun(layer, 'onClick', player[layer].grid[id], id)
 }
-
 // Function to determine if the player is in a challenge
 function inChallenge(layer, id) {
 	let challenge = player[layer].activeChallenge
@@ -137,11 +124,8 @@ function inChallenge(layer, id) {
 		return tmp[layer].challenges[challenge].countsAs.includes(id) || false
 	return false
 }
-
 // ************ Misc ************
-
 var onTreeTab = true
-
 function showTab(name, prev) {
 	if (LAYERS.includes(name) && !layerunlocked(name)) return
 	if (player.tab !== name) clearParticles(function(p) {return p.layer === player.tab})
@@ -154,9 +138,7 @@ function showTab(name, prev) {
 	updateTabFormats()
 	needCanvasUpdate = true
 	document.activeElement.blur()
-
 }
-
 function showNavTab(name, prev) {
 	console.log(prev)
 	if (LAYERS.includes(name) && !layerunlocked(name)) return
@@ -171,8 +153,6 @@ function showNavTab(name, prev) {
 	updateTabFormats()
 	needCanvasUpdate = true
 }
-
-
 function goBack(layer) {
 	let nextTab = "none"
 
@@ -183,7 +163,6 @@ function goBack(layer) {
 	else showTab(nextTab, layer)
 
 }
-
 function layOver(obj1, obj2) {
 	for (let x in obj2) {
 		if (obj2[x] instanceof Decimal) obj1[x] = new Decimal(obj2[x])
@@ -191,7 +170,6 @@ function layOver(obj1, obj2) {
 		else obj1[x] = obj2[x];
 	}
 }
-
 function prestigeNotify(layer) {
 	if (layers[layer].prestigeNotify) return layers[layer].prestigeNotify()
 	
@@ -212,12 +190,10 @@ function prestigeNotify(layer) {
 	else if (tmp[layer].type == "normal") return (tmp[layer].canReset && (tmp[layer].resetGain.gte(player[layer].points.div(10))))
 	else return false
 }
-
 function notifyLayer(name) {
 	if (player.tab == name || !layerunlocked(name)) return
 	player.notify[name] = 1
 }
-
 function subtabShouldNotify(layer, family, id) {
     let subtab = {}
     if (family == "mainTabs") subtab = tmp[layer].tabFormat[id]
@@ -226,7 +202,6 @@ function subtabShouldNotify(layer, family, id) {
     if (subtab.embedLayer) return tmp[subtab.embedLayer].notify
     else return subtab.shouldNotify
 }
-
 function subtabResetNotify(layer, family, id) {
 	let subtab = {}
 	if (family == "mainTabs") subtab = tmp[layer].tabFormat[id]
@@ -234,27 +209,22 @@ function subtabResetNotify(layer, family, id) {
 	if (subtab.embedLayer) return tmp[subtab.embedLayer].prestigeNotify
 	else return subtab.prestigeNotify
 }
-
 function nodeShown(layer) {
 	return layerShown(layer)
 }
-
 function layerunlocked(layer) {
 	if (tmp[layer] && tmp[layer].type == "none") return (player[layer].unlocked)
 	return LAYERS.includes(layer) && (player[layer].unlocked || (tmp[layer].canReset && tmp[layer].layerShown))
 }
-
 function keepGoing() {
 	player.keepGoing = true;
 	needCanvasUpdate = true;
 }
-
 function toNumber(x) {
 	if (x.mag !== undefined) return x.toNumber()
 	if (x + 0 !== x) return parseFloat(x)
 	return x
 }
-
 function updateMilestones(layer) {
 	if (tmp[layer].deactivated) return
 	for (id in layers[layer].milestones) {
@@ -266,7 +236,6 @@ function updateMilestones(layer) {
 		}
 	}
 }
-
 function updateAchievements(layer) {
 	if (tmp[layer].deactivated) return
 	for (id in layers[layer].achievements) {
@@ -277,7 +246,6 @@ function updateAchievements(layer) {
 		}
 	}
 }
-
 function addTime(diff, layer) {
 	let data = player
 	let time = data.timePlayed
@@ -301,10 +269,8 @@ function addTime(diff, layer) {
 	if (layer) data.time = time
 	else data.timePlayed = time
 }
-
 shiftDown = false
 ctrlDown = false
-
 document.onkeydown = function (e) {
 	if (player === undefined) return;
 	shiftDown = e.shiftKey
@@ -320,28 +286,21 @@ document.onkeydown = function (e) {
 			k.onPress()
 	}
 }
-
 document.onkeyup = function (e) {
 	shiftDown = e.shiftKey
 	ctrlDown = e.ctrlKey
 }
-
 var onFocused = false
 function focused(x) {
 	onFocused = x
 }
-
-
 function isFunction(obj) {
 	return !!(obj && obj.constructor && obj.call && obj.apply);
 };
-
 function isPlainObject(obj) {
 	return (!!obj) && (obj.constructor === Object)
 }
-
 document.title = modInfo.name
-
 // Converts a string value to whatever it's supposed to be
 function toValue(value, oldValue) {
 	if (oldValue instanceof Decimal) {

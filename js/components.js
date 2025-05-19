@@ -489,6 +489,7 @@ function loadVue() {
 			: (tmp[layer].achievements[data].goalTooltip ? tmp[layer].achievements[data].goalTooltip : (tmp[layer].achievements[data].tooltip ? tmp[layer].achievements[data].tooltip : 'LOCKED'))
 		"></tooltip>
 			<span v-if= "tmp[layer].achievements[data].name"><br><h3 v-bind:style="tmp[layer].achievements[data].textStyle" v-html="tmp[layer].achievements[data].name"></h3><br></span>
+			<span v-if="layers[layer].achievements[data].description" class="achievement-description" v-html="run(layers[layer].achievements[data].description, layers[layer].achievements[data])"></span>
 		</div>
 		`
 	})

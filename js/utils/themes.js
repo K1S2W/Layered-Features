@@ -1,5 +1,5 @@
 // ************ Themes ************
-var themes = ["default", "grayscale", "inverted", "redverted", "greenverted", "blueverted"];
+var themes = ["default", "grayscale", "inverted", "oversaturated", "undersaturated", "redverted", "greenverted", "blueverted"];
 
 var colors = {
 	default: {
@@ -43,6 +43,34 @@ var colors = {
 		upgText: "rgba(255, 255, 255, 1)",
 		u: "rgba(255, 55, 255, 1)",
 		a: "rgba(0, 0, 255, 1)",
+	},
+	oversaturated: {
+		1: "rgba(255, 255, 255, 1)",
+		2: "rgba(255, 255, 255, 1)",
+		3: "rgba(254, 254, 254, 1)",
+		color: "rgba(255, 255, 255, 1)",
+		points: "rgba(255, 255, 255, 1)",
+		locked: "rgba(255, 255, 255, 1)",
+		bought: "rgba(0, 255, 0, 1)",
+		background: "rgba(30, 30, 30, 1)",
+		background_tooltip: "rgba(0, 0, 0, 1)",
+		upgText: "rgba(0, 0, 0, 1)",
+		u: "rgba(0, 255, 0, 1)",
+		a: "rgba(255, 255, 0, 1)",
+	},
+	undersaturated: {
+		1: "rgba(128, 128, 128, 1)",
+		2: "rgba(96, 96, 96, 1)",
+		3: "rgba(64, 64, 64, 1)",
+		color: "rgba(112, 112, 112, 1)",
+		points: "rgba(128, 128, 128, 1)",
+		locked: "rgba(96, 72, 72, 1)",
+		bought: "rgba(0, 128, 0, 1)",
+		background: "rgba(8, 8, 8, 1)",
+		background_tooltip: "rgba(0, 0, 0, 1)",
+		upgText: "rgba(0, 0, 0, 1)",
+		u: "rgba(0, 100, 0, 1)",
+		a: "rgba(128, 128, 0, 1)",
 	},
 	redverted: {
 		1: "rgba(0, 255, 255, 1)",

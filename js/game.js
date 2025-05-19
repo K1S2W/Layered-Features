@@ -266,13 +266,11 @@ function startChallenge(layer, x) {
 	}
 	updateChallengeTemp(layer)
 }
-
 function canCompleteChallenge(layer, x)
 {
 	if (x != player[layer].activeChallenge) return
 	let challenge = tmp[layer].challenges[x]
 	if (challenge.canComplete !== undefined) return challenge.canComplete
-
 	if (challenge.currencyInternalName){
 		let name = challenge.currencyInternalName
 		if (challenge.currencyLocation){
@@ -289,13 +287,10 @@ function canCompleteChallenge(layer, x)
 	else {
 		return !(player.points.lt(challenge.goal))
 	}
-
 }
-
 function completeChallenge(layer, x) {
 	var x = player[layer].activeChallenge
 	if (!x) return
-	
 	let completions = canCompleteChallenge(layer, x)
 	if (!completions){
 		Vue.set(player[layer], "activeChallenge", null)
@@ -315,21 +310,17 @@ function completeChallenge(layer, x) {
 
 VERSION.withoutName = "v" + VERSION.num + (VERSION.pre ? " Pre-Release " + VERSION.pre : VERSION.pre ? " Beta " + VERSION.beta : "")
 VERSION.withName = VERSION.withoutName + (VERSION.name ? ": " + VERSION.name : "")
-
-
 function autobuyUpgrades(layer){
 	if (!tmp[layer].upgrades) return
 	for (id in tmp[layer].upgrades)
 		if (isPlainObject(tmp[layer].upgrades[id]) && (layers[layer].upgrades[id].canAfford === undefined || layers[layer].upgrades[id].canAfford() === true))
 			buyUpg(layer, id) 
 }
-
 function gameLoop(diff) {
 	if (isEndgame() || tmp.gameEnded){
 		tmp.gameEnded = true
 		clearParticles()
 	}
-
 	if (isNaN(diff) || diff < 0) diff = 0
 	if (tmp.gameEnded && !player.keepGoing) {
 		diff = 0
