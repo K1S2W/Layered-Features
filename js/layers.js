@@ -6,6 +6,7 @@ addLayer("u", {
         unlocked: true,
 		points: new Decimal(0),
     }},
+    layerShown() {return true},
     color: () => colors[getThemeName()].u, // Dynamic color based on theme
     requires: new Decimal(10), // Can be a function that takes requirement increases into account
     resource: "upgrade points", // Name of prestige currency
@@ -14,7 +15,7 @@ addLayer("u", {
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: 0.5, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
-        mult = new Decimal(1)
+        let mult = new Decimal(1)
         if (hasUpgrade('u', 23)) mult = mult.times(upgradeEffect('u', 23))
         if (hasUpgrade('u', 24)) mult = mult.times(upgradeEffect('u', 24))
         if (hasUpgrade('u', 35)) mult = mult.times(upgradeEffect('u', 25))
@@ -23,6 +24,7 @@ addLayer("u", {
     update(diff) {
         if (hasAchievement("a", 11)) {
             let gain = tmp.u.resetGain.times(0.01).times(diff)
+            if (hasUpgrade('u', 45)) gain = gain.times(10)
             player.u.points = player.u.points.add(gain)
         }
     },
@@ -66,7 +68,7 @@ addLayer("u", {
                 if (hasUpgrade(this.layer, 31)) return player[this.layer].points.add(9).log(9)
                 return player[this.layer].points.add(10).log(10)
             },
-            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+            effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"}, // Add formatting to the effect, required
             title: "New Type!",
             description: "Multiply Points By Upgrade Points.",
             tooltip() {
@@ -81,7 +83,7 @@ addLayer("u", {
                 if (hasUpgrade(this.layer, 32)) return player.points.add(9).log(9)
                 return player.points.add(10).log(10)
             },
-            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+            effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
             title: "Self Powered",
             description: "Multiply Points By Itself.",
             tooltip() {
@@ -96,7 +98,7 @@ addLayer("u", {
                 if (hasUpgrade(this.layer, 33)) return player[this.layer].points.add(9).log(9)
                 return player[this.layer].points.add(10).log(10)
             },
-            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+            effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
             title: "Copy Paste",
             description: "Multiply Upgrade Points By Itself.",
             tooltip() {
@@ -111,7 +113,7 @@ addLayer("u", {
                 if (hasUpgrade(this.layer, 34)) return player.points.add(9).log(9)
                 return player.points.add(10).log(10)
             },
-            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+            effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
             title: "Once Again",
             description: "Multiply Upgrade Points By Points.",
             tooltip() {
@@ -125,13 +127,13 @@ addLayer("u", {
             effect() {
                 return player["u"].upgrades.length
             },
-            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+            effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
             title: "Direct Multiplier",
             description() {
                 if (hasUpgrade(this.layer, 35)) return "Multiply Points And Upgrade Points By Upgrade Upgrades Bought."
-                return "Multiply Points By UpgradeUpgrades Bought."
+                return "Multiply Points By Upgrade Upgrades Bought."
             },
-            tooltip: "(Upgrade Upgrades)^1",
+            tooltip: "(Upgrade Upgrades Bought)^1",
             cost: new Decimal(25000),
         },
         31: {
@@ -164,6 +166,56 @@ addLayer("u", {
             description: "\"Direct Multiplier\" Also Applies To Upgrade Point Gain, Unlock Achievements.",
             cost: new Decimal(300000),
         },
+        41: {
+            effect() {
+                return new Decimal(getChangelogLength()).pow(0.5)
+            },
+            effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
+            unlocked() {return hasAchievement('a', 11)},
+            title: "Misc Upgrades",
+            description: "Multiplies Points By Changelog Length.",
+            tooltip: "(Changelog Length)^0.5",
+            cost: new Decimal(5000000),
+        },
+        42: {
+            effect() {
+                return new Decimal(Object.keys(layers.a.achievements).filter(x => !isNaN(Number(x)) && hasAchievement('a', x)).length)
+            },
+            effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
+            unlocked() {return hasAchievement('a', 11)},
+            title: "Useless For Now...",
+            description: "Multiplies Points By Achievements.",
+            tooltip: "(Achievements Unlocked)^1",
+            cost: new Decimal(50000000),
+        },
+        43: {
+            effect() {
+                return Object.keys(themes).length
+            },
+            effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
+            unlocked() {return hasAchievement('a', 11)},
+            title: "Themes Are Uselful?",
+            description: "Multiplies Points By Themes.",
+            tooltip: "(Themes)^1",
+            cost: new Decimal(60000000),
+        },
+        44:{
+            effect() {
+                return new Decimal(player.timePlayed).add(10).log(10)
+            },
+            effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
+            unlocked() {return hasAchievement('a', 11)},
+            title: "Afk!",
+            description: "Multiplies Points By Time Played.",
+            tooltip: "Log10(Seconds Played + 10)",
+            cost: new Decimal("2e8"),
+        },
+        45:{
+            unlocked() {return hasAchievement('a', 11)},
+            title: "Better Automation",
+            description: "Improves \"Passive Generation\".",
+            cost: new Decimal("5e8"),
+        },
     },
 })
 // Global Achievements Layer
@@ -173,20 +225,20 @@ addLayer("a", {
     position: 1,
     row: "side", // Side layer for achievements
     type: "none",
-    startData() {return {unlocked: true}},
+    startData() {return {unlocked: false}},
     color: () => colors[getThemeName()].a, // Dynamic color based on theme
     tooltip: "Achievements",
     layerShown() {return hasUpgrade("u", 35)},
-    unlocked: true,
+    unlocked() {return hasUpgrade("u", 35)},
     achievements: {
         11: {
             name: "Passive Generation",
             done() {return player.points.gte(10000000) && hasUpgrade("u", 35)},
             description() {
+                if(hasUpgrade("u", 45)) return "Generate 10% Of Upgrade Points Per Second."
                 if(hasAchievement("a", 11)) return "Generate 1% Of Upgrade Points Per Second."
                 return "Reach 10M(10,000,000) Points."
-            },
-            unlocked() {return true},
+            }
         },
     },
 })
