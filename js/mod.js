@@ -17,7 +17,8 @@ let changelog = `<h1>Changelog:</h1><br><br>
 	<h2>v0.5 (5/20)</h2><br>
 		- Changed How Upgrades Are Unlocked.<br>
 		- Fixed An Upgrade's Description.<br>
-		- Added 5 New Upgrades, Why Aren't The Updates Bigger?<br><br>
+		- Added 5 New Upgrades, Why Aren't The Updates Bigger?<br>
+		- Endgame: 1e11 Points<br><br>
 	<h3>v0.4.3 (5/19)</h3><br>
 		- Fixed A Bug For Achievement Layer.<br>
 		- 2 New Themes.<br>
@@ -99,7 +100,7 @@ var displayThings = [
 ]
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("100000000"))
+	return player.points.gte(new Decimal("1e11"))
 }
 // Less important things beyond this point!
 // Style for the background, can be a function
