@@ -10,10 +10,13 @@ let modInfo = {
 }
 // Set your version in num and name
 let VERSION = {
-	num: "0.5",
+	num: "0.5.1",
 	name: "The Achievements",
 }
 let changelog = `<h1>Changelog:</h1><br><br>
+	<h3>v0.5.1 (5/21)</h3><br>
+		- 3 New Themes.<br>
+		- Sorry About The Small Update, I'm Very Tired :(<br><br>
 	<h2>v0.5 (5/20)</h2><br>
 		- Changed How Upgrades Are Unlocked.<br>
 		- Fixed An Upgrade's Description.<br>
