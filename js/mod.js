@@ -10,10 +10,15 @@ let modInfo = {
 }
 // Set your version in num and name
 let VERSION = {
-	num: "0.6",
-	name: "The Achievements",
+	num: "0.7",
+	name: "Secret Achievements",
 }
 let changelog = `<h1>Changelog:</h1><br><br>
+	<h2>v0.7 (5/24)</h2><br>
+		- 5 New Upgrades.<br>
+		- This Was Denied From galaxy.click.<br>
+		- Forgot To Push Endgame So...<br>
+		- Endgame: 1e19 Points<br><br>
 	<h2>v0.6 (5/23)</h2><br>
 		- 5 New Upgrades.<br>
 		- Changed How Upgrades Are Unlocked Againx2.<br>
@@ -108,6 +113,10 @@ function getPointGen() {
     if (hasUpgrade('u', 44)) gain = gain.times(upgradeEffect('u', 44))
 	if (hasUpgrade('u', 55)) gain = gain.times(upgradeEffect('u', 55))
 	if (hasAchievement('a', 12)) gain = gain.times(layers.a.achievements[12].effect())
+	if (hasUpgrade('u', 61)) gain = gain.times(7)
+	if (hasUpgrade('u', 62)) gain = gain.times(8)
+	if (hasUpgrade('u', 63)) gain = gain.times(9)
+	if (hasUpgrade('u', 64)) gain = gain.times(10)
 	return gain
 }
 // You can add non-layer related variables that should to into "player" and be saved here, along with default values
@@ -118,7 +127,7 @@ var displayThings = [
 ]
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("1e11"))
+	return player.points.gte(new Decimal("1e19"))
 }
 // Less important things beyond this point!
 // Style for the background, can be a function

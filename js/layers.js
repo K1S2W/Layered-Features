@@ -23,6 +23,7 @@ addLayer("u", {
         if (hasUpgrade('u', 52)) mult = mult.times(upgradeEffect('u', 42))
         if (hasUpgrade('u', 53)) mult = mult.times(upgradeEffect('u', 43))
         if (hasUpgrade('u', 54)) mult = mult.times(upgradeEffect('u', 44))
+        if (hasUpgrade('u', 65)) mult = mult.times(layers.a.achievements[12].effect())
         return mult
     },
     update(diff) {
@@ -68,7 +69,7 @@ addLayer("u", {
         },
         21: {
             unlocked() {
-                return [11,12,13,14,15].every(id => hasUpgrade('u', id))
+                return [11, 12, 13, 14, 15].every(id => hasUpgrade('u', id))
             },
             effect() {
                 if (hasUpgrade(this.layer, 31)) return player[this.layer].points.add(9).log(9)
@@ -85,7 +86,7 @@ addLayer("u", {
         },
         22: {
             unlocked() {
-                return [11,12,13,14,15].every(id => hasUpgrade('u', id))
+                return [11, 12, 13, 14, 15].every(id => hasUpgrade('u', id))
             },
             effect() {
                 if (hasUpgrade(this.layer, 32)) return player.points.add(9).log(9)
@@ -102,7 +103,7 @@ addLayer("u", {
         },
         23: {
             unlocked() {
-                return [11,12,13,14,15].every(id => hasUpgrade('u', id))
+                return [11, 12, 13, 14, 15].every(id => hasUpgrade('u', id))
             },
             effect() {
                 if (hasUpgrade(this.layer, 33)) return player[this.layer].points.add(9).log(9)
@@ -119,7 +120,7 @@ addLayer("u", {
         },
         24: {
             unlocked() {
-                return [11,12,13,14,15].every(id => hasUpgrade('u', id))
+                return [11, 12, 13, 14, 15].every(id => hasUpgrade('u', id))
             },
             effect() {
                 if (hasUpgrade(this.layer, 34)) return player.points.add(9).log(9)
@@ -136,7 +137,7 @@ addLayer("u", {
         },
         25: {
             unlocked() {
-                return [11,12,13,14,15].every(id => hasUpgrade('u', id))
+                return [11, 12, 13, 14, 15].every(id => hasUpgrade('u', id))
             },
             effect() {
                 return player["u"].upgrades.length
@@ -152,7 +153,7 @@ addLayer("u", {
         },
         31: {
             unlocked() {
-                return [21,22,23,24,25].every(id => hasUpgrade('u', id))
+                return [21, 22, 23, 24, 25].every(id => hasUpgrade('u', id))
             },
             title: "Improvement",
             description: "Improves \"New Type!\" Formula.",
@@ -160,7 +161,7 @@ addLayer("u", {
         },
         32: {
             unlocked() {
-                return [21,22,23,24,25].every(id => hasUpgrade('u', id))
+                return [21, 22, 23, 24, 25].every(id => hasUpgrade('u', id))
             },
             title: "<-",
             description: "Improves \"Self Powered\" Formula.",
@@ -168,7 +169,7 @@ addLayer("u", {
         },
         33: {
             unlocked() {
-                return [21,22,23,24,25].every(id => hasUpgrade('u', id))
+                return [21, 22, 23, 24, 25].every(id => hasUpgrade('u', id))
             },
             title: "These Are Useless",
             description: "Improves \"Copy Paste\" Formula.",
@@ -176,7 +177,7 @@ addLayer("u", {
         },
         34: {
             unlocked() {
-                return [21,22,23,24,25].every(id => hasUpgrade('u', id))
+                return [21, 22, 23, 24, 25].every(id => hasUpgrade('u', id))
             },
             title: "Why?",
             description: "Improves \"Once Again\" Formula.",
@@ -184,7 +185,7 @@ addLayer("u", {
         },
         35: {
             unlocked() {
-                return [21,22,23,24,25].every(id => hasUpgrade('u', id))
+                return [21, 22, 23, 24, 25].every(id => hasUpgrade('u', id))
             },
             title: "Worth The Wait",
             description: "\"Direct Multiplier\" Also Applies To Upgrade Point Gain, Unlock Achievements.",
@@ -192,7 +193,7 @@ addLayer("u", {
         },
         41: {
             unlocked() {
-                return [31,32,33,34,35].every(id => hasUpgrade('u', id)) && hasAchievement('a', 11)
+                return [31, 32, 33, 34, 35].every(id => hasUpgrade('u', id)) && hasAchievement('a', 11)
             },
             effect() {
                 return new Decimal(getChangelogLength()).pow(0.5)
@@ -209,7 +210,7 @@ addLayer("u", {
         },
         42: {
             unlocked() {
-                return [31,32,33,34,35].every(id => hasUpgrade('u', id)) && hasAchievement('a', 11)
+                return [31, 32, 33, 34, 35].every(id => hasUpgrade('u', id)) && hasAchievement('a', 11)
             },
             effect() {
                 return new Decimal(Object.keys(layers.a.achievements).filter(x => !isNaN(Number(x)) && hasAchievement('a', x)).length)
@@ -227,7 +228,7 @@ addLayer("u", {
         },
         43: {
             unlocked() {
-                return [31,32,33,34,35].every(id => hasUpgrade('u', id)) && hasAchievement('a', 11)
+                return [31, 32, 33, 34, 35].every(id => hasUpgrade('u', id)) && hasAchievement('a', 11)
             },
             effect() {
                 return Object.keys(themes).length
@@ -244,7 +245,7 @@ addLayer("u", {
         },
         44:{
             unlocked() {
-                return [31,32,33,34,35].every(id => hasUpgrade('u', id)) && hasAchievement('a', 11)
+                return [31, 32, 33, 34, 35].every(id => hasUpgrade('u', id)) && hasAchievement('a', 11)
             },
             effect() {
                 return new Decimal(player.timePlayed).add(10).log(10)
@@ -261,7 +262,7 @@ addLayer("u", {
         },
         45:{
             unlocked() {
-                return [31,32,33,34,35].every(id => hasUpgrade('u', id))
+                return [31, 32, 33, 34, 35].every(id => hasUpgrade('u', id))
             },
             title: "Better Automation",
             description: "Improves \"Passive Generation\".",
@@ -269,7 +270,7 @@ addLayer("u", {
         },
         51:{
             unlocked() {
-                return [41,42,43,44,45].every(id => hasUpgrade('u', id))
+                return [41, 42, 43, 44, 45].every(id => hasUpgrade('u', id))
             },
             title: "Improvement Row v2",
             description: "\"Misc Upgrades\" Also Affects Prestige Points.",
@@ -277,7 +278,7 @@ addLayer("u", {
         },
         52:{
             unlocked() {
-                return [41,42,43,44,45].every(id => hasUpgrade('u', id))
+                return [41, 42, 43, 44, 45].every(id => hasUpgrade('u', id))
             },
             title: "These Rows Are So Repetative",
             description: "\"Useless For Now...\" Also Affects Prestige Points.",
@@ -285,7 +286,7 @@ addLayer("u", {
         },
         53:{
             unlocked() {
-                return [41,42,43,44,45].every(id => hasUpgrade('u', id))
+                return [41, 42, 43, 44, 45].every(id => hasUpgrade('u', id))
             },
             title: "Daily Updates = Bad Balancing?",
             description: "\"Themes Are Uselful?\" Also Affects Prestige Points.",
@@ -293,7 +294,7 @@ addLayer("u", {
         },
         54:{
             unlocked() {
-                return [41,42,43,44,45].every(id => hasUpgrade('u', id))
+                return [41, 42, 43, 44, 45].every(id => hasUpgrade('u', id))
             },
             title: "Repitition Is Basically Every TMT Mod Anyways",
             description: "\"Afk!\" Also Affects Prestige Points.",
@@ -301,15 +302,62 @@ addLayer("u", {
         },
         55:{
             unlocked() {
-                return [41,42,43,44,45].every(id => hasUpgrade('u', id))
+                return [41, 42, 43, 44, 45].every(id => hasUpgrade('u', id))
             },
             effect() {
+                if (hasUpgrade(this.layer, 65)) return new Decimal(102)
                 return new Decimal(22)
             },
             title: "There Is Really No Limit To The Length Of This Text, If I Wanted To Then This Could Be A Whole Essay!",
-            description: "Unlock More Achievements, Boost Points By Words In The Name Of This Upgrade.",
-            tooltip: "(Words In The Name Of This Upgrade)^1",
+            description() {
+                if (hasUpgrade(this.layer, 65)) return "Unlock More Achievements, Boost Points By Characters In The Name Of This Upgrade."
+                return "Unlock More Achievements, Boost Points By Words In The Name Of This Upgrade."
+            },
+            tooltip() {
+                if (hasUpgrade(this.layer, 65)) return "(Characters In The Name Of This Upgrade)^1"
+                return "(Words In The Name Of This Upgrade)^1"
+            },
             cost: new Decimal("2e13"),
+        },
+        61: {
+            unlocked() {
+                return [51, 52, 53, 54, 55].every(id => hasUpgrade('u', id)) && hasAchievement('a', 12)
+            },
+            title: "De Ja Vu",
+            description: "Septuple Points Gain.",
+            cost: new Decimal("1e14"),
+        },
+        62: {
+            unlocked() {
+                return [51, 52, 53, 54, 55].every(id => hasUpgrade('u', id)) && hasAchievement('a', 12)
+            },
+            title: "Are These Even Words?",
+            description: "Octuple Points Gain.",
+            cost: new Decimal("3e14"),
+        },
+        63: {
+            unlocked() {
+                return [51, 52, 53, 54, 55].every(id => hasUpgrade('u', id)) && hasAchievement('a', 12)
+            },
+            title: "Still Strong",
+            description: "Nonuple Points Gain.",
+            cost: new Decimal("1e15"),
+        },
+        64: {
+            unlocked() {
+                return [51, 52, 53, 54, 55].every(id => hasUpgrade('u', id)) && hasAchievement('a', 12)
+            },
+            title: "10!",
+            description: "Decuple Points Gain.",
+            cost: new Decimal("3e15"),
+        },
+        65: {
+            unlocked() {
+                return [51, 52, 53, 54, 55].every(id => hasUpgrade('u', id)) && hasAchievement('a', 12)
+            },
+            title: "No More?",
+            description: "\"New Tab!\" Also Applies To Upgrade Points, Buff The Upgrade Above.",
+            cost: new Decimal("1e16"),
         },
     },
 })
@@ -361,7 +409,7 @@ addLayer("a", {
         },
         12: {
             effect() {
-                return new Decimal(2).pow(Object.keys(layers.a.achievements).filter(x => Number(x) >= 20 && hasAchievement('a', x)).length)
+                return new Decimal(1.1).pow(Object.keys(layers.a.achievements).filter(x => Number(x) >= 20 && hasAchievement('a', x)).length)
             },
             effectDisplay() {
                 return format(this.effect()) + "x";
@@ -373,7 +421,7 @@ addLayer("a", {
                 return "Reach 5e14 Upgrade Points."
             },
             tooltip() {
-                if(hasAchievement("a", 12)) return "Unlock Secret Achievements And Boost Points By Secret Achievements. (2^SA)"
+                if(hasAchievement("a", 12)) return "Unlock Secret Achievements And Boost Points By Secret Achievements. (1.1^SA)"
                 return "???"
             }
         },
