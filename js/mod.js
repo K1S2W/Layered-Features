@@ -10,15 +10,23 @@ let modInfo = {
 }
 // Set your version in num and name
 let VERSION = {
-	num: "0.5.1",
+	num: "0.6",
 	name: "The Achievements",
 }
 let changelog = `<h1>Changelog:</h1><br><br>
+	<h2>v0.6 (5/23)</h2><br>
+		- 5 New Upgrades.<br>
+		- Changed How Upgrades Are Unlocked Againx2.<br>
+		- Fixed A Bug With Achievements Not Showing Up. (1/2)<br>
+		- 1 More Achievement.<br>
+		- New Layer (?): Secret Achievements!<br>
+		- 5 Secret Achievements.<br>
+		- FIRST MISSED DAY :O (I Was Trying To Bugfix & Big Update)<br><br>
 	<h3>v0.5.1 (5/21)</h3><br>
 		- 3 New Themes.<br>
 		- Sorry About The Small Update, I'm Very Tired :(<br><br>
 	<h2>v0.5 (5/20)</h2><br>
-		- Changed How Upgrades Are Unlocked.<br>
+		- Changed How Upgrades Are Unlocked Again.<br>
 		- Fixed An Upgrade's Description.<br>
 		- Added 5 New Upgrades, Why Aren't The Updates Bigger?<br>
 		- Endgame: 1e11 Points<br><br>
@@ -65,6 +73,11 @@ let changelog = `<h1>Changelog:</h1><br><br>
 function getChangelogLength() {
     return changelog.length;
 }
+function showChangelog() {
+    if (player && player.checkedUpdateLog !== undefined) {
+        player.checkedUpdateLog = true;
+    }
+}
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 // If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
 // (The ones here are examples, all official functions are already taken care of)
@@ -93,6 +106,8 @@ function getPointGen() {
     if (hasUpgrade('u', 42)) gain = gain.times(upgradeEffect('u', 42))
     if (hasUpgrade('u', 43)) gain = gain.times(upgradeEffect('u', 43))
     if (hasUpgrade('u', 44)) gain = gain.times(upgradeEffect('u', 44))
+	if (hasUpgrade('u', 55)) gain = gain.times(upgradeEffect('u', 55))
+	if (hasAchievement('a', 12)) gain = gain.times(layers.a.achievements[12].effect())
 	return gain
 }
 // You can add non-layer related variables that should to into "player" and be saved here, along with default values

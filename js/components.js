@@ -490,6 +490,7 @@ function loadVue() {
 		"></tooltip>
 			<span v-if= "tmp[layer].achievements[data].name"><br><h3 v-bind:style="tmp[layer].achievements[data].textStyle" v-html="tmp[layer].achievements[data].name"></h3><br></span>
 			<span v-if="layers[layer].achievements[data].description" class="achievement-description" v-html="run(layers[layer].achievements[data].description, layers[layer].achievements[data])"></span>
+			<span v-if="layers[layer].achievements[data].effectDisplay"><br>Currently: <span v-html="run(layers[layer].achievements[data].effectDisplay, layers[layer].achievements[data])"></span></span>
 		</div>
 		`
 	})

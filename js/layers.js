@@ -19,6 +19,10 @@ addLayer("u", {
         if (hasUpgrade('u', 23)) mult = mult.times(upgradeEffect('u', 23))
         if (hasUpgrade('u', 24)) mult = mult.times(upgradeEffect('u', 24))
         if (hasUpgrade('u', 35)) mult = mult.times(upgradeEffect('u', 25))
+        if (hasUpgrade('u', 51)) mult = mult.times(upgradeEffect('u', 41))
+        if (hasUpgrade('u', 52)) mult = mult.times(upgradeEffect('u', 42))
+        if (hasUpgrade('u', 53)) mult = mult.times(upgradeEffect('u', 43))
+        if (hasUpgrade('u', 54)) mult = mult.times(upgradeEffect('u', 44))
         return mult
     },
     update(diff) {
@@ -63,7 +67,9 @@ addLayer("u", {
             cost: new Decimal(120),
         },
         21: {
-            unlocked() {return hasUpgrade('u', 15)},
+            unlocked() {
+                return [11,12,13,14,15].every(id => hasUpgrade('u', id))
+            },
             effect() {
                 if (hasUpgrade(this.layer, 31)) return player[this.layer].points.add(9).log(9)
                 return player[this.layer].points.add(10).log(10)
@@ -78,7 +84,9 @@ addLayer("u", {
             cost: new Decimal(500),
         },
         22: {
-            unlocked() {return hasUpgrade('u', 15)},
+            unlocked() {
+                return [11,12,13,14,15].every(id => hasUpgrade('u', id))
+            },
             effect() {
                 if (hasUpgrade(this.layer, 32)) return player.points.add(9).log(9)
                 return player.points.add(10).log(10)
@@ -93,7 +101,9 @@ addLayer("u", {
             cost: new Decimal(1000),
         },
         23: {
-            unlocked() {return hasUpgrade('u', 15)},
+            unlocked() {
+                return [11,12,13,14,15].every(id => hasUpgrade('u', id))
+            },
             effect() {
                 if (hasUpgrade(this.layer, 33)) return player[this.layer].points.add(9).log(9)
                 return player[this.layer].points.add(10).log(10)
@@ -108,7 +118,9 @@ addLayer("u", {
             cost: new Decimal(2500),
         },
         24: {
-            unlocked() {return hasUpgrade('u', 15)},
+            unlocked() {
+                return [11,12,13,14,15].every(id => hasUpgrade('u', id))
+            },
             effect() {
                 if (hasUpgrade(this.layer, 34)) return player.points.add(9).log(9)
                 return player.points.add(10).log(10)
@@ -123,61 +135,82 @@ addLayer("u", {
             cost: new Decimal(7500),
         },
         25: {
-            unlocked() {return hasUpgrade('u', 15)},
+            unlocked() {
+                return [11,12,13,14,15].every(id => hasUpgrade('u', id))
+            },
             effect() {
                 return player["u"].upgrades.length
             },
             effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
             title: "Direct Multiplier",
             description() {
-                if (hasUpgrade(this.layer, 35)) return "Multiply Points And Upgrade Points By Upgrade Upgrades Bought."
-                return "Multiply Points By Upgrade Upgrades Bought."
+                if (hasUpgrade(this.layer, 35)) return "Multiply Points And Upgrade Points By Upgrades Bought."
+                return "Multiply Points By Upgrades Bought."
             },
-            tooltip: "(Upgrade Upgrades Bought)^1",
+            tooltip: "(Upgrades Bought)^1",
             cost: new Decimal(25000),
         },
         31: {
-            unlocked() {return hasUpgrade('u', 25)},
+            unlocked() {
+                return [21,22,23,24,25].every(id => hasUpgrade('u', id))
+            },
             title: "Improvement",
             description: "Improves \"New Type!\" Formula.",
             cost: new Decimal(75000),
         },
         32: {
-            unlocked() {return hasUpgrade('u', 25)},
+            unlocked() {
+                return [21,22,23,24,25].every(id => hasUpgrade('u', id))
+            },
             title: "<-",
             description: "Improves \"Self Powered\" Formula.",
             cost: new Decimal(125000),
         },
         33: {
-            unlocked() {return hasUpgrade('u', 25)},
+            unlocked() {
+                return [21,22,23,24,25].every(id => hasUpgrade('u', id))
+            },
             title: "These Are Useless",
             description: "Improves \"Copy Paste\" Formula.",
             cost: new Decimal(175000),
         },
         34: {
-            unlocked() {return hasUpgrade('u', 25)},
+            unlocked() {
+                return [21,22,23,24,25].every(id => hasUpgrade('u', id))
+            },
             title: "Why?",
             description: "Improves \"Once Again\" Formula.",
             cost: new Decimal(225000),
         },
         35: {
-            unlocked() {return hasUpgrade('u', 25)},
+            unlocked() {
+                return [21,22,23,24,25].every(id => hasUpgrade('u', id))
+            },
             title: "Worth The Wait",
             description: "\"Direct Multiplier\" Also Applies To Upgrade Point Gain, Unlock Achievements.",
             cost: new Decimal(300000),
         },
         41: {
+            unlocked() {
+                return [31,32,33,34,35].every(id => hasUpgrade('u', id)) && hasAchievement('a', 11)
+            },
             effect() {
                 return new Decimal(getChangelogLength()).pow(0.5)
             },
             effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
             unlocked() {return hasAchievement('a', 11)},
             title: "Misc Upgrades",
-            description: "Multiplies Points By Changelog Length.",
+            description() {
+                if (hasUpgrade(this.layer, 51)) return "Multiplies Points And Upgrade Points By Changelog Length."
+                return "Multiplies Points By Changelog Length."
+            },
             tooltip: "(Changelog Length)^0.5",
             cost: new Decimal(5000000),
         },
         42: {
+            unlocked() {
+                return [31,32,33,34,35].every(id => hasUpgrade('u', id)) && hasAchievement('a', 11)
+            },
             effect() {
                 return new Decimal(Object.keys(layers.a.achievements).filter(x => !isNaN(Number(x)) && hasAchievement('a', x)).length)
             },
@@ -185,36 +218,98 @@ addLayer("u", {
             unlocked() {return hasAchievement('a', 11)},
             title: "Useless For Now...",
             description: "Multiplies Points By Achievements.",
+            description() {
+                if (hasUpgrade(this.layer, 52)) return "Multiplies Points And Upgrade Points By Achievements."
+                return "Multiplies Points By Achievements."
+            },
             tooltip: "(Achievements Unlocked)^1",
             cost: new Decimal(50000000),
         },
         43: {
+            unlocked() {
+                return [31,32,33,34,35].every(id => hasUpgrade('u', id)) && hasAchievement('a', 11)
+            },
             effect() {
                 return Object.keys(themes).length
             },
             effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
             unlocked() {return hasAchievement('a', 11)},
             title: "Themes Are Uselful?",
-            description: "Multiplies Points By Themes.",
+            description() {
+                if (hasUpgrade(this.layer, 53)) return "Multiplies Points And Upgrade Points By Themes."
+                return "Multiplies Points By Themes."
+            },
             tooltip: "(Themes)^1",
             cost: new Decimal(60000000),
         },
         44:{
+            unlocked() {
+                return [31,32,33,34,35].every(id => hasUpgrade('u', id)) && hasAchievement('a', 11)
+            },
             effect() {
                 return new Decimal(player.timePlayed).add(10).log(10)
             },
             effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
             unlocked() {return hasAchievement('a', 11)},
             title: "Afk!",
-            description: "Multiplies Points By Time Played.",
+            description() {
+                if (hasUpgrade(this.layer, 54)) return "Multiplies Points And Upgrade Points By Time Played."
+                return "Multiplies Points By Time Played."
+            },
             tooltip: "Log10(Seconds Played + 10)",
             cost: new Decimal("2e8"),
         },
         45:{
-            unlocked() {return hasAchievement('a', 11)},
+            unlocked() {
+                return [31,32,33,34,35].every(id => hasUpgrade('u', id))
+            },
             title: "Better Automation",
             description: "Improves \"Passive Generation\".",
             cost: new Decimal("5e8"),
+        },
+        51:{
+            unlocked() {
+                return [41,42,43,44,45].every(id => hasUpgrade('u', id))
+            },
+            title: "Improvement Row v2",
+            description: "\"Misc Upgrades\" Also Affects Prestige Points.",
+            cost: new Decimal("5e9"),
+        },
+        52:{
+            unlocked() {
+                return [41,42,43,44,45].every(id => hasUpgrade('u', id))
+            },
+            title: "These Rows Are So Repetative",
+            description: "\"Useless For Now...\" Also Affects Prestige Points.",
+            cost: new Decimal("2e11"),
+        },
+        53:{
+            unlocked() {
+                return [41,42,43,44,45].every(id => hasUpgrade('u', id))
+            },
+            title: "Daily Updates = Bad Balancing?",
+            description: "\"Themes Are Uselful?\" Also Affects Prestige Points.",
+            cost: new Decimal("3e11"),
+        },
+        54:{
+            unlocked() {
+                return [41,42,43,44,45].every(id => hasUpgrade('u', id))
+            },
+            title: "Repitition Is Basically Every TMT Mod Anyways",
+            description: "\"Afk!\" Also Affects Prestige Points.",
+            cost: new Decimal("3e12"),
+        },
+        55:{
+            unlocked() {
+                return [41,42,43,44,45].every(id => hasUpgrade('u', id))
+            },
+            effect() {
+                return new Decimal(22)
+            },
+            title: "There Is Really No Limit To The Length Of This Text, If I Wanted To Then This Could Be A Whole Essay!",
+            description: "Unlock More Achievements, Boost Points By Words In The Name Of This Upgrade.",
+            tooltip: "(Words In The Name Of This Upgrade)^1",
+            cost: new Decimal("2e13"),
         },
     },
 })
@@ -225,20 +320,124 @@ addLayer("a", {
     position: 1,
     row: "side", // Side layer for achievements
     type: "none",
-    startData() {return {unlocked: false}},
+    startData() { return {
+        unlocked: false,
+        seenThemes: [], // Track seen themes
+    }},
     color: () => colors[getThemeName()].a, // Dynamic color based on theme
     tooltip: "Achievements",
     layerShown() {return hasUpgrade("u", 35)},
-    unlocked() {return hasUpgrade("u", 35)},
+    unlocked() {true},
+    microtabs: {
+        achievements: {
+            "Normal": {
+                content: [
+                    ["achievements", [1]]
+                ]
+            },
+            "Secret": {
+                content: [
+                    ["achievements", [2]]
+                ],
+                unlocked() {return hasAchievement("a", 12)}
+            }
+        }
+    },
+    tabFormat: [
+        "main-display",
+        ["microtabs", "achievements"],
+    ],
     achievements: {
         11: {
+            unlocked() {return true},
             name: "Passive Generation",
             done() {return player.points.gte(10000000) && hasUpgrade("u", 35)},
-            description() {
+            description: "Reach 10M(10,000,000) Points.",
+            tooltip() {
                 if(hasUpgrade("u", 45)) return "Generate 10% Of Upgrade Points Per Second."
                 if(hasAchievement("a", 11)) return "Generate 1% Of Upgrade Points Per Second."
-                return "Reach 10M(10,000,000) Points."
+                return "???"
             }
         },
+        12: {
+            effect() {
+                return new Decimal(2).pow(Object.keys(layers.a.achievements).filter(x => Number(x) >= 20 && hasAchievement('a', x)).length)
+            },
+            effectDisplay() {
+                return format(this.effect()) + "x";
+            },
+            unlocked() {return hasUpgrade("u", 55)},
+            name: "New Tab!",
+            done() {return player.u.points.gte("5e14") && hasUpgrade("u", 55)},
+            description() {
+                return "Reach 5e14 Upgrade Points."
+            },
+            tooltip() {
+                if(hasAchievement("a", 12)) return "Unlock Secret Achievements And Boost Points By Secret Achievements. (2^SA)"
+                return "???"
+            }
+        },
+        21: {
+            name: "Explorer",
+            done() {
+                // Check if all themes have been seen
+                if (!player.a.seenThemes) return false;
+                return themes.every(theme => player.a.seenThemes.includes(theme)) && hasAchievement("a", 12);
+            },
+            description () {
+                if (hasAchievement("a", 21)) return "See Every Theme."
+                return "???"
+            },
+            unlocked() {return true},
+            tooltip: "Custom Made!"
+        },
+        22: {
+            name: "Just To Be Safe",
+            done() {
+                return player.saveCount >= 100 && hasAchievement("a", 12)
+            },
+            description () {
+                if (hasAchievement("a", 22)) return "Save 100 Times."
+                return "???"
+            },
+            unlocked() {return true},
+            tooltip: "That's A Bit Too Much."
+        },
+        23: {
+            name: "Seizure Warning",
+            done() {
+                return player.themeChangeCount >= 100 && hasAchievement("a", 12)
+            },
+            description () {
+                if (hasAchievement("a", 23)) return "Switch The Theme 100 Times."
+                return "???"
+            },
+            unlocked() {return true},
+            tooltip: "Are You Okay?"
+        },
+        24: {
+            name: "Debuffed",
+            done() {
+                return player.offlineProdDisabled && hasAchievement("a", 12)
+            },
+            description () {
+                if (hasAchievement("a", 24)) return "Disable Offline Production."
+                return "???"
+            },
+            unlocked() {return true},
+            tooltip: "Why Would You Need To Do That?"
+        },
+        25: {
+            name: "Intresting",
+            done() {
+                return player.checkedUpdateLog && hasAchievement("a", 12)
+            },
+            description () {
+                if (hasAchievement("a", 25)) return "Check The Update Log."
+                return "???"
+            },
+            unlocked() {return true},
+            tooltip: "Good Job!"
+        }
     },
 })

@@ -158,17 +158,26 @@ var colors = {
 	},
 }
 function changeTheme() {
-
-	colors_theme = colors[options.theme || "default"];
-	document.body.style.setProperty('--background', colors_theme["background"]);
-	document.body.style.setProperty('--background_tooltip', colors_theme["background_tooltip"]);
-	document.body.style.setProperty('--color', colors_theme["color"]);
-	document.body.style.setProperty('--points', colors_theme["points"]);
-	document.body.style.setProperty("--locked", colors_theme["locked"]);
-	document.body.style.setProperty("--bought", colors_theme["bought"]);
-	document.body.style.setProperty('--upgText', colors_theme["upgText"]);
-	document.body.style.setProperty('--upgradeColor', colors_theme["u"]);
-	document.body.style.setProperty('--achievementColor', colors_theme["a"]);
+    // Track seen themes for Explorer achievement
+    if (player && player.a && player.a.seenThemes) {
+        const currentTheme = options.theme || "default";
+        if (!player.a.seenThemes.includes(currentTheme)) {
+            player.a.seenThemes.push(currentTheme);
+        }
+    }
+    if (player && player.themeChangeCount !== undefined) {
+        player.themeChangeCount++;
+    }
+    colors_theme = colors[options.theme || "default"];
+    document.body.style.setProperty('--background', colors_theme["background"]);
+    document.body.style.setProperty('--background_tooltip', colors_theme["background_tooltip"]);
+    document.body.style.setProperty('--color', colors_theme["color"]);
+    document.body.style.setProperty('--points', colors_theme["points"]);
+    document.body.style.setProperty("--locked", colors_theme["locked"]);
+    document.body.style.setProperty("--bought", colors_theme["bought"]);
+    document.body.style.setProperty('--upgText', colors_theme["upgText"]);
+    document.body.style.setProperty('--upgradeColor', colors_theme["u"]);
+    document.body.style.setProperty('--achievementColor', colors_theme["a"]);
 }
 function getThemeName() {
 	return options.theme? options.theme : "default";

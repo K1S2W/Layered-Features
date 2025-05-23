@@ -4,6 +4,8 @@ let getModID = () => modInfo.id ?? `${modInfo.name.replace(/\s+/g, '-')}-${modIn
 function save(force) {
 	NaNcheck(player)
 	if (NaNalert && !force) return
+	if (player.saveCount === undefined) player.saveCount = 0;
+	player.saveCount++;
 	localStorage.setItem(getModID(), btoa(unescape(encodeURIComponent(JSON.stringify(player)))));
 	localStorage.setItem(getModID()+"_options", btoa(unescape(encodeURIComponent(JSON.stringify(options)))));
 
@@ -23,7 +25,11 @@ function startPlayerBase() {
 
 		points: modInfo.initialStartPoints,
 		subtabs: {},
-		lastSafeTab: (readData(layoutInfo.showTree) ? "none" : layoutInfo.startTab)
+		lastSafeTab: (readData(layoutInfo.showTree) ? "none" : layoutInfo.startTab),
+		saveCount: 0,
+		themeChangeCount: 0,
+		offlineProdDisabled: false,
+		checkedUpdateLog: false,
 	};
 }
 function getStartPlayer() {
@@ -185,6 +191,10 @@ function fixData(defaultData, newData) {
 				newData[item] = defaultData[item];
 		}
 	}
+	if (defaultData.saveCount !== undefined && newData.saveCount === undefined) newData.saveCount = 0;
+	if (defaultData.themeChangeCount !== undefined && newData.themeChangeCount === undefined) newData.themeChangeCount = 0;
+	if (defaultData.offlineProdDisabled !== undefined && newData.offlineProdDisabled === undefined) newData.offlineProdDisabled = false;
+	if (defaultData.checkedUpdateLog !== undefined && newData.checkedUpdateLog === undefined) newData.checkedUpdateLog = false;
 }
 function load() {
 	let get = localStorage.getItem(getModID());

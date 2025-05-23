@@ -27,6 +27,9 @@ function toggleOpt(name) {
 		changeTreeQuality();
 	if (name == "oldStyle")
 		updateStyle();
+	if (name == "offlineProd" && options.offlineProd === false && player && player.offlineProdDisabled !== undefined) {
+		player.offlineProdDisabled = true;
+	}
 }
 var styleCooldown = 0;
 function updateStyle() {
