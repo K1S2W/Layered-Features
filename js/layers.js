@@ -421,6 +421,7 @@ addLayer("a", {
                 return "Reach 5e14 Upgrade Points."
             },
             tooltip() {
+                if(hasUpgrade("u", 65)) return "Unlock Secret Achievements And Boost Points And Upgrade Points By Secret Achievements. (1.1^SA)"
                 if(hasAchievement("a", 12)) return "Unlock Secret Achievements And Boost Points By Secret Achievements. (1.1^SA)"
                 return "???"
             }

@@ -14,7 +14,7 @@ let VERSION = {
 	name: "Secret Achievements",
 }
 let changelog = `<h1>Changelog:</h1><br><br>
-	<h2>v0.7 (5/24)</h2><br>
+	<h2>v0.7 (5/23)</h2><br>
 		- 5 New Upgrades.<br>
 		- This Was Denied From galaxy.click.<br>
 		- Forgot To Push Endgame So...<br>
