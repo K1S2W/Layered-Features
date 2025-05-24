@@ -153,21 +153,38 @@ function loadVue() {
 		</div>
 		`
 	})
-
 	Vue.component('upgrades', {
 		props: ['layer', 'data'],
+		computed: {
+			visibleRows() {
+				if (!options.hideCompletedUpgradeRows) return (this.data === undefined ? tmp[this.layer].upgrades.rows : this.data);
+				const rows = (this.data === undefined ? tmp[this.layer].upgrades.rows : this.data);
+				const result = [];
+				for (let row = 1; row <= rows; row++) {
+					let allBought = true;
+					for (let col = 1; col <= tmp[this.layer].upgrades.cols; col++) {
+						const upg = tmp[this.layer].upgrades[row*10+col];
+						if (upg && upg.unlocked && !hasUpgrade(this.layer, row*10+col)) {
+							allBought = false;
+							break;
+						}
+					}
+					if (!allBought) result.push(row);
+				}
+				return result;
+			}
+		},
 		template: `
-		<div v-if="tmp[layer].upgrades" class="upgTable">
-			<div v-for="row in (data === undefined ? tmp[layer].upgrades.rows : data)" class="upgRow">
-				<div v-for="col in tmp[layer].upgrades.cols"><div v-if="tmp[layer].upgrades[row*10+col]!== undefined && tmp[layer].upgrades[row*10+col].unlocked" class="upgAlign">
-					<upgrade :layer = "layer" :data = "row*10+col" v-bind:style="tmp[layer].componentStyles.upgrade"></upgrade>
-				</div></div>
+			<div v-if="tmp[layer].upgrades" class="upgTable">
+				<div v-for="row in visibleRows" class="upgRow">
+					<div v-for="col in tmp[layer].upgrades.cols"><div v-if="tmp[layer].upgrades[row*10+col]!== undefined && tmp[layer].upgrades[row*10+col].unlocked" class="upgAlign">
+						<upgrade :layer = "layer" :data = "row*10+col" v-bind:style="tmp[layer].componentStyles.upgrade"></upgrade>
+					</div></div>
+				</div>
+				<br>
 			</div>
-			<br>
-		</div>
 		`
 	})
-
 	// data = id
 	Vue.component('upgrade', {
 		props: ['layer', 'data'],

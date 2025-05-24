@@ -22,7 +22,6 @@ function startPlayerBase() {
 		timePlayed: 0,
 		keepGoing: false,
 		hasNaN: false,
-
 		points: modInfo.initialStartPoints,
 		subtabs: {},
 		lastSafeTab: (readData(layoutInfo.showTree) ? "none" : layoutInfo.startTab),
@@ -328,7 +327,7 @@ var saveInterval = setInterval(function () {
 }, 5000);
 
 window.onbeforeunload = () => {
-    if (player.autosave) {
+    if (options && options.autosave) {
         save();
     }
 };

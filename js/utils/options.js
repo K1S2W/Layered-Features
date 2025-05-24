@@ -15,6 +15,7 @@ function getStartOptions() {
 		oldStyle: false,
 		forceTooltips: true,
 		hideMilestonePopups: false,
+		hideCompletedUpgradeRows: false,
 	}
 }
 
@@ -30,6 +31,8 @@ function toggleOpt(name) {
 	if (name == "offlineProd" && options.offlineProd === false && player && player.offlineProdDisabled !== undefined) {
 		player.offlineProdDisabled = true;
 	}
+	if (name == "hideCompletedUpgradeRows") {
+		}
 }
 var styleCooldown = 0;
 function updateStyle() {
@@ -80,5 +83,4 @@ function milestoneShown(layer, id) {
 	}
 	return false;
 }
-
 let formatOption = (opt) => opt ? 'ON' : 'OFF'

@@ -14,6 +14,9 @@ let VERSION = {
 	name: "Secret Achievements",
 }
 let changelog = `<h1>Changelog:</h1><br><br>
+	<h3>v0.7.1 (5/23)</h3><br>
+		- Made Hard Reset Not Reset Settings.<br>
+		- Made A New Option To Hide Completed Upgrade Rows.<br><br>
 	<h2>v0.7 (5/23)</h2><br>
 		- 5 New Upgrades.<br>
 		- This Was Denied From galaxy.click.<br>
