@@ -157,12 +157,10 @@ function constructTabFormat(layer, id, family){
 	updateTempData(tabLayer, tabTemp, tabFunc, {layer, id, family})
 	return tabTemp
 }
-
 function updateTabFormats() {
 	updateTabFormat(player.tab)
 	updateTabFormat(player.navTab)
 }
-
 function updateTabFormat(layer) {
 	if (layers[layer]?.tabFormat === undefined) return
 
@@ -177,12 +175,10 @@ function updateTabFormat(layer) {
 		if (layers[layer].tabFormat[tab].embedLayer === undefined)
 		Vue.set(temp[layer].tabFormat[tab], 'content', constructTabFormat(layer, tab))
 	}
-
 	// Check for embedded layer
 	if (isPlainObject(tmp[layer].tabFormat) && tmp[layer].tabFormat[tab].embedLayer !== undefined) { 
 		updateTabFormat(tmp[layer].tabFormat[tab].embedLayer)
 	}
-
 	// Update microtabs
 	for (family in layers[layer].microtabs) {
 		tab = player.subtabs[layer][family]

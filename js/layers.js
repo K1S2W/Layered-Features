@@ -262,7 +262,7 @@ addLayer("u", {
         },
         45:{
             unlocked() {
-                return [31, 32, 33, 34, 35].every(id => hasUpgrade('u', id))
+                return [31, 32, 33, 34, 35].every(id => hasUpgrade('u', id)) && hasAchievement('a', 11)
             },
             title: "Better Automation",
             description: "Improves \"Passive Generation\".",

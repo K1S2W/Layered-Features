@@ -16,8 +16,7 @@ function makeParticles(data, amount=1, type = "normal") {
                     particle[thing] = data[thing]
                     break;
                 default:
-                    particle[thing]=run(data[thing], data, x)
-                    
+                    particle[thing]=run(data[thing], data, x) 
             }
         }
         if (data.dir === undefined) {

@@ -1,22 +1,14 @@
 var layers = {}
-
 const decimalZero = new Decimal(0)
 const decimalOne = new Decimal(1)
 const decimalNaN = new Decimal(NaN)
-
 const defaultGlow = "#ff0000"
-
-
 function layerShown(layer){
     return tmp[layer].layerShown;
 }
-
 var LAYERS = Object.keys(layers);
-
 var hotkeys = {};
-
 var maxRow = 0;
-
 function updateHotkeys()
 {
     hotkeys = {};
@@ -33,11 +25,9 @@ function updateHotkeys()
         }
     }
 }
-
 var ROW_LAYERS = {}
 var TREE_LAYERS = {}
 var OTHER_LAYERS = {}
-
 function updateLayers(){
     LAYERS = Object.keys(layers);
     ROW_LAYERS = {}
@@ -191,26 +181,18 @@ function setupLayer(layer){
     if(layers[layer].name === undefined) layers[layer].name = layer
     if(layers[layer].layerShown === undefined) layers[layer].layerShown = true
     if(layers[layer].glowColor === undefined) layers[layer].glowColor = defaultGlow
-
     let row = layers[layer].row
-
     let displayRow = layers[layer].displayRow
-
     if(!ROW_LAYERS[row]) ROW_LAYERS[row] = {}
     if(!TREE_LAYERS[displayRow] && !isNaN(displayRow)) TREE_LAYERS[displayRow] = []
     if(!OTHER_LAYERS[displayRow] && isNaN(displayRow)) OTHER_LAYERS[displayRow] = []
-
     ROW_LAYERS[row][layer]=layer;
     let position = (layers[layer].position !== undefined ? layers[layer].position : layer)
-    
     if (!isNaN(displayRow) || displayRow < 0) TREE_LAYERS[displayRow].push({layer: layer, position: position})
     else OTHER_LAYERS[displayRow].push({layer: layer, position: position})
-
     if (maxRow < layers[layer].displayRow) maxRow = layers[layer].displayRow
     
 }
-
-
 function addLayer(layerName, layerData, tabLayers = null){ // Call this to add layers from a different file!
     layers[layerName] = layerData
     layers[layerName].isLayer = true
@@ -235,12 +217,10 @@ function addLayer(layerName, layerData, tabLayers = null){ // Call this to add l
         layers[layerName].tabFormat = format
     }
 }
-
 function addNode(layerName, layerData){ // Does the same thing, but for non-layer nodes
     layers[layerName] = layerData
     layers[layerName].isLayer = false
 }
-
 // If data is a function, return the result of calling it. Otherwise, return the data.
 function readData(data, args=null){
 	if ((!!data && data.constructor && data.call && data.apply))
@@ -248,7 +228,6 @@ function readData(data, args=null){
 	else
 		return data;
 }
-
 function setRowCol(upgrades) {
     if (upgrades.rows && upgrades.cols) return
     let maxRow = 0
@@ -262,32 +241,25 @@ function setRowCol(upgrades) {
     upgrades.rows = maxRow
     upgrades.cols = maxCol
 }
-
 function someLayerUnlocked(row){
     for (layer in ROW_LAYERS[row])
         if (player[layer].unlocked)
             return true
     return false
 }
-
-
 // This isn't worth making a .ts file over
 const UP = 0
 const DOWN = 1
 const LEFT = 2
 const RIGHT = 3
-
-
 addLayer("info-tab", {
     tabFormat: ["info-tab"],
     row: "otherside"
 })
-
 addLayer("options-tab", {
     tabFormat: ["options-tab"],
     row: "otherside"
 })
-
 addLayer("changelog-tab", {
     tabFormat() {return ([["raw-html", modInfo.changelog]])},
     row: "otherside"

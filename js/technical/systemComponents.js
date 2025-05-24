@@ -11,7 +11,6 @@ var systemComponents = {
 			</div>
 		`
 	},
-
 	'tree-node': {
 		props: ['layer', 'abb', 'size', 'prev'],
 		template: `
@@ -29,8 +28,6 @@ var systemComponents = {
 				}
 				else {run(layers[layer].onClick, layers[layer])}
 			}"
-
-
 			v-bind:class="{
 				treeNode: tmp[layer].isLayer,
 				treeButton: !tmp[layer].isLayer,
@@ -62,8 +59,6 @@ var systemComponents = {
 		</button>
 		`
 	},
-
-	
 	'layer-tab': {
 		props: ['layer', 'back', 'spacing', 'embedded'],
 		template: `<div v-bind:style="[tmp[layer].style ? tmp[layer].style : {}, (tmp[layer].tabFormat && !Array.isArray(tmp[layer].tabFormat)) ? tmp[layer].tabFormat[player.subtabs[layer].mainTabs].style : {}]" class="noBackground">
@@ -101,7 +96,6 @@ var systemComponents = {
 		</div></div>
 			`
 	},
-
 	'overlay-head': {
 		template: `			
 		<div class="overlayThing" style="padding-bottom:7px; width: 90%; z-index: 1000; position: relative">
@@ -121,7 +115,6 @@ var systemComponents = {
 	</div>
 	`
     },
-
     'info-tab': {
         template: `
         <div>
@@ -147,7 +140,6 @@ var systemComponents = {
         <span v-for="key in hotkeys" v-if="player[key.layer].unlocked && tmp[key.layer].hotkeys[key.id].unlocked"><br>{{key.description}}</span></div>
     `
     },
-
     'options-tab': {
         template: `
         <table>
@@ -177,20 +169,16 @@ var systemComponents = {
             </tr>
         </table>`
     },
-
     'back-button': {
         template: `
         <button v-bind:class="back" onclick="goBack()">←</button>
         `
     },
-
-
 	'tooltip' : {
 		props: ['text'],
 		template: `<div class="tooltip" v-html="text"></div>
 		`
 	},
-
 	'node-mark': {
 		props: {'layer': {}, data: {}, offset: {default: 0}, scale: {default: 1}},
 		template: `<div v-if='data'>
@@ -199,7 +187,6 @@ var systemComponents = {
 		</div>
 		`
 	},
-
 	'particle': {
 		props: ['data', 'index'],
 		template: `<div><div class='particle instant' v-bind:style="[constructParticleStyle(data), data.style]" 
@@ -213,12 +200,9 @@ var systemComponents = {
 		</div>
 		`
 	},
-
 	'bg': {
 		props: ['layer'],
 		template: `<div class ="bg" v-bind:style="[tmp[layer].style ? tmp[layer].style : {}, (tmp[layer].tabFormat && !Array.isArray(tmp[layer].tabFormat)) ? tmp[layer].tabFormat[player.subtabs[layer].mainTabs].style : {}]"></div>
 		`
 	}
-
 }
-
