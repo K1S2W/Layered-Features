@@ -416,7 +416,7 @@ addLayer("a", {
             },
             unlocked() {return hasUpgrade("u", 55)},
             name: "New Tab!",
-            done() {return player.u.points.gte("5e14") && hasUpgrade("u", 55)},
+            done() {return player.u.points.gte("1e14") && hasUpgrade("u", 55)},
             description() {
                 return "Reach 5e14 Upgrade Points."
             },
