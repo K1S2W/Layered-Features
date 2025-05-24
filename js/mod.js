@@ -14,6 +14,10 @@ let VERSION = {
 	name: "Secret Achievements",
 }
 let changelog = `<h1>Changelog:</h1><br><br>
+	<h2>v0.8 (5/24)</h2><br>
+		- 5 New Upgrades.<br>
+		- Balancing For Achievement 2.<br>
+		- New Layer: Click!<br><br>
 	<h3>v0.7.1 (5/23)</h3><br>
 		- Made Hard Reset Not Reset Settings.<br>
 		- Made A New Option To Hide Completed Upgrade Rows.<br><br>
@@ -120,6 +124,8 @@ function getPointGen() {
 	if (hasUpgrade('u', 62)) gain = gain.times(8)
 	if (hasUpgrade('u', 63)) gain = gain.times(9)
 	if (hasUpgrade('u', 64)) gain = gain.times(10)
+	if (hasUpgrade('u', 73)) gain = gain.times(upgradeEffect('u', 73))
+	if (hasUpgrade('u', 75)) gain = gain.times(upgradeEffect('u', 75))
 	return gain
 }
 // You can add non-layer related variables that should to into "player" and be saved here, along with default values

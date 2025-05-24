@@ -15,6 +15,7 @@ var colors = {
 		upgText: "rgba(0, 0, 0, 1)", // Upgrade text color
 		u: "rgba(0, 200, 0, 1)", // Upgrade layer color
 		a: "rgba(255, 255, 0, 1)", // Achievements layer color
+		c: "rgba(100, 100, 100, 1)", //Click layer color
 	},
 	grayscale: {
 		1: "rgba(255, 255, 255, 1)",
@@ -29,6 +30,7 @@ var colors = {
 		upgText: "rgba(0, 0, 0, 1)",
 		u: "rgba(67, 67, 67, 1)",
 		a: "rgba(170, 170, 170, 1)",
+		c: "rgba(100, 100, 100, 1)",
 	},
 	inverted: {
 		1: "rgba(0, 0, 0, 1)",
@@ -43,6 +45,7 @@ var colors = {
 		upgText: "rgba(255, 255, 255, 1)",
 		u: "rgba(255, 55, 255, 1)",
 		a: "rgba(0, 0, 255, 1)",
+		c: "rgba(155, 155, 155, 1)",
 	},
 	oversaturated: {
 		1: "rgba(255, 255, 255, 1)",
@@ -57,6 +60,7 @@ var colors = {
 		upgText: "rgba(0, 0, 0, 1)",
 		u: "rgba(0, 255, 0, 1)",
 		a: "rgba(255, 255, 0, 1)",
+		c: "rgba(200, 200, 200, 1)",
 	},
 	undersaturated: {
 		1: "rgba(128, 128, 128, 1)",
@@ -71,6 +75,7 @@ var colors = {
 		upgText: "rgba(0, 0, 0, 1)",
 		u: "rgba(0, 100, 0, 1)",
 		a: "rgba(128, 128, 0, 1)",
+		c: "rgba(50, 50, 50, 1)",
 	},
 	redverted: {
 		1: "rgba(0, 255, 255, 1)",
@@ -85,6 +90,7 @@ var colors = {
 		upgText: "rgba(255, 0, 0, 1)",
 		u: "rgba(255, 200, 0, 1)",
 		a: "rgba(0, 255, 0, 1)",
+		c: "rgba(155, 100, 100, 1)",
 	},
 	yellowverted: {
 		1: "rgba(0, 0, 255, 1)",
@@ -99,6 +105,7 @@ var colors = {
 		upgText: "rgba(255, 255, 0, 1)",
 		u: "rgba(255, 55, 0, 1)",
 		a: "rgba(0, 0, 0, 1)",
+		c: "rgba(155, 155, 100, 1)",
 	},
 	greenverted: {
 		1: "rgba(255, 0, 255, 1)",
@@ -113,6 +120,7 @@ var colors = {
 		upgText: "rgba(0, 255, 0, 1)",
 		u: "rgba(0, 55, 0, 1)",
 		a: "rgba(255, 0, 0, 1)",
+		c: "rgba(100, 155, 100, 1)",
 	},
 	cyanverted: {
 		1: "rgba(255, 0, 0, 1)",
@@ -127,6 +135,7 @@ var colors = {
 		upgText: "rgba(0, 255, 255, 1)",
 		u: "rgba(0, 55, 255, 1)",
 		a: "rgba(255, 0, 255, 1)",
+		c: "rgba(100, 155, 155, 1)",
 	},
 	blueverted: {
 		1: "rgba(255, 255, 0, 1)",
@@ -141,6 +150,7 @@ var colors = {
 		upgText: "rgba(0, 0, 255, 1)",
 		u: "rgba(0, 200, 255, 1)",
 		a: "rgba(255, 255, 255, 1)",
+		c: "rgba(100, 100, 155, 1)",
 	},
 	magentaverted: {
 		1: "rgba(0, 255, 0, 1)",
@@ -155,6 +165,7 @@ var colors = {
 		upgText: "rgba(255, 0, 255, 1)",
 		u: "rgba(255, 200, 255, 1)",
 		a: "rgba(0, 255, 255, 1)",
+		c: "rgba(155, 100, 155, 1)",
 	},
 }
 function changeTheme() {

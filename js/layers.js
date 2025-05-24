@@ -24,6 +24,7 @@ addLayer("u", {
         if (hasUpgrade('u', 53)) mult = mult.times(upgradeEffect('u', 43))
         if (hasUpgrade('u', 54)) mult = mult.times(upgradeEffect('u', 44))
         if (hasUpgrade('u', 65)) mult = mult.times(layers.a.achievements[12].effect())
+        if (hasUpgrade('u', 74)) mult = mult.times(upgradeEffect('u', 74))
         return mult
     },
     update(diff) {
@@ -308,10 +309,11 @@ addLayer("u", {
                 if (hasUpgrade(this.layer, 65)) return new Decimal(102)
                 return new Decimal(22)
             },
+            effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
             title: "There Is Really No Limit To The Length Of This Text, If I Wanted To Then This Could Be A Whole Essay!",
             description() {
-                if (hasUpgrade(this.layer, 65)) return "Unlock More Achievements, Boost Points By Characters In The Name Of This Upgrade."
-                return "Unlock More Achievements, Boost Points By Words In The Name Of This Upgrade."
+                if (hasUpgrade(this.layer, 65)) return "Unlock A New Achievement, Boost Points By Characters In The Name Of This Upgrade."
+                return "Unlock A New Achievement, Boost Points By Words In The Name Of This Upgrade."
             },
             tooltip() {
                 if (hasUpgrade(this.layer, 65)) return "(Characters In The Name Of This Upgrade)^1"
@@ -359,6 +361,66 @@ addLayer("u", {
             description: "\"New Tab!\" Also Applies To Upgrade Points, Buff The Upgrade Above.",
             cost: new Decimal("1e16"),
         },
+        71: {
+            unlocked() {
+                return [61, 62, 63, 64, 65].every(id => hasUpgrade('u', id))
+            },
+            title: "Another Feature So Soon!",
+            description: "Unlocks Clicking.",
+            cost: new Decimal("2e16"),
+        },
+        72: {
+            unlocked() {
+                return [61, 62, 63, 64, 65].every(id => hasUpgrade('u', id))
+            },
+            effect() {
+                return player.c.clicks.add(10).log(10)
+            },
+            effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
+            title: "Not Again...",
+            description: "Clicks Boost Itself.",
+            tooltip: "Log10(Clicks + 10)",
+            cost: new Decimal("3e16"),
+        },
+        73: {
+            unlocked() {
+                return [61, 62, 63, 64, 65].every(id => hasUpgrade('u', id))
+            },
+            effect() {
+                return player.c.clicks.add(10).log(10)
+            },
+            effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
+            title: "Finally Useful",
+            description: "Clicks Boost Points.",
+            tooltip: "Log10(Clicks + 10)",
+            cost: new Decimal("5e16"),
+        },
+        74: {
+            unlocked() {
+                return [61, 62, 63, 64, 65].every(id => hasUpgrade('u', id))
+            },
+            effect() {
+                return player.c.clicks.add(10).log(10)
+            },
+            effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
+            title: "Super Effective",
+            description: "Clicks Boost Upgrade Points.",
+            tooltip: "Log10(Clicks + 10)",
+            cost: new Decimal("1e17"),
+        },
+        75: {
+            unlocked() {
+                return [61, 62, 63, 64, 65].every(id => hasUpgrade('u', id))
+            },
+            effect() {
+                return new Decimal(Object.keys(player).filter(key => layers[key]).length).minus(5)
+            },
+            effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
+            title: "Mid",
+            description: "Layers Boost Points",
+            tooltip: "(Layers)^1",
+            cost: new Decimal("5e17"),
+        },
     },
 })
 // Global Achievements Layer
@@ -375,7 +437,7 @@ addLayer("a", {
     color: () => colors[getThemeName()].a, // Dynamic color based on theme
     tooltip: "Achievements",
     layerShown() {return hasUpgrade("u", 35)},
-    unlocked() {true},
+    unlocked() {return true},
     microtabs: {
         achievements: {
             "Normal": {
@@ -488,5 +550,38 @@ addLayer("a", {
             unlocked() {return true},
             tooltip: "Good Job!"
         }
+    },
+})
+
+addLayer("c", {
+    name: "Click",
+    symbol: "C",
+    position: 2, // Appears after Achievements on the side
+    row: "side", // Side layer
+    type: "none", // No prestige mechanics, just clicking
+    startData() { return {
+        unlocked: true,
+        clicks: new Decimal(0),
+    }},
+    color: () => colors[getThemeName()]?.c,
+    tooltip: "Clicking Layer",
+    layerShown() {return hasUpgrade('u', 71)}, //change this
+    tabFormat: [
+        "main-display",
+        ["display-text", function() {return `You have <b>${format(player.c.clicks)}</b> clicks.`}],
+        ["clickable", 11],
+    ],
+    clickables: {
+        11: {
+            title: "Click",
+            canClick() {return true},
+            onClick() {player.c.clicks = player.c.clicks.add(this.gainClicks())},
+            gainClicks() { // Calculate the multiplier for main currency from bonuses
+                let click = new Decimal(1)
+                if (hasUpgrade('u', 72)) click = click.times(upgradeEffect('u', 72))
+                return click
+            },
+            style: {width: "200px", height: "60px", fontSize: "20px"},
+        },
     },
 })
