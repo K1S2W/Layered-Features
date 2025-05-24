@@ -10,7 +10,7 @@ let modInfo = {
 }
 // Set your version in num and name
 let VERSION = {
-	num: "0.7",
+	num: "0.7.1",
 	name: "Secret Achievements",
 }
 let changelog = `<h1>Changelog:</h1><br><br>
