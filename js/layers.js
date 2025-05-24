@@ -418,7 +418,7 @@ addLayer("a", {
             name: "New Tab!",
             done() {return player.u.points.gte("1e14") && hasUpgrade("u", 55)},
             description() {
-                return "Reach 5e14 Upgrade Points."
+                return "Reach 1e14 Upgrade Points."
             },
             tooltip() {
                 if(hasUpgrade("u", 65)) return "Unlock Secret Achievements And Boost Points And Upgrade Points By Secret Achievements. (1.1^SA)"
