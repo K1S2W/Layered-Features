@@ -1,4 +1,9 @@
 // ************ Themes ************
+// Ensure colors is always defined, even if loaded out of order
+if (typeof colors !== 'object' || colors === undefined) {
+    window.colors = {};
+}
+
 var themes = ["Default", "Grayscale", "Inverted", "Oversaturated", "Undersaturated", "Redverted", "Yellowverted", "Greenverted", "Cyanverted", "Blueverted", "Magentaverted", "Random"];
 
 var colors = {
