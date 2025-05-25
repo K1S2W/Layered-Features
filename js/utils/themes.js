@@ -191,9 +191,10 @@ function changeTheme() {
             colors.Random[prop] = `rgba(${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},1)`;
         }
     }
-    // Fallback to default if theme is missing
-    colors_theme = colors[options.theme] || colors["Default"];
-    // Ensure all required properties exist (fallback to default if missing)
+    // Use the theme key as-is (case-sensitive)
+    let themeKey = options.theme || "Default";
+    colors_theme = colors[themeKey] || colors["Default"];
+    // Ensure all required properties exist (fallback to Default if missing)
     const defaultTheme = colors["Default"];
     const props = [
         "background", "background_tooltip", "color", "points", "locked", "bought", "upgText", "u", "a", "c", "1", "2", "3"
@@ -210,7 +211,7 @@ function changeTheme() {
     document.body.style.setProperty('--upgText', colors_theme["upgText"]);
     document.body.style.setProperty('--upgradeColor', colors_theme["u"]);
     document.body.style.setProperty('--achievementColor', colors_theme["a"]);
-	document.body.style.setProperty('--clickColor', colors_theme["c"]);
+    document.body.style.setProperty('--clickColor', colors_theme["c"]);
 }
 
 function getThemeName() {
