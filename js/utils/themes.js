@@ -15,7 +15,7 @@ var colors = {
 		upgText: "rgba(0, 0, 0, 1)", // Upgrade text color
 		u: "rgba(0, 200, 0, 1)", // Upgrade layer color
 		a: "rgba(255, 255, 0, 1)", // Achievements layer color
-		c: "rgba(100, 100, 100, 1)", //Click layer color
+		c: "rgba(100, 100, 100, 1)",
 	},
 	Grayscale: {
 		1: "rgba(255, 255, 255, 1)",
@@ -193,6 +193,7 @@ function changeTheme() {
     }
     // Use the theme key as-is (case-sensitive)
     let themeKey = options.theme || "Default";
+    if (!colors[themeKey]) themeKey = "Default";
     colors_theme = colors[themeKey] || colors["Default"];
     // Ensure all required properties exist (fallback to Default if missing)
     const defaultTheme = colors["Default"];
@@ -203,21 +204,23 @@ function changeTheme() {
         if (!colors_theme[prop]) colors_theme[prop] = defaultTheme[prop];
     }
     // Patch the original theme object as well, so all usages are safe
+    if (!colors[themeKey]) colors[themeKey] = {};
     for (const prop of props) {
         if (!colors[themeKey][prop]) colors[themeKey][prop] = colors_theme[prop];
     }
-    document.body.style.setProperty('--background', colors_theme["background"]);
-    document.body.style.setProperty('--background_tooltip', colors_theme["background_tooltip"]);
-    document.body.style.setProperty('--color', colors_theme["color"]);
-    document.body.style.setProperty('--points', colors_theme["points"]);
-    document.body.style.setProperty("--locked", colors_theme["locked"]);
-    document.body.style.setProperty("--bought", colors_theme["bought"]);
-    document.body.style.setProperty('--upgText', colors_theme["upgText"]);
-    document.body.style.setProperty('--upgradeColor', colors_theme["u"]);
-    document.body.style.setProperty('--achievementColor', colors_theme["a"]);
-    document.body.style.setProperty('--clickColor', colors_theme["c"]);
+    // Defensive: fallback to default if still missing
+    function safe(val, fallback) { return (typeof val === 'string' && val.length > 0) ? val : fallback; }
+    document.body.style.setProperty('--background', safe(colors_theme["background"], defaultTheme["background"]));
+    document.body.style.setProperty('--background_tooltip', safe(colors_theme["background_tooltip"], defaultTheme["background_tooltip"]));
+    document.body.style.setProperty('--color', safe(colors_theme["color"], defaultTheme["color"]));
+    document.body.style.setProperty('--points', safe(colors_theme["points"], defaultTheme["points"]));
+    document.body.style.setProperty("--locked", safe(colors_theme["locked"], defaultTheme["locked"]));
+    document.body.style.setProperty("--bought", safe(colors_theme["bought"], defaultTheme["bought"]));
+    document.body.style.setProperty('--upgText', safe(colors_theme["upgText"], defaultTheme["upgText"]));
+    document.body.style.setProperty('--upgradeColor', safe(colors_theme["u"], defaultTheme["u"]));
+    document.body.style.setProperty('--achievementColor', safe(colors_theme["a"], defaultTheme["a"]));
+    document.body.style.setProperty('--clickColor', safe(colors_theme["c"], defaultTheme["c"]));
 }
-
 function getThemeName() {
 	return options.theme? options.theme : "Default";
 }

@@ -2,7 +2,6 @@ var particles = {};
 var particleID = 0;
 var mouseX = 0;
 var mouseY = 0;
-
 function makeParticles(data, amount=1, type = "normal") {
     for (let x = 0; x < amount; x++) {
         let particle = newParticles[type]()
@@ -36,13 +35,10 @@ function makeParticles(data, amount=1, type = "normal") {
 
     }
 }
-
 // Makes a particle at a random location that stays still until it despawns
 function makeShinies(data, amount=1) {
     makeParticles(data, amount, "shiny")
 }
-
-
 function updateParticles(diff) {
 	for (p in particles) {
         let particle = particles[p]
@@ -63,19 +59,16 @@ function updateParticles(diff) {
         }
 	}
 }
-
 function setDir(particle, dir) {
     particle.dir = dir
     particle.xVel = particle.speed * sin(particle.dir)
     particle.yVel = particle.speed * cos(particle.dir) * -1
 }
-
 function setSpeed(particle, speed) {
     particle.speed = speed
     particle.xVel = particle.speed * sin(particle.dir)
     particle.yVel = particle.speed * cos(particle.dir) * -1
 }
-
 const newParticles = {
     normal() {
         particleID++
@@ -124,14 +117,10 @@ const newParticles = {
         }
     },
 }
-
-
-
 function updateMouse(event) {
     mouseX = event.clientX
     mouseY = event.clientY
 }
-
 function getOpacity(particle) {
     if ((particle.time < particle.fadeOutTime) && particle.fadeOutTime)
         return particle.time / particle.fadeOutTime
@@ -140,7 +129,6 @@ function getOpacity(particle) {
     
     return 1
 }   
-
 function constructParticleStyle(particle){
     let style =  {
         left: (particle.x  - particle.height/2) + 'px',
@@ -160,7 +148,6 @@ function constructParticleStyle(particle){
         style["background-image"] = "url(" + particle.image + ")"
     return style
 }
-
 function clearParticles(check) {
     if (!check) check = true
 
@@ -170,7 +157,6 @@ function clearParticles(check) {
         }
     }
 }
-
 // Trig with degrees
 function sin(x) { return Math.sin(x*Math.PI/180)}
 

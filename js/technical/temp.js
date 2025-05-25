@@ -2,7 +2,6 @@ var tmp = {}
 var temp = tmp // Proxy for tmp
 var funcs = {}
 var NaNalert = false;
-
 // Tmp will not call these
 var activeFunctions = [
 	"startData", "onPrestige", "doReset", "update", "automate",
@@ -13,15 +12,12 @@ var activeFunctions = [
 	"onComplete", "onPurchase", "onEnter", "onExit", "done",
 	"getUnlocked", "getStyle", "getCanClick", "getTitle", "getDisplay"
 ]
-
 var noCall = doNotCallTheseFunctionsEveryTick
 for (item in noCall) {
 	activeFunctions.push(noCall[item])
 }
-
 // Add the names of classes to traverse
 var traversableClasses = []
-
 function setupTemp() {
 	tmp = {}
 	tmp.pointGen = {}
@@ -30,7 +26,6 @@ function setupTemp() {
 	tmp.scrolled = 0
 	tmp.gameEnded = false
 	funcs = {}
-	
 	setupTempData(layers, tmp, funcs)
 	for (layer in layers){
 		tmp[layer].resetGain = {}
@@ -43,7 +38,6 @@ function setupTemp() {
 		setupBuyables(layer)
 		tmp[layer].trueGlowColor = []
 	}
-
 	tmp.other = {
 		lastPoints: player.points || decimalZero,
 		oomps: decimalZero,
@@ -54,7 +48,6 @@ function setupTemp() {
 	temp = tmp
 }
 const boolNames = ["unlocked", "deactivated"]
-
 function setupTempData(layerData, tmpData, funcsData) {
 	for (item in layerData){
 		if (layerData[item] == null) {
@@ -87,14 +80,10 @@ function setupTempData(layerData, tmpData, funcsData) {
 		}
 	}	
 }
-
-
 function updateTemp() {
 	if (tmp === undefined)
 		setupTemp()
-
 	updateTempData(layers, tmp, funcs)
-
 	for (layer in layers){
 		tmp[layer].resetGain = getResetGain(layer)
 		tmp[layer].nextAt = getNextAt(layer)
@@ -104,12 +93,9 @@ function updateTemp() {
 		tmp[layer].notify = shouldNotify(layer)
 		tmp[layer].prestigeNotify = prestigeNotify(layer)
 		if (tmp[layer].passiveGeneration === true) tmp[layer].passiveGeneration = 1 // new Decimal(true) = decimalZero
-
 	}
-
 	tmp.pointGen = getPointGen()
 	tmp.backgroundStyle = readData(backgroundStyle)
-
 	tmp.displayThings = []
 	for (thing in displayThings){
 		let text = displayThings[thing]
@@ -117,7 +103,6 @@ function updateTemp() {
 		tmp.displayThings.push(text) 
 	}
 }
-
 function updateTempData(layerData, tmpData, funcsData, useThis) {
 	for (item in funcsData){
 		if (Array.isArray(layerData[item])) {
@@ -136,23 +121,18 @@ function updateTempData(layerData, tmpData, funcsData, useThis) {
 		}
 	}	
 }
-
 function updateChallengeTemp(layer)
 {
 	updateTempData(layers[layer].challenges, tmp[layer].challenges, funcs[layer].challenges)
 }
-
-
 function updateBuyableTemp(layer)
 {
 	updateTempData(layers[layer].buyables, tmp[layer].buyables, funcs[layer].buyables)
 }
-
 function updateClickableTemp(layer)
 {
 	updateTempData(layers[layer].clickables, tmp[layer].clickables, funcs[layer].clickables)
 }
-
 function setupBuyables(layer) {
 	for (id in layers[layer].buyables) {
 		if (isPlainObject(layers[layer].buyables[id])) {
@@ -170,7 +150,6 @@ function setupBuyables(layer) {
 		}
 	}
 }
-
 function checkDecimalNaN(x) {
 	return (x instanceof Decimal) && !x.eq(x)
 }
