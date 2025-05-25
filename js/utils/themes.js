@@ -196,7 +196,7 @@ function changeTheme() {
     // Ensure all required properties exist (fallback to default if missing)
     const defaultTheme = colors["Default"];
     const props = [
-        "background", "background_tooltip", "color", "points", "locked", "bought", "upgText", "u", "a"
+        "background", "background_tooltip", "color", "points", "locked", "bought", "upgText", "u", "a", "c", "1", "2", "3"
     ];
     for (const prop of props) {
         if (!colors_theme[prop]) colors_theme[prop] = defaultTheme[prop];
