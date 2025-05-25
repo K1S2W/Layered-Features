@@ -617,7 +617,12 @@ addLayer("a", {
         unlocked: false,
         seenThemes: [], // Track seen themes
     }},
-    color: () => colors[getThemeName()].a, // Dynamic color based on theme
+    color: () => {
+        if (typeof colors !== 'object' || typeof getThemeName !== 'function') return '#888';
+        const theme = getThemeName();
+        if (!colors[theme] || !colors[theme].a) return '#888';
+        return colors[theme].a;
+    },
     tooltip: "Achievements",
     layerShown() {return hasUpgrade("u", 35)},
     unlocked() {return true},
@@ -747,7 +752,12 @@ addLayer("c", {
         unlocked: true,
         clicks: new Decimal(0),
     }},
-    color: () => colors[getThemeName()].c,
+    color: () => {
+        if (typeof colors !== 'object' || typeof getThemeName !== 'function') return '#888';
+        const theme = getThemeName();
+        if (!colors[theme] || !colors[theme].c) return '#888';
+        return colors[theme].c;
+    },
     tooltip: "Clicking Layer",
     layerShown() {return hasUpgrade('u', 71)}, //change this
     tabFormat: [
