@@ -1,3 +1,7 @@
+// Ensure colors is always defined, even if loaded out of order
+if (typeof colors !== 'object' || colors === undefined) {
+    window.colors = {};
+}
 addLayer("u", {
     name: "upgrade", // This is optional, only used in a few places, If absent it just uses the layer id.
     symbol: "U", // This appears on the layer's node. Default is the id with the first letter capitalized
