@@ -193,6 +193,14 @@ function changeTheme() {
     }
     // Fallback to default if theme is missing
     colors_theme = colors[options.theme] || colors["Default"];
+    // Ensure all required properties exist (fallback to default if missing)
+    const defaultTheme = colors["Default"];
+    const props = [
+        "background", "background_tooltip", "color", "points", "locked", "bought", "upgText", "u", "a"
+    ];
+    for (const prop of props) {
+        if (!colors_theme[prop]) colors_theme[prop] = defaultTheme[prop];
+    }
     document.body.style.setProperty('--background', colors_theme["background"]);
     document.body.style.setProperty('--background_tooltip', colors_theme["background_tooltip"]);
     document.body.style.setProperty('--color', colors_theme["color"]);

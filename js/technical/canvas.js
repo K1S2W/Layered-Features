@@ -29,15 +29,18 @@ function drawTree() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	for (layer in layers){
 		if (layers[layer] && typeof layers[layer].layerShown === 'function' && layers[layer].layerShown()) {
-			if (tmp[layer].layerShown == true && tmp[layer].branches){
+            // Ensure tmp[layer] exists before accessing its properties
+            if (tmp[layer] && tmp[layer].layerShown == true && tmp[layer].branches){
 				for (branch in tmp[layer].branches)
 					{
 						drawTreeBranch(layer, tmp[layer].branches[branch])
 					}
-			}
-			drawComponentBranches(layer, tmp[layer].upgrades, "upgrade-")
-			drawComponentBranches(layer, tmp[layer].buyables, "buyable-")
-			drawComponentBranches(layer, tmp[layer].clickables, "clickable-")
+				}
+            if (tmp[layer]) {
+                drawComponentBranches(layer, tmp[layer].upgrades, "upgrade-")
+                drawComponentBranches(layer, tmp[layer].buyables, "buyable-")
+                drawComponentBranches(layer, tmp[layer].clickables, "clickable-")
+            }
 		}
 	}
 }
