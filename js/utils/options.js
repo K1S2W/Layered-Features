@@ -1,7 +1,5 @@
 // ************ Options ************
-
 let options = {}
-
 function getStartOptions() {
 	return {
 		autosave: true,

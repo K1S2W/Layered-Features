@@ -7,7 +7,12 @@ addLayer("u", {
 		points: new Decimal(0),
     }},
     layerShown() {return true},
-    color: () => colors[getThemeName()].u, // Dynamic color based on theme
+    color: () => {
+        if (typeof colors !== 'object' || typeof getThemeName !== 'function') return '#888';
+        const theme = getThemeName();
+        if (!colors[theme] || !colors[theme].u) return '#888';
+        return colors[theme].u;
+    },
     requires: new Decimal(10), // Can be a function that takes requirement increases into account
     resource: "upgrade points", // Name of prestige currency
     baseResource: "points", // Name of resource prestige is based on
