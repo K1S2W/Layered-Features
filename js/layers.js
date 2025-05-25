@@ -618,10 +618,18 @@ addLayer("a", {
         seenThemes: [], // Track seen themes
     }},
     color: () => {
-        if (typeof colors !== 'object' || typeof getThemeName !== 'function') return '#888';
-        const theme = getThemeName();
-        if (!colors[theme] || !colors[theme].a) return '#888';
-        return colors[theme].a;
+        try {
+            if (typeof colors !== 'object' || typeof getThemeName !== 'function') return '#888';
+            const theme = getThemeName();
+            if (!theme || typeof theme !== 'string') return '#888';
+                console.warn('Achievements layer: theme or color missing, using fallback.', { theme, colors: colors && colors[theme] });
+                return '#888';
+            }
+            return colors[theme].a;
+        } catch (e) {
+            console.warn('Achievements layer: error in color function, using fallback.', e);
+            return '#888';
+        }
     },
     tooltip: "Achievements",
     layerShown() {return hasUpgrade("u", 35)},
