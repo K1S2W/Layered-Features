@@ -210,6 +210,8 @@ function changeTheme() {
     }
     // Defensive: fallback to default if still missing
     function safe(val, fallback) { return (typeof val === 'string' && val.length > 0) ? val : fallback; }
+    // If background is still missing, force fallback to Default
+    if (!colors_theme["background"]) colors_theme["background"] = defaultTheme["background"];
     document.body.style.setProperty('--background', safe(colors_theme["background"], defaultTheme["background"]));
     document.body.style.setProperty('--background_tooltip', safe(colors_theme["background_tooltip"], defaultTheme["background_tooltip"]));
     document.body.style.setProperty('--color', safe(colors_theme["color"], defaultTheme["color"]));
