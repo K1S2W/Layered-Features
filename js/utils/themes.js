@@ -191,7 +191,8 @@ function changeTheme() {
             colors.Random[prop] = `rgba(${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},1)`;
         }
     }
-    colors_theme = colors[options.theme || "Default"];
+    // Fallback to default if theme is missing
+    colors_theme = colors[options.theme] || colors["Default"];
     document.body.style.setProperty('--background', colors_theme["background"]);
     document.body.style.setProperty('--background_tooltip', colors_theme["background_tooltip"]);
     document.body.style.setProperty('--color', colors_theme["color"]);
