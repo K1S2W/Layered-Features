@@ -196,9 +196,12 @@ function changeTheme() {
             colors.Random[prop] = `rgba(${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},1)`;
         }
     }
-    // Use the theme key as-is (case-sensitive)
+    // Use the theme key as-is (case-sensitive), but make lookup case-insensitive
     let themeKey = options.theme || "Default";
-    if (!colors[themeKey]) themeKey = "Default";
+    // Find the correct key in colors object, ignoring case
+    const colorKeys = Object.keys(colors);
+    const foundKey = colorKeys.find(k => k.toLowerCase() === themeKey.toLowerCase());
+    if (foundKey) themeKey = foundKey; else themeKey = "Default";
     colors_theme = colors[themeKey] || colors["Default"];
     // Ensure all required properties exist (fallback to Default if missing)
     const defaultTheme = colors["Default"];

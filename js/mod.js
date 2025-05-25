@@ -15,6 +15,7 @@ let VERSION = {
 }
 let changelog = `<h1>Changelog:</h1><br><br>
 	<h3>v0.9.1 (5/24)</h3><br>
+		- Balanced A Few Lategame Upgrades
 		- URGENT FIX: fixed fallback for themes.<br><br>
 	<h2>v0.9 (5/24)</h2><br>
 		- Fixed A Bug With \"Useless For Now...\".<br>

@@ -590,7 +590,7 @@ addLayer("u", {
             },
             title: "Mass Boosting Round 3!",
             description: "6 Row 7 And 8 Upgrades Are Stronger.",
-            cost: new Decimal("1e24"),
+            cost: new Decimal("1e25"),
         },
         94: {
             unlocked() {
@@ -598,7 +598,7 @@ addLayer("u", {
             },
             title: "Mass Effectiveness!",
             description: "Row 1 Upgrades Affect Upgrade Points And Clicks.",
-            cost: new Decimal("3e24"),
+            cost: new Decimal("3e25"),
         },
         95: { //uneffective
             unlocked() {
@@ -606,7 +606,7 @@ addLayer("u", {
             },
             title: "Mass Effectiveness Round 2!",
             description: "4 Row 6 Upgrades Affect Upgrade Points And Clicks.",
-            cost: new Decimal("2.5e27"),
+            cost: new Decimal("2.5e28"),
         },
     },
 })
@@ -744,7 +744,7 @@ addLayer("a", {
             tooltip: "Why Would You Need To Do That?"
         },
         25: {
-            name: "Intresting",
+            name: "Interesting",
             done() {
                 return player.checkedUpdateLog && hasAchievement("a", 12)
             },
@@ -774,7 +774,7 @@ addLayer("c", {
         if (!colors[theme] || !colors[theme].c) return '#888';
         return colors[theme].c;
     },
-    tooltip: "Clicking Layer",
+    tooltip: "Clicking",
     layerShown() {return hasUpgrade('u', 71)}, //change this
     tabFormat: [
         "main-display",
