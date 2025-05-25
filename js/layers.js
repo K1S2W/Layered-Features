@@ -619,11 +619,14 @@ addLayer("a", {
     }},
     color: () => {
         try {
-            if (typeof colors !== 'object' || typeof getThemeName !== 'function') return '#888';
+            if (typeof colors !== 'object' || typeof getThemeName !== 'function') {
+                console.warn('Achievements layer: colors object or getThemeName function missing, using fallback.', { colors, getThemeName });
+                return '#888';
+            }
             const theme = getThemeName();
             if (!theme || typeof theme !== 'string') return '#888';
             if (!colors[theme] || typeof colors[theme] !== 'object' || !('a' in colors[theme])) {
-                console.warn('Achievements layer: theme or color missing, using fallback.', { theme, colors: colors && colors[theme] });
+                console.warn('Achievements layer: theme or color missing, using fallback.', { theme, themeColors: colors ? colors[theme] : undefined, colors });
                 return '#888';
             }
             return colors[theme].a;
