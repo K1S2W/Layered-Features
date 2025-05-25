@@ -622,6 +622,7 @@ addLayer("a", {
             if (typeof colors !== 'object' || typeof getThemeName !== 'function') return '#888';
             const theme = getThemeName();
             if (!theme || typeof theme !== 'string') return '#888';
+            if (!colors[theme] || typeof colors[theme] !== 'object' || !('a' in colors[theme])) {
                 console.warn('Achievements layer: theme or color missing, using fallback.', { theme, colors: colors && colors[theme] });
                 return '#888';
             }
