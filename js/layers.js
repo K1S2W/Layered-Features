@@ -742,7 +742,7 @@ addLayer("c", {
         unlocked: true,
         clicks: new Decimal(0),
     }},
-    color: () => colors[getThemeName()]?.c,
+    color: () => colors[getThemeName()].c,
     tooltip: "Clicking Layer",
     layerShown() {return hasUpgrade('u', 71)}, //change this
     tabFormat: [

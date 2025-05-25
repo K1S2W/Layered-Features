@@ -172,7 +172,7 @@ var colors = {
 function changeTheme() {
     // Track seen themes for Explorer achievement
     if (player && player.a && player.a.seenThemes) {
-        const currentTheme = options.theme || "default";
+        const currentTheme = options.theme || "Default";
         if (!player.a.seenThemes.includes(currentTheme)) {
             player.a.seenThemes.push(currentTheme);
         }
@@ -181,7 +181,7 @@ function changeTheme() {
         player.themeChangeCount++;
     }
     // Handle Random theme
-    if ((options.theme || "default") === "Random") {
+    if ((options.theme || "Default") === "Random") {
         const props = [
             "1", "2", "3", "color", "points", "locked", "bought", "background",
             "background_tooltip", "upgText", "u", "a", "c"
@@ -191,7 +191,7 @@ function changeTheme() {
             colors.Random[prop] = `rgba(${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},1)`;
         }
     }
-    colors_theme = colors[options.theme || "default"];
+    colors_theme = colors[options.theme || "Default"];
     document.body.style.setProperty('--background', colors_theme["background"]);
     document.body.style.setProperty('--background_tooltip', colors_theme["background_tooltip"]);
     document.body.style.setProperty('--color', colors_theme["color"]);
@@ -201,10 +201,11 @@ function changeTheme() {
     document.body.style.setProperty('--upgText', colors_theme["upgText"]);
     document.body.style.setProperty('--upgradeColor', colors_theme["u"]);
     document.body.style.setProperty('--achievementColor', colors_theme["a"]);
+	document.body.style.setProperty('--clickColor', colors_theme["c"]);
 }
 
 function getThemeName() {
-	return options.theme? options.theme : "default";
+	return options.theme? options.theme : "Default";
 }
 
 function switchTheme() {

@@ -10,10 +10,12 @@ let modInfo = {
 }
 // Set your version in num and name
 let VERSION = {
-	num: "0.9",
+	num: "0.9.1",
 	name: "Clicking!",
 }
 let changelog = `<h1>Changelog:</h1><br><br>
+	<h3>v0.9.1 (5/24)</h3><br>
+		- URGENT FIX: fixed fallback for themes.<br><br>
 	<h2>v0.9 (5/24)</h2><br>
 		- Fixed A Bug With \"Useless For Now...\".<br>
 		- 10 New Upgrades!<br>
