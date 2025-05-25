@@ -202,6 +202,10 @@ function changeTheme() {
     for (const prop of props) {
         if (!colors_theme[prop]) colors_theme[prop] = defaultTheme[prop];
     }
+    // Patch the original theme object as well, so all usages are safe
+    for (const prop of props) {
+        if (!colors[themeKey][prop]) colors[themeKey][prop] = colors_theme[prop];
+    }
     document.body.style.setProperty('--background', colors_theme["background"]);
     document.body.style.setProperty('--background_tooltip', colors_theme["background_tooltip"]);
     document.body.style.setProperty('--color', colors_theme["color"]);
