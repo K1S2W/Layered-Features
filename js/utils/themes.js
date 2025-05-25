@@ -232,7 +232,11 @@ function changeTheme() {
     document.body.style.setProperty('--clickColor', safe(colors_theme["c"], defaultTheme["c"]));
 }
 function getThemeName() {
-	return options.theme? options.theme : "Default";
+    // Always return the theme name matching the colors object key (case-insensitive)
+    const theme = options.theme ? options.theme : "Default";
+    const colorKeys = Object.keys(colors);
+    const foundKey = colorKeys.find(k => k.toLowerCase() === theme.toLowerCase());
+    return foundKey || "Default";
 }
 
 function switchTheme() {
