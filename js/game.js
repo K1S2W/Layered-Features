@@ -344,7 +344,6 @@ function gameLoop(diff) {
 			if (layers[layer].update) layers[layer].update(diff);
 		}
 	}
-
 	for (row in OTHER_LAYERS){
 		for (item in OTHER_LAYERS[row]) {
 			let layer = OTHER_LAYERS[row][item]
@@ -353,7 +352,6 @@ function gameLoop(diff) {
 			if (layers[layer].update) layers[layer].update(diff);
 		}
 	}	
-
 	for (let x = maxRow; x >= 0; x--){
 		for (item in TREE_LAYERS[x]) {
 			let layer = TREE_LAYERS[x][item]
@@ -362,7 +360,6 @@ function gameLoop(diff) {
 			if (tmp[layer].autoUpgrade) autobuyUpgrades(layer)
 		}
 	}
-
 	for (row in OTHER_LAYERS){
 		for (item in OTHER_LAYERS[row]) {
 			let layer = OTHER_LAYERS[row][item]
@@ -372,14 +369,11 @@ function gameLoop(diff) {
 			if (tmp[layer].autoUpgrade) autobuyUpgrades(layer)
 		}
 	}
-
 	for (layer in layers){
 		if (layers[layer].milestones) updateMilestones(layer);
 		if (layers[layer].achievements) updateAchievements(layer)
 	}
-
 }
-
 function hardReset(resetOptions) {
 	if (!confirm("Are you sure you want to do this? You will lose all your progress!")) return
 	player = getStartPlayer();
@@ -387,9 +381,7 @@ function hardReset(resetOptions) {
 	save(true);
 	window.location.reload();
 }
-
 var ticking = false
-
 var interval = setInterval(function() {
 	if (player===undefined||tmp===undefined) return;
 	if (ticking) return;

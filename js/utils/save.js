@@ -8,7 +8,6 @@ function save(force) {
 	player.saveCount++;
 	localStorage.setItem(getModID(), btoa(unescape(encodeURIComponent(JSON.stringify(player)))));
 	localStorage.setItem(getModID()+"_options", btoa(unescape(encodeURIComponent(JSON.stringify(options)))));
-
 }
 function startPlayerBase() {
 	return {
@@ -39,7 +38,6 @@ function getStartPlayer() {
 		for (thing in extradata)
 			playerdata[thing] = extradata[thing];
 	}
-
 	playerdata.infoboxes = {};
 	for (layer in layers) {
 		playerdata[layer] = getStartLayerData(layer);

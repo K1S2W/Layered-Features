@@ -25,6 +25,9 @@ addLayer("u", {
         if (hasUpgrade('u', 54)) mult = mult.times(upgradeEffect('u', 44))
         if (hasUpgrade('u', 65)) mult = mult.times(layers.a.achievements[12].effect())
         if (hasUpgrade('u', 74)) mult = mult.times(upgradeEffect('u', 74))
+        if (hasUpgrade('u', 84)) mult = mult.times(upgradeEffect('u', 55))
+        if (hasUpgrade('u', 94)) mult = mult.times(720)
+        if (hasUpgrade('u', 95)) mult = mult.times(5040)
         return mult
     },
     update(diff) {
@@ -45,27 +48,42 @@ addLayer("u", {
     upgrades: {
         11: {
             title: "Basic Multiplier",
-            description: "Double Points Gain.",
+            description () {
+                if (hasUpgrade(this.layer, 94)) return "Double Points, Upgrade Points, And Clicks Gain."
+                return "Double Points Gain."
+            },
             cost: new Decimal(1),
         },
         12: {
             title: "Basic Multiplier Again",
-            description: "Triple Points Gain.",
+            description () {
+                if (hasUpgrade(this.layer, 94)) return "Triple Points, Upgrade Points, And Clicks Gain."
+                return "Triple Points Gain."
+            },
             cost: new Decimal(2),
         },
         13: {
             title: "Same As Before",
-            description: "Quadruple Points Gain.",
+            description () {
+                if (hasUpgrade(this.layer, 94)) return "Quadruple Points, Upgrade Points, And Clicks Gain."
+                return "Quadruple Points Gain."
+            },
             cost: new Decimal(6),
         },
         14: {
             title: "Over and Over",
-            description: "Quintuple Points Gain.",
+            description () {
+                if (hasUpgrade(this.layer, 94)) return "Quintuple Points, Upgrade Points, And Clicks Gain."
+                return "Quintuple Points Gain."
+            },
             cost: new Decimal(24),
         },
         15: {
             title: "I Got Lazy",
-            description: "Sextuple Points Gain.",
+            description () {
+                if (hasUpgrade(this.layer, 94)) return "Sextuple Points, Upgrade Points, And Clicks Gain."
+                return "Sextuple Points Gain."
+            },
             cost: new Decimal(120),
         },
         21: {
@@ -73,6 +91,7 @@ addLayer("u", {
                 return [11, 12, 13, 14, 15].every(id => hasUpgrade('u', id))
             },
             effect() {
+                if (hasUpgrade(this.layer, 91)) return player[this.layer].points.add(8).log(8)
                 if (hasUpgrade(this.layer, 31)) return player[this.layer].points.add(9).log(9)
                 return player[this.layer].points.add(10).log(10)
             },
@@ -80,6 +99,7 @@ addLayer("u", {
             title: "New Type!",
             description: "Multiply Points By Upgrade Points.",
             tooltip() {
+                if (hasUpgrade(this.layer, 91)) return "Log8(Upgrade Points + 8)"
                 if (hasUpgrade(this.layer, 31)) return "Log9(Upgrade Points + 9)"
                 return "Log10(Upgrade Points + 10)"
             },
@@ -90,6 +110,7 @@ addLayer("u", {
                 return [11, 12, 13, 14, 15].every(id => hasUpgrade('u', id))
             },
             effect() {
+                if (hasUpgrade(this.layer, 91)) return player.points.add(8).log(8)
                 if (hasUpgrade(this.layer, 32)) return player.points.add(9).log(9)
                 return player.points.add(10).log(10)
             },
@@ -97,6 +118,7 @@ addLayer("u", {
             title: "Self Powered",
             description: "Multiply Points By Itself.",
             tooltip() {
+                if (hasUpgrade(this.layer, 91)) return "Log8(Points + 8)"
                 if (hasUpgrade(this.layer, 32)) return "Log9(Points + 9)"
                 return "Log10(Points + 10)"
             },
@@ -107,6 +129,7 @@ addLayer("u", {
                 return [11, 12, 13, 14, 15].every(id => hasUpgrade('u', id))
             },
             effect() {
+                if (hasUpgrade(this.layer, 91)) return player[this.layer].points.add(8).log(8)
                 if (hasUpgrade(this.layer, 33)) return player[this.layer].points.add(9).log(9)
                 return player[this.layer].points.add(10).log(10)
             },
@@ -114,6 +137,7 @@ addLayer("u", {
             title: "Copy Paste",
             description: "Multiply Upgrade Points By Itself.",
             tooltip() {
+                if (hasUpgrade(this.layer, 91)) return "Log8(Upgrade Points + 8)"
                 if (hasUpgrade(this.layer, 33)) return "Log9(Upgrade Points + 9)"
                 return "Log10(Upgrade Points + 10)"
             },
@@ -124,6 +148,7 @@ addLayer("u", {
                 return [11, 12, 13, 14, 15].every(id => hasUpgrade('u', id))
             },
             effect() {
+                if (hasUpgrade(this.layer, 91)) return player.points.add(8).log(8)
                 if (hasUpgrade(this.layer, 34)) return player.points.add(9).log(9)
                 return player.points.add(10).log(10)
             },
@@ -131,6 +156,7 @@ addLayer("u", {
             title: "Once Again",
             description: "Multiply Upgrade Points By Points.",
             tooltip() {
+                if (hasUpgrade(this.layer, 91)) return "Log8(Points + 8)"
                 if (hasUpgrade(this.layer, 34)) return "Log9(Points + 9)"
                 return "Log10(Points + 10)"
             },
@@ -146,6 +172,7 @@ addLayer("u", {
             effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
             title: "Direct Multiplier",
             description() {
+                if (hasUpgrade(this.layer, 83)) return "Multiply Points, Upgrade Points, And Clicks By Upgrades Bought."
                 if (hasUpgrade(this.layer, 35)) return "Multiply Points And Upgrade Points By Upgrades Bought."
                 return "Multiply Points By Upgrades Bought."
             },
@@ -197,16 +224,21 @@ addLayer("u", {
                 return [31, 32, 33, 34, 35].every(id => hasUpgrade('u', id)) && hasAchievement('a', 11)
             },
             effect() {
+                if (hasUpgrade(this.layer, 92)) return new Decimal(getChangelogLength()).pow(1)
                 return new Decimal(getChangelogLength()).pow(0.5)
             },
             effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
             unlocked() {return hasAchievement('a', 11)},
             title: "Misc Upgrades",
             description() {
+                if (hasUpgrade(this.layer, 83)) return "Multiplies Points, Upgrade Points, And Clicks By Changelog Length."
                 if (hasUpgrade(this.layer, 51)) return "Multiplies Points And Upgrade Points By Changelog Length."
                 return "Multiplies Points By Changelog Length."
             },
-            tooltip: "(Changelog Length)^0.5",
+            tooltip() {
+                if (hasUpgrade(this.layer, 92)) return "(Changelog Length)^1"
+                return "(Changelog Length)^0.5"
+            },
             cost: new Decimal(5000000),
         },
         42: {
@@ -214,17 +246,24 @@ addLayer("u", {
                 return [31, 32, 33, 34, 35].every(id => hasUpgrade('u', id)) && hasAchievement('a', 11)
             },
             effect() {
-                return new Decimal(Object.keys(layers.a.achievements).filter(x => !isNaN(Number(x)) && hasAchievement('a', x)).length)
+                // Only count normal achievements (IDs <20)
+                const normalAchCount = Object.keys(layers.a.achievements).filter(x => !isNaN(Number(x)) && Number(x) < 20 && hasAchievement('a', x)).length;
+                if (hasUpgrade(this.layer, 92)) return new Decimal(normalAchCount).pow(2)
+                return new Decimal(normalAchCount)
             },
             effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
             unlocked() {return hasAchievement('a', 11)},
             title: "Useless For Now...",
             description: "Multiplies Points By Achievements.",
             description() {
+                if (hasUpgrade(this.layer, 83)) return "Multiplies Points, Upgrade Points, And Clicks By Achievements."
                 if (hasUpgrade(this.layer, 52)) return "Multiplies Points And Upgrade Points By Achievements."
                 return "Multiplies Points By Achievements."
             },
-            tooltip: "(Achievements Unlocked)^1",
+            tooltip() {
+                if (hasUpgrade(this.layer, 92)) return "(Achievements)^2"
+                return "(Achievements)^1"
+            },
             cost: new Decimal(50000000),
         },
         43: {
@@ -232,16 +271,21 @@ addLayer("u", {
                 return [31, 32, 33, 34, 35].every(id => hasUpgrade('u', id)) && hasAchievement('a', 11)
             },
             effect() {
+                if (hasUpgrade(this.layer, 92)) return new Decimal(Object.keys(themes).length).pow(2)
                 return Object.keys(themes).length
             },
             effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
             unlocked() {return hasAchievement('a', 11)},
             title: "Themes Are Uselful?",
             description() {
+                if (hasUpgrade(this.layer, 83)) return "Multiplies Points, Upgrade Points, And Clicks By Themes."
                 if (hasUpgrade(this.layer, 53)) return "Multiplies Points And Upgrade Points By Themes."
                 return "Multiplies Points By Themes."
             },
-            tooltip: "(Themes)^1",
+            tooltip () {
+                if (hasUpgrade(this.layer, 92)) return "(Themes)^2"
+                return "(Themes)^1"
+            },
             cost: new Decimal(60000000),
         },
         44:{
@@ -249,16 +293,23 @@ addLayer("u", {
                 return [31, 32, 33, 34, 35].every(id => hasUpgrade('u', id)) && hasAchievement('a', 11)
             },
             effect() {
+                if (hasUpgrade(this.layer, 92)) return new Decimal(player.timePlayed).add(8).log(8)
+                if (hasUpgrade(this.layer, 85)) return new Decimal(player.timePlayed).add(9).log(9)
                 return new Decimal(player.timePlayed).add(10).log(10)
             },
             effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
             unlocked() {return hasAchievement('a', 11)},
             title: "Afk!",
             description() {
+                if (hasUpgrade(this.layer, 83)) return "Multiplies Points, Upgrade Points, And Clicks By Time Played."
                 if (hasUpgrade(this.layer, 54)) return "Multiplies Points And Upgrade Points By Time Played."
                 return "Multiplies Points By Time Played."
             },
-            tooltip: "Log10(Seconds Played + 10)",
+            tooltip() {
+                if (hasUpgrade(this.layer, 92)) return "Log8(Seconds Played + 8)"
+                if (hasUpgrade(this.layer, 85)) return "Log9(Seconds Played + 9)"
+                return "Log10(Seconds Played + 10)"
+            },
             cost: new Decimal("2e8"),
         },
         45:{
@@ -312,6 +363,7 @@ addLayer("u", {
             effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
             title: "There Is Really No Limit To The Length Of This Text, If I Wanted To Then This Could Be A Whole Essay!",
             description() {
+                if (hasUpgrade(this.layer, 84)) return "Unlock A New Achievement, Boost Points, Upgrade Points, And Clicks By Characters In The Name Of This Upgrade."
                 if (hasUpgrade(this.layer, 65)) return "Unlock A New Achievement, Boost Points By Characters In The Name Of This Upgrade."
                 return "Unlock A New Achievement, Boost Points By Words In The Name Of This Upgrade."
             },
@@ -326,7 +378,10 @@ addLayer("u", {
                 return [51, 52, 53, 54, 55].every(id => hasUpgrade('u', id)) && hasAchievement('a', 12)
             },
             title: "De Ja Vu",
-            description: "Septuple Points Gain.",
+            description () {
+                if (hasUpgrade(this.layer, 95)) return "Septuple Points, Upgrade Points, And Clicks Gain."
+                return "Septuple Points Gain."
+            },
             cost: new Decimal("1e14"),
         },
         62: {
@@ -334,7 +389,10 @@ addLayer("u", {
                 return [51, 52, 53, 54, 55].every(id => hasUpgrade('u', id)) && hasAchievement('a', 12)
             },
             title: "Are These Even Words?",
-            description: "Octuple Points Gain.",
+            description () {
+                if (hasUpgrade(this.layer, 95)) return "Octuple Points, Upgrade Points, And Clicks Gain."
+                return "Octuple Points Gain."
+            },
             cost: new Decimal("3e14"),
         },
         63: {
@@ -342,7 +400,10 @@ addLayer("u", {
                 return [51, 52, 53, 54, 55].every(id => hasUpgrade('u', id)) && hasAchievement('a', 12)
             },
             title: "Still Strong",
-            description: "Nonuple Points Gain.",
+            description () {
+                if (hasUpgrade(this.layer, 95)) return "Nonuple Points, Upgrade Points, And Clicks Gain."
+                return "Nonuple Points Gain."
+            },
             cost: new Decimal("1e15"),
         },
         64: {
@@ -350,7 +411,10 @@ addLayer("u", {
                 return [51, 52, 53, 54, 55].every(id => hasUpgrade('u', id)) && hasAchievement('a', 12)
             },
             title: "10!",
-            description: "Decuple Points Gain.",
+            description () {
+                if (hasUpgrade(this.layer, 95)) return "Decuple Points, Upgrade Points, And Clicks Gain."
+                return "Decuple Points Gain."
+            },
             cost: new Decimal("3e15"),
         },
         65: {
@@ -374,12 +438,16 @@ addLayer("u", {
                 return [61, 62, 63, 64, 65].every(id => hasUpgrade('u', id))
             },
             effect() {
+                if (hasUpgrade(this.layer, 93)) return player.c.clicks.add(9).log(9)
                 return player.c.clicks.add(10).log(10)
             },
             effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
             title: "Not Again...",
             description: "Clicks Boost Itself.",
-            tooltip: "Log10(Clicks + 10)",
+            tooltip() {
+                if (hasUpgrade(this.layer, 93)) return "Log9(Clicks + 9)"
+                return "Log10(Clicks + 10)"
+            },
             cost: new Decimal("3e16"),
         },
         73: {
@@ -387,12 +455,16 @@ addLayer("u", {
                 return [61, 62, 63, 64, 65].every(id => hasUpgrade('u', id))
             },
             effect() {
+                if (hasUpgrade(this.layer, 93)) return player.c.clicks.add(9).log(9)
                 return player.c.clicks.add(10).log(10)
             },
             effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
             title: "Finally Useful",
             description: "Clicks Boost Points.",
-            tooltip: "Log10(Clicks + 10)",
+            tooltip () {
+                if (hasUpgrade(this.layer, 93)) return "Log9(Clicks + 9)"
+                return "Log10(Clicks + 10)"
+            },
             cost: new Decimal("5e16"),
         },
         74: {
@@ -400,12 +472,16 @@ addLayer("u", {
                 return [61, 62, 63, 64, 65].every(id => hasUpgrade('u', id))
             },
             effect() {
+                if (hasUpgrade(this.layer, 93)) return player.c.clicks.add(9).log(9)
                 return player.c.clicks.add(10).log(10)
             },
             effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
             title: "Super Effective",
             description: "Clicks Boost Upgrade Points.",
-            tooltip: "Log10(Clicks + 10)",
+            tooltip () {
+                if (hasUpgrade(this.layer, 93)) return "Log9(Clicks + 9)"
+                return "Log10(Clicks + 10)"
+            },
             cost: new Decimal("1e17"),
         },
         75: {
@@ -413,13 +489,115 @@ addLayer("u", {
                 return [61, 62, 63, 64, 65].every(id => hasUpgrade('u', id))
             },
             effect() {
+                if (hasUpgrade(this.layer, 93)) return new Decimal(Object.keys(player).filter(key => layers[key]).length).minus(5).pow(2)
                 return new Decimal(Object.keys(player).filter(key => layers[key]).length).minus(5)
             },
             effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
             title: "Mid",
             description: "Layers Boost Points",
-            tooltip: "(Layers)^1",
+            tooltip () {
+                if (hasUpgrade(this.layer, 93)) return "(Layers)^2"
+                return "(Layers)^1"
+            },
             cost: new Decimal("5e17"),
+        },
+        81: {
+            unlocked() {
+                return [71, 72, 73, 74, 75].every(id => hasUpgrade('u', id))
+            },
+            effect() {
+                if (hasUpgrade(this.layer, 93)) return player.points.add(9).log(9)
+                return player.points.add(10).log(10)
+            },
+            effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
+            title: "AGAIN???",
+            description: "Points Boost Clicks",
+            tooltip () {
+                if (hasUpgrade(this.layer, 93)) return "Log9(Clicks + 9)"
+                return "Log10(Clicks + 10)"
+            },
+            cost: new Decimal("1e18"),
+        },
+        82: {
+            unlocked() {
+                return [71, 72, 73, 74, 75].every(id => hasUpgrade('u', id))
+            },
+            effect() {
+                if (hasUpgrade(this.layer, 93)) return player.u.points.add(9).log(9)
+                return player.u.points.add(10).log(10)
+            },
+            effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
+            title: "Please No More :(",
+            description: "Upgrade Points Boost Clicks",
+            tooltip () {
+                if (hasUpgrade(this.layer, 93)) return "Log9(Clicks + 9)"
+                return "Log10(Clicks + 10)"
+            },
+            cost: new Decimal("2e18"),
+        },
+        83: {
+            unlocked() {
+                return [71, 72, 73, 74, 75].every(id => hasUpgrade('u', id))
+            },
+            title: "Strengthening",
+            description: "5 Upgrades And An Achievement Also Boost Clicks.",
+            cost: new Decimal("3e18"),
+        },
+        84: {
+            unlocked() {
+                return [71, 72, 73, 74, 75].every(id => hasUpgrade('u', id))
+            },
+            title: "Too Long Of A Reference",
+            description: "\"There Is Really No Limit To The Length Of This Text, If I Wanted To Then This Could Be A Whole Essay!\" Also Applies To Upgrade Points And Clicks.",
+            cost: new Decimal("5e18"),
+        },
+        85: {
+            unlocked() {
+                return [71, 72, 73, 74, 75].every(id => hasUpgrade('u', id))
+            },
+            title: "Back To Weakness",
+            description: "\"Afk!\" Is Stronger.",
+            cost: new Decimal("7.5e20"),
+        },
+        91: {
+            unlocked() {
+                return [81, 82, 83, 84, 85].every(id => hasUpgrade('u', id))
+            },
+            title: "Mass Boosting",
+            description: "4 Row 2 Upgrades Are Stronger.",
+            cost: new Decimal("7.5e20"),
+        },
+        92: {
+            unlocked() {
+                return [81, 82, 83, 84, 85].every(id => hasUpgrade('u', id))
+            },
+            title: "Mass Boosting Round 2",
+            description: "4 Row 4 Upgrades Are Stronger.",
+            cost: new Decimal("1e21"),
+        },
+        93: {
+            unlocked() {
+                return [81, 82, 83, 84, 85].every(id => hasUpgrade('u', id))
+            },
+            title: "Mass Boosting Round 3!",
+            description: "6 Row 7 And 8 Upgrades Are Stronger.",
+            cost: new Decimal("1e24"),
+        },
+        94: {
+            unlocked() {
+                return [81, 82, 83, 84, 85].every(id => hasUpgrade('u', id))
+            },
+            title: "Mass Effectiveness!",
+            description: "Row 1 Upgrades Affect Upgrade Points And Clicks.",
+            cost: new Decimal("3e24"),
+        },
+        95: { //uneffective
+            unlocked() {
+                return [81, 82, 83, 84, 85].every(id => hasUpgrade('u', id))
+            },
+            title: "Mass Effectiveness Round 2!",
+            description: "4 Row 6 Upgrades Affect Upgrade Points And Clicks.",
+            cost: new Decimal("2.5e27"),
         },
     },
 })
@@ -483,6 +661,7 @@ addLayer("a", {
                 return "Reach 5e13 Upgrade Points."
             },
             tooltip() {
+                if(hasUpgrade("u", 83)) return "Unlock Secret Achievements And Boost Points, Upgrade Points, And Clicks By Secret Achievements. (1.1^SA)"
                 if(hasUpgrade("u", 65)) return "Unlock Secret Achievements And Boost Points And Upgrade Points By Secret Achievements. (1.1^SA)"
                 if(hasAchievement("a", 12)) return "Unlock Secret Achievements And Boost Points By Secret Achievements. (1.1^SA)"
                 return "???"
@@ -552,7 +731,7 @@ addLayer("a", {
         }
     },
 })
-
+//Clicking Layer
 addLayer("c", {
     name: "Click",
     symbol: "C",
@@ -579,6 +758,17 @@ addLayer("c", {
             gainClicks() { // Calculate the multiplier for main currency from bonuses
                 let click = new Decimal(1)
                 if (hasUpgrade('u', 72)) click = click.times(upgradeEffect('u', 72))
+                if (hasUpgrade('u', 81)) click = click.times(upgradeEffect('u', 81))
+                if (hasUpgrade('u', 82)) click = click.times(upgradeEffect('u', 82))
+                if (hasUpgrade('u', 83)) click = click.times(upgradeEffect('u', 25))
+                if (hasUpgrade('u', 83)) click = click.times(upgradeEffect('u', 41))
+                if (hasUpgrade('u', 83)) click = click.times(upgradeEffect('u', 42))
+                if (hasUpgrade('u', 83)) click = click.times(upgradeEffect('u', 43))
+                if (hasUpgrade('u', 83)) click = click.times(upgradeEffect('u', 44))
+                if (hasUpgrade('u', 83)) click = click.times(layers.a.achievements[12].effect())
+                if (hasUpgrade('u', 84)) click = click.times(upgradeEffect('u', 55))
+                if (hasUpgrade('u', 94)) click = click.times(720)
+                if (hasUpgrade('u', 95)) click = click.times(5040)
                 return click
             },
             style: {width: "200px", height: "60px", fontSize: "20px"},

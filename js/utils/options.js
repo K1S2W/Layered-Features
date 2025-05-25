@@ -6,7 +6,7 @@ function getStartOptions() {
 	return {
 		autosave: true,
 		msDisplay: "always",
-		theme: "default",
+		theme: "Default",
 		hqTree: false,
 		offlineProd: true,
 		hideChallenges: false,
@@ -32,7 +32,7 @@ function toggleOpt(name) {
 		player.offlineProdDisabled = true;
 	}
 	if (name == "hideCompletedUpgradeRows") {
-		}
+	}
 }
 var styleCooldown = 0;
 function updateStyle() {

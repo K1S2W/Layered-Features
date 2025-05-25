@@ -10,10 +10,16 @@ let modInfo = {
 }
 // Set your version in num and name
 let VERSION = {
-	num: "0.7.1",
-	name: "Secret Achievements",
+	num: "0.9",
+	name: "Clicking!",
 }
 let changelog = `<h1>Changelog:</h1><br><br>
+	<h2>v0.9 (5/24)</h2><br>
+		- Fixed A Bug With \"Useless For Now...\".<br>
+		- 10 New Upgrades!<br>
+		- Random Theme!<br>
+		- Made Themes Upercase.<br>
+		- Endgame: 1e24 Points<br><br>
 	<h2>v0.8 (5/24)</h2><br>
 		- 5 New Upgrades.<br>
 		- Balancing For Achievement 2.<br>
@@ -136,7 +142,7 @@ var displayThings = [
 ]
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("1e19"))
+	return player.points.gte(new Decimal("1e24"))
 }
 // Less important things beyond this point!
 // Style for the background, can be a function

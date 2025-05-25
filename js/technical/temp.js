@@ -50,12 +50,9 @@ function setupTemp() {
 		screenWidth: 0,
 		screenHeight: 0,
     }
-
 	updateWidth()
-
 	temp = tmp
 }
-
 const boolNames = ["unlocked", "deactivated"]
 
 function setupTempData(layerData, tmpData, funcsData) {

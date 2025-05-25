@@ -11,7 +11,6 @@ function exponentialFormat(num, precision, mantissa = true) {
         return m.toStringWithDecimalPlaces(precision) + "e" + e
     else return "e" + e
 }
-
 function commaFormat(num, precision) {
     if (num === null || num === undefined) return "NaN"
     if (num.mag < 0.001) return (0).toFixed(precision)
@@ -21,25 +20,20 @@ function commaFormat(num, precision) {
     if (portions.length == 1) return portions[0]
     return portions[0] + "." + portions[1]
 }
-
-
 function regularFormat(num, precision) {
     if (num === null || num === undefined) return "NaN"
     if (num.mag < 0.0001) return (0).toFixed(precision)
     if (num.mag < 0.1 && precision !==0) precision = Math.max(precision, 4)
     return num.toStringWithDecimalPlaces(precision)
 }
-
 function fixValue(x, y = 0) {
     return x || new Decimal(y)
 }
-
 function sumValues(x) {
     x = Object.values(x)
     if (!x[0]) return decimalZero
     return x.reduce((a, b) => Decimal.add(a, b))
 }
-
 function format(decimal, precision = 2, small) {
     small = small || modInfo.allowSmall
     decimal = new Decimal(decimal)

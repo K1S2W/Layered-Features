@@ -1,8 +1,8 @@
 // ************ Themes ************
-var themes = ["default", "grayscale", "inverted", "oversaturated", "undersaturated", "redverted", "yellowverted", "greenverted", "cyanverted", "blueverted", "magentaverted"];
+var themes = ["Default", "Grayscale", "Inverted", "Oversaturated", "Undersaturated", "Redverted", "Yellowverted", "Greenverted", "Cyanverted", "Blueverted", "Magentaverted", "Random"];
 
 var colors = {
-	default: {
+	Default: {
 		1: "rgba(255, 255, 255, 1)",//Branch color 1
 		2: "rgba(191, 191, 191, 1)",//Branch color 2
 		3: "rgba(127, 127, 127, 1)",//Branch color 3
@@ -17,7 +17,7 @@ var colors = {
 		a: "rgba(255, 255, 0, 1)", // Achievements layer color
 		c: "rgba(100, 100, 100, 1)", //Click layer color
 	},
-	grayscale: {
+	Grayscale: {
 		1: "rgba(255, 255, 255, 1)",
 		2: "rgba(191, 191, 191, 1)",
 		3: "rgba(127, 127, 127, 1)",
@@ -32,7 +32,7 @@ var colors = {
 		a: "rgba(170, 170, 170, 1)",
 		c: "rgba(100, 100, 100, 1)",
 	},
-	inverted: {
+	Inverted: {
 		1: "rgba(0, 0, 0, 1)",
 		2: "rgba(64, 64, 64, 1)",
 		3: "rgba(128, 128, 128, 1)",
@@ -47,7 +47,7 @@ var colors = {
 		a: "rgba(0, 0, 255, 1)",
 		c: "rgba(155, 155, 155, 1)",
 	},
-	oversaturated: {
+	Oversaturated: {
 		1: "rgba(255, 255, 255, 1)",
 		2: "rgba(255, 255, 255, 1)",
 		3: "rgba(254, 254, 254, 1)",
@@ -62,7 +62,7 @@ var colors = {
 		a: "rgba(255, 255, 0, 1)",
 		c: "rgba(200, 200, 200, 1)",
 	},
-	undersaturated: {
+	Undersaturated: {
 		1: "rgba(128, 128, 128, 1)",
 		2: "rgba(96, 96, 96, 1)",
 		3: "rgba(64, 64, 64, 1)",
@@ -77,7 +77,7 @@ var colors = {
 		a: "rgba(128, 128, 0, 1)",
 		c: "rgba(50, 50, 50, 1)",
 	},
-	redverted: {
+	Redverted: {
 		1: "rgba(0, 255, 255, 1)",
 		2: "rgba(64, 191, 191, 1)",
 		3: "rgba(128, 127, 127, 1)",
@@ -92,7 +92,7 @@ var colors = {
 		a: "rgba(0, 255, 0, 1)",
 		c: "rgba(155, 100, 100, 1)",
 	},
-	yellowverted: {
+	Yellowverted: {
 		1: "rgba(0, 0, 255, 1)",
 		2: "rgba(64, 64, 191, 1)",
 		3: "rgba(128, 128, 127, 1)",
@@ -107,7 +107,7 @@ var colors = {
 		a: "rgba(0, 0, 0, 1)",
 		c: "rgba(155, 155, 100, 1)",
 	},
-	greenverted: {
+	Greenverted: {
 		1: "rgba(255, 0, 255, 1)",
 		2: "rgba(191, 64, 191, 1)",
 		3: "rgba(127, 128, 127, 1)",
@@ -122,7 +122,7 @@ var colors = {
 		a: "rgba(255, 0, 0, 1)",
 		c: "rgba(100, 155, 100, 1)",
 	},
-	cyanverted: {
+	Cyanverted: {
 		1: "rgba(255, 0, 0, 1)",
 		2: "rgba(191, 64, 64, 1)",
 		3: "rgba(127, 128, 128, 1)",
@@ -137,7 +137,7 @@ var colors = {
 		a: "rgba(255, 0, 255, 1)",
 		c: "rgba(100, 155, 155, 1)",
 	},
-	blueverted: {
+	Blueverted: {
 		1: "rgba(255, 255, 0, 1)",
 		2: "rgba(191, 191, 64, 1)",
 		3: "rgba(127, 127, 128, 1)",
@@ -152,7 +152,7 @@ var colors = {
 		a: "rgba(255, 255, 255, 1)",
 		c: "rgba(100, 100, 155, 1)",
 	},
-	magentaverted: {
+	Magentaverted: {
 		1: "rgba(0, 255, 0, 1)",
 		2: "rgba(64, 191, 64, 1)",//
 		3: "rgba(128, 127, 128, 1)",
@@ -167,6 +167,7 @@ var colors = {
 		a: "rgba(0, 255, 255, 1)",
 		c: "rgba(155, 100, 155, 1)",
 	},
+	Random: {} // Will be filled dynamically
 }
 function changeTheme() {
     // Track seen themes for Explorer achievement
@@ -179,6 +180,17 @@ function changeTheme() {
     if (player && player.themeChangeCount !== undefined) {
         player.themeChangeCount++;
     }
+    // Handle Random theme
+    if ((options.theme || "default") === "Random") {
+        const props = [
+            "1", "2", "3", "color", "points", "locked", "bought", "background",
+            "background_tooltip", "upgText", "u", "a", "c"
+        ];
+        colors.Random = {};
+        for (const prop of props) {
+            colors.Random[prop] = `rgba(${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},1)`;
+        }
+    }
     colors_theme = colors[options.theme || "default"];
     document.body.style.setProperty('--background', colors_theme["background"]);
     document.body.style.setProperty('--background_tooltip', colors_theme["background_tooltip"]);
@@ -190,6 +202,7 @@ function changeTheme() {
     document.body.style.setProperty('--upgradeColor', colors_theme["u"]);
     document.body.style.setProperty('--achievementColor', colors_theme["a"]);
 }
+
 function getThemeName() {
 	return options.theme? options.theme : "default";
 }

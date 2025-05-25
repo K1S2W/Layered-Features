@@ -229,14 +229,12 @@ function loadVue() {
 		<span v-if="(tmp[layer].milestones[data].toggles)&&(hasMilestone(layer, data))" v-for="toggle in tmp[layer].milestones[data].toggles"><toggle :layer= "layer" :data= "toggle" v-bind:style="tmp[layer].componentStyles.toggle"></toggle>&nbsp;</span></td></tr>
 		`
 	})
-
 	Vue.component('toggle', {
 		props: ['layer', 'data'],
 		template: `
 		<button class="smallUpg can" v-bind:style="{'background-color': tmp[data[0]].color}" v-on:click="toggleAuto(data)">{{player[data[0]][data[1]]?"ON":"OFF"}}</button>
 		`
 	})
-
 	Vue.component('prestige-button', {
 		props: ['layer', 'data'],
 		template: `
@@ -247,7 +245,6 @@ function loadVue() {
 		`
 	
 	})
-
 	// Displays the main resource for the layer
 	Vue.component('main-display', {
 		props: ['layer', 'data'],
@@ -255,7 +252,6 @@ function loadVue() {
 		<div><span v-if="player[layer].points.lt('1e1000')">You have </span><h2 v-bind:style="{'color': tmp[layer].color, 'text-shadow': '0px 0px 10px ' + tmp[layer].color}">{{data ? format(player[layer].points, data) : formatWhole(player[layer].points)}}</h2> {{tmp[layer].resource}}<span v-if="layers[layer].effectDescription">, <span v-html="run(layers[layer].effectDescription, layers[layer])"></span></span><br><br></div>
 		`
 	})
-
 	// Displays the base resource for the layer, as well as the best and total values for the layer's currency, if tracked
 	Vue.component('resource-display', {
 		props: ['layer'],
@@ -269,7 +265,6 @@ function loadVue() {
 		</div>
 		`
 	})
-
 	Vue.component('buyables', {
 		props: ['layer', 'data'],
 		template: `
@@ -284,7 +279,6 @@ function loadVue() {
 		</div>
 	`
 	})
-
 	Vue.component('buyable', {
 		props: ['layer', 'data'],
 		template: `
@@ -320,7 +314,6 @@ function loadVue() {
 			}
 		},
 	})
-
 	Vue.component('respec-button', {
 		props: ['layer', 'data'],
 		template: `
@@ -330,7 +323,6 @@ function loadVue() {
 			</div>
 			`
 	})
-	
 	Vue.component('clickables', {
 		props: ['layer', 'data'],
 		template: `
@@ -345,7 +337,6 @@ function loadVue() {
 		</div>
 	`
 	})
-
 	// data = id of clickable
 	Vue.component('clickable', {
 		props: ['layer', 'data'],
