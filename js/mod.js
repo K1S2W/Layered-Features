@@ -1,7 +1,7 @@
 let modInfo = {
 	name: "Layered Features",
 	author: "K1S2W",
-	pointsName: "points",
+	pointsName: "Points",
 	modFiles: ["layers.js", "tree.js"],
 	discordName: "",
 	discordLink: "",
@@ -10,13 +10,18 @@ let modInfo = {
 }
 // Set your version in num and name
 let VERSION = {
-	num: "0.9.1",
-	name: "Clicking!",
+	num: "0.10",
+	name: "Buyables!",
 }
 let changelog = `<h1>Changelog:</h1><br><br>
+	<h2>v0.10 (5/25)</h2><br>
+		- 5 New Upgrades<br>
+		- New Layer: Buyables!<br>
+		- Changed Capitalization For Currencies.<br>
+		- Publish Attempt 2 To galaxy.click.<br>
 	<h3>v0.9.1 (5/24)</h3><br>
-		- Balanced A Few Lategame Upgrades
-		- URGENT FIX: fixed fallback for themes.<br><br>
+		- Balanced A Few Lategame Upgrades.<br>
+		- URGENT FIX: Fixed Fallback For Themes.<br><br>
 	<h2>v0.9 (5/24)</h2><br>
 		- Fixed A Bug With \"Useless For Now...\".<br>
 		- 10 New Upgrades!<br>
@@ -135,6 +140,8 @@ function getPointGen() {
 	if (hasUpgrade('u', 64)) gain = gain.times(10)
 	if (hasUpgrade('u', 73)) gain = gain.times(upgradeEffect('u', 73))
 	if (hasUpgrade('u', 75)) gain = gain.times(upgradeEffect('u', 75))
+	// Buyable 11 effect from Buyables layer
+	gain = gain.times(layers.b.buyables[11].effect(getBuyableAmount('b', 11)))
 	return gain
 }
 // You can add non-layer related variables that should to into "player" and be saved here, along with default values

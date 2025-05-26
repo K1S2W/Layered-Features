@@ -54,7 +54,6 @@ function format(decimal, precision = 2, small) {
     else if (decimal.gte(1e3)) return commaFormat(decimal, 0)
     else if (decimal.gte(0.0001) || !small) return regularFormat(decimal, precision)
     else if (decimal.eq(0)) return (0).toFixed(precision)
-
     decimal = invertOOM(decimal)
     let val = ""
     if (decimal.lt("1e1000")){
@@ -65,14 +64,12 @@ function format(decimal, precision = 2, small) {
         return format(decimal, precision) + "⁻¹"
 
 }
-
 function formatWhole(decimal) {
     decimal = new Decimal(decimal)
     if (decimal.gte(1e9)) return format(decimal, 2)
     if (decimal.lte(0.99) && !decimal.eq(0)) return format(decimal, 2)
     return format(decimal, 0)
 }
-
 function formatTime(s) {
     if (s < 60) return format(s) + "s"
     else if (s < 3600) return formatWhole(Math.floor(s / 60)) + "m " + format(s % 60) + "s"
@@ -80,7 +77,6 @@ function formatTime(s) {
     else if (s < 31536000) return formatWhole(Math.floor(s / 86400) % 365) + "d " + formatWhole(Math.floor(s / 3600) % 24) + "h " + formatWhole(Math.floor(s / 60) % 60) + "m " + format(s % 60) + "s"
     else return formatWhole(Math.floor(s / 31536000)) + "y " + formatWhole(Math.floor(s / 86400) % 365) + "d " + formatWhole(Math.floor(s / 3600) % 24) + "h " + formatWhole(Math.floor(s / 60) % 60) + "m " + format(s % 60) + "s"
 }
-
 function toPlaces(x, precision, maxAccepted) {
     x = new Decimal(x)
     let result = x.toStringWithDecimalPlaces(precision)
@@ -89,12 +85,10 @@ function toPlaces(x, precision, maxAccepted) {
     }
     return result
 }
-
 // Will also display very small numbers
 function formatSmall(x, precision=2) { 
     return format(x, precision, true)    
 }
-
 function invertOOM(x){
     let e = x.log10().ceil()
     let m = x.div(Decimal.pow(10, e))

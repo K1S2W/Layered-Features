@@ -20,7 +20,8 @@ var colors = {
 		upgText: "rgba(0, 0, 0, 1)", // Upgrade text color
 		u: "rgba(0, 200, 0, 1)", // Upgrade layer color
 		a: "rgba(255, 255, 0, 1)", // Achievements layer color
-		c: "rgba(100, 100, 100, 1)",
+		c: "rgba(100, 100, 100, 1)", //Click layer color
+		b: "rgba(200, 0, 0, 1)", //Buyables layer color
 	},
 	Grayscale: {
 		1: "rgba(255, 255, 255, 1)",
@@ -36,6 +37,7 @@ var colors = {
 		u: "rgba(67, 67, 67, 1)",
 		a: "rgba(170, 170, 170, 1)",
 		c: "rgba(100, 100, 100, 1)",
+		b: "rgba(67, 67, 67, 67)",
 	},
 	Inverted: {
 		1: "rgba(0, 0, 0, 1)",
@@ -51,6 +53,7 @@ var colors = {
 		u: "rgba(255, 55, 255, 1)",
 		a: "rgba(0, 0, 255, 1)",
 		c: "rgba(155, 155, 155, 1)",
+		b: "rgba(55, 255, 255, 1)",
 	},
 	Oversaturated: {
 		1: "rgba(255, 255, 255, 1)",
@@ -66,6 +69,7 @@ var colors = {
 		u: "rgba(0, 255, 0, 1)",
 		a: "rgba(255, 255, 0, 1)",
 		c: "rgba(200, 200, 200, 1)",
+		b: "rgba(255, 0, 0, 1)",
 	},
 	Undersaturated: {
 		1: "rgba(128, 128, 128, 1)",
@@ -81,6 +85,7 @@ var colors = {
 		u: "rgba(0, 100, 0, 1)",
 		a: "rgba(128, 128, 0, 1)",
 		c: "rgba(50, 50, 50, 1)",
+		b: "rgba(100, 0, 0, 1)",
 	},
 	Redverted: {
 		1: "rgba(0, 255, 255, 1)",
@@ -96,6 +101,7 @@ var colors = {
 		u: "rgba(255, 200, 0, 1)",
 		a: "rgba(0, 255, 0, 1)",
 		c: "rgba(155, 100, 100, 1)",
+		b: "rgba(55, 0, 0, 1)",
 	},
 	Yellowverted: {
 		1: "rgba(0, 0, 255, 1)",
@@ -111,6 +117,7 @@ var colors = {
 		u: "rgba(255, 55, 0, 1)",
 		a: "rgba(0, 0, 0, 1)",
 		c: "rgba(155, 155, 100, 1)",
+		b: "rgba(55, 255, 0, 1)",
 	},
 	Greenverted: {
 		1: "rgba(255, 0, 255, 1)",
@@ -126,6 +133,7 @@ var colors = {
 		u: "rgba(0, 55, 0, 1)",
 		a: "rgba(255, 0, 0, 1)",
 		c: "rgba(100, 155, 100, 1)",
+		b: "rgba(200, 255, 0, 1)",
 	},
 	Cyanverted: {
 		1: "rgba(255, 0, 0, 1)",
@@ -141,6 +149,7 @@ var colors = {
 		u: "rgba(0, 55, 255, 1)",
 		a: "rgba(255, 0, 255, 1)",
 		c: "rgba(100, 155, 155, 1)",
+		b: "rgba(200, 255, 255, 1)",
 	},
 	Blueverted: {
 		1: "rgba(255, 255, 0, 1)",
@@ -156,6 +165,7 @@ var colors = {
 		u: "rgba(0, 200, 255, 1)",
 		a: "rgba(255, 255, 255, 1)",
 		c: "rgba(100, 100, 155, 1)",
+		b: "rgba(200, 0, 255, 1)",
 	},
 	Magentaverted: {
 		1: "rgba(0, 255, 0, 1)",
@@ -171,6 +181,7 @@ var colors = {
 		u: "rgba(255, 200, 255, 1)",
 		a: "rgba(0, 255, 255, 1)",
 		c: "rgba(155, 100, 155, 1)",
+		b: "rgba(55, 0, 255, 1)",
 	},
 	Random: {} // Will be filled dynamically
 }
@@ -188,8 +199,7 @@ function changeTheme() {
     // Handle Random theme
     if ((options.theme || "Default") === "Random") {
         const props = [
-            "1", "2", "3", "color", "points", "locked", "bought", "background",
-            "background_tooltip", "upgText", "u", "a", "c"
+            "1", "2", "3", "color", "points", "locked", "bought", "background", "background_tooltip", "upgText", "u", "a", "c", "b"
         ];
         colors.Random = {};
         for (const prop of props) {
@@ -206,7 +216,7 @@ function changeTheme() {
     // Ensure all required properties exist (fallback to Default if missing)
     const defaultTheme = colors["Default"];
     const props = [
-        "background", "background_tooltip", "color", "points", "locked", "bought", "upgText", "u", "a", "c", "1", "2", "3"
+        "background", "background_tooltip", "color", "points", "locked", "bought", "upgText", "u", "a", "c", "b", "1", "2", "3"
     ];
     for (const prop of props) {
         if (!colors_theme[prop]) colors_theme[prop] = defaultTheme[prop];
@@ -238,7 +248,6 @@ function getThemeName() {
     const foundKey = colorKeys.find(k => k.toLowerCase() === theme.toLowerCase());
     return foundKey || "Default";
 }
-
 function switchTheme() {
 	let index = themes.indexOf(options.theme)
 	if (options.theme === null || index >= themes.length-1 || index < 0) {

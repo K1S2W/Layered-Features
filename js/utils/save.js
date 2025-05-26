@@ -77,7 +77,6 @@ function getStartLayerData(layer) {
 		layerdata.resetTime = 0;
 	if (layerdata.forceTooltip === undefined)
 		layerdata.forceTooltip = false;
-
 	layerdata.buyables = getStartBuyables(layer);
 	if (layerdata.noRespecConfirm === undefined) layerdata.noRespecConfirm = false
 	if (layerdata.clickables == undefined)
@@ -90,7 +89,6 @@ function getStartLayerData(layer) {
 	layerdata.challenges = getStartChallenges(layer);
 	layerdata.grid = getStartGrid(layer);
 	layerdata.prevTab = ""
-
 	return layerdata;
 }
 function getStartBuyables(layer) {
@@ -137,7 +135,6 @@ function getStartGrid(layer) {
 function fixSave() {
 	defaultData = getStartPlayer();
 	fixData(defaultData, player);
-
 	for (layer in layers) {
 		if (player[layer].best !== undefined)
 			player[layer].best = new Decimal(player[layer].best);
@@ -195,7 +192,6 @@ function fixData(defaultData, newData) {
 }
 function load() {
 	let get = localStorage.getItem(getModID());
-
 	if (get === null || get === undefined) {
 		player = getStartPlayer();
 		options = getStartOptions();
@@ -205,7 +201,6 @@ function load() {
 		fixSave();
 		loadOptions();
 	}
-
 	if (options.offlineProd) {
 		if (player.offTime === undefined)
 			player.offTime = { remain: 0 };
@@ -217,7 +212,6 @@ function load() {
 	changeTreeQuality();
 	updateLayers();
 	setupModInfo();
-
 	setupTemp();
 	updateTemp();
 	updateTemp();

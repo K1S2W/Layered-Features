@@ -16,7 +16,6 @@ function getStartOptions() {
 		hideCompletedUpgradeRows: false,
 	}
 }
-
 function toggleOpt(name) {
 	if (name == "oldStyle" && styleCooldown > 0)
 		return;

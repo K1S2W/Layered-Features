@@ -1,12 +1,10 @@
 var player;
 var needCanvasUpdate = true;
-
 // Don't change this
 const TMT_VERSION = {
 	tmtNum: "2.7",
 	tmtName: "Δ"
 }
-
 function getResetGain(layer, useType = null) {
 	let type = useType
 	if (!useType){ 
@@ -34,7 +32,6 @@ function getResetGain(layer, useType = null) {
 		return decimalZero
 	}
 }
-
 function getNextAt(layer, canMax=false, useType = null) {
 	let type = useType
 	if (!useType) {

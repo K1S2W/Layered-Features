@@ -265,7 +265,6 @@ function addTime(diff, layer) {
 		}
 	}
 	time += toNumber(diff)
-
 	if (layer) data.time = time
 	else data.timePlayed = time
 }
@@ -312,11 +311,9 @@ function toValue(value, oldValue) {
 		return parseFloat(value) || 0
 	return value
 }
-
 // Variables that must be defined to display popups
 var activePopups = [];
 var popupID = 0;
-
 // Function to show popups
 function doPopup(type = "none", text = "This is a test popup.", title = "", timer = 3, color = "") {
 	switch (type) {
@@ -336,12 +333,9 @@ function doPopup(type = "none", text = "This is a test popup.", title = "", time
 	if (title != "") popupTitle = title;
 	popupMessage = text;
 	popupTimer = timer;
-
 	activePopups.push({ "time": popupTimer, "type": popupType, "title": popupTitle, "message": (popupMessage + "\n"), "id": popupID, "color": color })
 	popupID++;
 }
-
-
 //Function to reduce time on active popups
 function adjustPopupTime(diff) {
 	for (popup in activePopups) {
@@ -351,7 +345,6 @@ function adjustPopupTime(diff) {
 		}
 	}
 }
-
 function run(func, target, args = null) {
 	if (isFunction(func)) {
 		let bound = func.bind(target)
@@ -360,7 +353,6 @@ function run(func, target, args = null) {
 	else
 		return func;
 }
-
 function gridRun(layer, func, data, id) {
 	if (isFunction(layers[layer].grid[func])) {
 		let bound = layers[layer].grid[func].bind(layers[layer].grid)

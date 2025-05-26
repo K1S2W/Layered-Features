@@ -18,8 +18,8 @@ addLayer("u", {
         return colors[theme].u;
     },
     requires: new Decimal(10), // Can be a function that takes requirement increases into account
-    resource: "upgrade points", // Name of prestige currency
-    baseResource: "points", // Name of resource prestige is based on
+    resource: "Upgrade Points", // Name of prestige currency
+    baseResource: "Points", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: 0.5, // Prestige currency exponent
@@ -37,6 +37,8 @@ addLayer("u", {
         if (hasUpgrade('u', 84)) mult = mult.times(upgradeEffect('u', 55))
         if (hasUpgrade('u', 94)) mult = mult.times(720)
         if (hasUpgrade('u', 95)) mult = mult.times(5040)
+        if (hasUpgrade('u', 101)) mult = mult.times(upgradeEffect('u', 75))
+        mult = mult.times(layers.b.buyables[11].effect(getBuyableAmount('b', 11)))
         return mult
     },
     update(diff) {
@@ -51,7 +53,7 @@ addLayer("u", {
     },
     row: 0, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
-        {key: "u", description: "U: Reset for upgrade points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
+        {key: "u", description: "U: Reset for Upgrade Points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
     layerShown(){return true},
     upgrades: {
@@ -503,7 +505,10 @@ addLayer("u", {
             },
             effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
             title: "Mid",
-            description: "Layers Boost Points",
+            description () {
+                if (hasUpgrade("u", 101)) return "Layers Boost Points, Upgrade Points, And Clicks."
+                return "Layers Boost Points"
+            },
             tooltip () {
                 if (hasUpgrade(this.layer, 93)) return "(Layers)^2"
                 return "(Layers)^1"
@@ -600,13 +605,58 @@ addLayer("u", {
             description: "Row 1 Upgrades Affect Upgrade Points And Clicks.",
             cost: new Decimal("3e25"),
         },
-        95: { //uneffective
+        95: {
             unlocked() {
                 return [81, 82, 83, 84, 85].every(id => hasUpgrade('u', id))
             },
             title: "Mass Effectiveness Round 2!",
             description: "4 Row 6 Upgrades Affect Upgrade Points And Clicks.",
             cost: new Decimal("2.5e28"),
+        },
+        101: {
+            unlocked() {
+                return [91, 92, 93, 94, 95].every(id => hasUpgrade('u', id))
+            },
+            title: "Left Behind",
+            description: "\"Mid\" Boosts Prestige Points And Clicks.",
+            cost: new Decimal("2e32"),
+        },
+        102: {
+            unlocked() {
+                return [91, 92, 93, 94, 95].every(id => hasUpgrade('u', id))
+            },
+            title: "Automation v2",
+            description: "Automatically Click The \"Click\" Button.",
+            tooltip() {
+                if (hasUpgrade('u', 104)) return "25 Clicks Per Second."
+                if (hasUpgrade('u', 103)) return "5 Clicks Per Second."
+                return "1 Click Per Second."
+            },
+            cost: new Decimal("2e33"),
+        },
+        103: {
+            unlocked() {
+                return [91, 92, 93, 94, 95].every(id => hasUpgrade('u', id))
+            },
+            title: "Too Slow",
+            description: "Improve \"Automation v2\".",
+            cost: new Decimal("3e33"),
+        },
+        104: {
+            unlocked() {
+                return [91, 92, 93, 94, 95].every(id => hasUpgrade('u', id))
+            },
+            title: "FASTER!",
+            description: "Improve \"Automation v2\" Again.",
+            cost: new Decimal("5e33"),
+        },
+        105: {
+            unlocked() {
+                return [91, 92, 93, 94, 95].every(id => hasUpgrade('u', id))
+            },
+            title: "Another Reset Layer?",
+            description: "Unlock Buyables!",
+            cost: new Decimal("1e34"),
         },
     },
 })
@@ -800,9 +850,71 @@ addLayer("c", {
                 if (hasUpgrade('u', 84)) click = click.times(upgradeEffect('u', 55))
                 if (hasUpgrade('u', 94)) click = click.times(720)
                 if (hasUpgrade('u', 95)) click = click.times(5040)
+                if (hasUpgrade('u', 101)) click = click.times(upgradeEffect('u', 75))
+                click = click.times(layers.b.buyables[11].effect(getBuyableAmount('b', 11)))
                 return click
             },
             style: {width: "200px", height: "60px", fontSize: "20px"},
+        },
+    },
+    update(diff) {
+        if (hasUpgrade('u', 104)) {
+            player.c.clicks = player.c.clicks.add(this.clickables[11].gainClicks().times(diff).times(25));
+        }
+        else if (hasUpgrade('u', 103)) {
+            player.c.clicks = player.c.clicks.add(this.clickables[11].gainClicks().times(diff).times(5));
+        }
+        else if (hasUpgrade('u', 102)) {
+            player.c.clicks = player.c.clicks.add(this.clickables[11].gainClicks().times(diff));
+        }
+    },
+})
+addLayer("b", {
+    name: "Buyables",
+    symbol: "B",
+    position: 3, // After Click layer
+    row: 0, // Main row
+    startData() { return {
+        unlocked: true,
+        points: new Decimal(0),
+        buyables: { 11: new Decimal(0) }, // Ensure buyables are initialized
+    }},
+    color: () => {
+        if (typeof colors !== 'object' || typeof getThemeName !== 'function') return '#888';
+        const theme = getThemeName();
+        if (!colors[theme] || !colors[theme].b) return '#888';
+        return colors[theme].b;
+    },
+    requires: new Decimal(1e24), // Cost to reset for buyable points
+    resource: "Buyable Points",
+    baseResource: "Points",
+    baseAmount() {return player.points},
+    type: "normal",
+    exponent: 0.4,
+    gainMult() {
+        let mult = new Decimal(1)
+        return mult
+    },
+    gainExp() {return new Decimal(1)},
+    layerShown() {return hasUpgrade('u', 105)},
+    hotkeys: [
+        {key: "b", description: "B: Reset for Buyable Points", onPress(){if (canReset(this.layer)) doReset(this.layer)}}
+    ],
+    buyables: {
+        11: {
+            cost(x) {return new Decimal(2).pow(x)},
+            effect(x) {return new Decimal(2).pow(x)},
+            canAfford() {return player.b.points.gte(this.cost(getBuyableAmount('b', 11)))},
+            buy() {
+                player.b.points = player.b.points.sub(this.cost(getBuyableAmount('b', 11)))
+                setBuyableAmount("b", 11, getBuyableAmount("b", 11).add(1))
+            },
+            title: "Buyable Doubling",
+            display() {
+                return `Doubles Points, Upgrade Points, And Clicks.\nLevel: ${getBuyableAmount('b', 11)}\nEffect: x${format(this.effect(getBuyableAmount('b', 11)))}\nCost: ${format(this.cost(getBuyableAmount('b', 11)))} buyable points`
+            },
+            unlocked() {return true},
+            purchaseLimit: new Decimal(5),
         },
     },
 })
