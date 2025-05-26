@@ -14,11 +14,12 @@ let VERSION = {
 	name: "Buyables!",
 }
 let changelog = `<h1>Changelog:</h1><br><br>
-	<h2>v0.10 (5/25)</h2><br>
+	<h2>v0.10 (5/26)</h2><br>
 		- 5 New Upgrades<br>
 		- New Layer: Buyables!<br>
 		- Changed Capitalization For Currencies.<br>
 		- Publish Attempt 2 To galaxy.click.<br>
+		- Endgame: 5e26 Points.<br><br>
 	<h3>v0.9.1 (5/24)</h3><br>
 		- Balanced A Few Lategame Upgrades.<br>
 		- URGENT FIX: Fixed Fallback For Themes.<br><br>
@@ -152,7 +153,7 @@ var displayThings = [
 ]
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("1e24"))
+	return player.points.gte(new Decimal("5e26"))
 }
 // Less important things beyond this point!
 // Style for the background, can be a function
