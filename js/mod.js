@@ -10,7 +10,7 @@ let modInfo = {
 }
 // Set your version in num and name
 let VERSION = {
-	num: "0.10",
+	num: "0.11",
 	name: "Buyables!",
 }
 let changelog = `<h1>Changelog:</h1><br><br>
