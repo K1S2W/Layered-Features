@@ -45,6 +45,7 @@ addLayer("u", {
         if (hasAchievement("a", 11)) {
             let gain = tmp.u.resetGain.times(0.01).times(diff)
             if (hasUpgrade('u', 45)) gain = gain.times(10)
+            if (hasUpgrade('u', 113)) gain = gain.times(10)
             player.u.points = player.u.points.add(gain)
         }
     },
@@ -56,6 +57,10 @@ addLayer("u", {
         {key: "u", description: "U: Reset for Upgrade Points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
     layerShown(){return true},
+    tabFormat() {
+        if (hasUpgrade("u", 113)) return ["main-display", "resource-display", "upgrades"]
+        return ["main-display", "prestige-button", "resource-display", "upgrades"]
+    },
     upgrades: {
         11: {
             title: "Basic Multiplier",
@@ -658,6 +663,53 @@ addLayer("u", {
             description: "Unlock Buyables!",
             cost: new Decimal("1e34"),
         },
+        111: {
+            unlocked() {
+                return [101, 102, 103, 104, 105].every(id => hasUpgrade('u', id))
+            },
+            title: "Done Already?",
+            description: "Increase The Maximum For \"Buyable Doubling\" To 10.",
+            cost: new Decimal("2.5e36"),
+        },
+        112: {
+            unlocked() {
+                return [101, 102, 103, 104, 105].every(id => hasUpgrade('u', id))
+            },
+            title: "Somewhat Useful?",
+            description: "\"New Tab!\" Also Buffs Buyable Points And Is Stronger.",
+            cost: new Decimal("2.5e37"),
+        },
+        113: {
+            unlocked() {
+                return [101, 102, 103, 104, 105].every(id => hasUpgrade('u', id))
+            },
+            title: "Finally!",
+            description: "\"Passive Generation\" Is Stronger And Disable Upgrade Point Resets.",
+            cost: new Decimal("2.5e38"),
+        },
+        114: {
+            unlocked() {
+                return [101, 102, 103, 104, 105].every(id => hasUpgrade('u', id))
+            },
+            effect() {
+                return player.b.points.add(10).log(10)
+            },
+            effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
+            title: "Not These Again...",
+            description: "Boost Points Based On Buyable Points.",
+            tooltip() {
+                return "Log10(Buyable Points + 10)"
+            },
+            cost: new Decimal("7e39"),
+        },
+        115: {
+            unlocked() {
+                return [101, 102, 103, 104, 105].every(id => hasUpgrade('u', id))
+            },
+            title: "Automation- Oh Wait I Spoiled It",
+            description: "Unlock A New Achievement.",
+            cost: new Decimal("1e40"),
+        },
     },
 })
 // Global Achievements Layer
@@ -718,6 +770,7 @@ addLayer("a", {
             done() {return player.points.gte(10000000) && hasUpgrade("u", 35)},
             description: "Reach 10M(10,000,000) Points.",
             tooltip() {
+                if(hasUpgrade("u", 113)) return "Generate 100% Of Upgrade Points Per Second."
                 if(hasUpgrade("u", 45)) return "Generate 10% Of Upgrade Points Per Second."
                 if(hasAchievement("a", 11)) return "Generate 1% Of Upgrade Points Per Second."
                 return "???"
@@ -725,6 +778,7 @@ addLayer("a", {
         },
         12: {
             effect() {
+                if (hasUpgrade("u", 112)) return new Decimal(1.2).pow(Object.keys(layers.a.achievements).filter(x => Number(x) >= 20 && hasAchievement('a', x)).length)
                 return new Decimal(1.1).pow(Object.keys(layers.a.achievements).filter(x => Number(x) >= 20 && hasAchievement('a', x)).length)
             },
             effectDisplay() {
@@ -737,9 +791,20 @@ addLayer("a", {
                 return "Reach 5e13 Upgrade Points."
             },
             tooltip() {
+                if(hasUpgrade("u", 112)) return "Unlock Secret Achievements And Boost Points, Upgrade Points, Clicks, And Buyable Points By Secret Achievements. (1.2^SA)"
                 if(hasUpgrade("u", 83)) return "Unlock Secret Achievements And Boost Points, Upgrade Points, And Clicks By Secret Achievements. (1.1^SA)"
                 if(hasUpgrade("u", 65)) return "Unlock Secret Achievements And Boost Points And Upgrade Points By Secret Achievements. (1.1^SA)"
                 if(hasAchievement("a", 12)) return "Unlock Secret Achievements And Boost Points By Secret Achievements. (1.1^SA)"
+                return "???"
+            }
+        },
+        13: {
+            unlocked() {return hasUpgrade("u", 115)},
+            name: "Passive Generation But Again",
+            done() {return player.b.points.gte(1000) && hasUpgrade("u", 115)},
+            description: "Reach 1,000 Buyable Points.",
+            tooltip() {
+                if(hasAchievement("a", 11)) return "Generate 1% Of Buyable Points Per Second."
                 return "???"
             }
         },
@@ -804,7 +869,7 @@ addLayer("a", {
             },
             unlocked() {return true},
             tooltip: "Good Job!"
-        }
+        },
     },
 })
 //Clicking Layer
@@ -893,6 +958,7 @@ addLayer("b", {
     exponent: 0.4,
     gainMult() {
         let mult = new Decimal(1)
+        if (hasUpgrade('u', 112)) mult = mult.times(layers.a.achievements[12].effect())
         return mult
     },
     gainExp() {return new Decimal(1)},
@@ -900,6 +966,12 @@ addLayer("b", {
     hotkeys: [
         {key: "b", description: "B: Reset for Buyable Points", onPress(){if (canReset(this.layer)) doReset(this.layer)}}
     ],
+    update(diff) {
+        if (hasAchievement("a", 13)) {
+            let gain = tmp.b.resetGain.times(0.01).times(diff)
+            player.b.points = player.b.points.add(gain)
+        }
+    },
     buyables: {
         11: {
             cost(x) {return new Decimal(2).pow(x)},
@@ -911,10 +983,12 @@ addLayer("b", {
             },
             title: "Buyable Doubling",
             display() {
-                return `Doubles Points, Upgrade Points, And Clicks.\nLevel: ${getBuyableAmount('b', 11)}\nEffect: x${format(this.effect(getBuyableAmount('b', 11)))}\nCost: ${format(this.cost(getBuyableAmount('b', 11)))} buyable points`
+                return `Doubles Points, Upgrade Points, And Clicks.\nLevel: ${getBuyableAmount('b', 11)}/${this.purchaseLimit().toNumber()}\nEffect: x${format(this.effect(getBuyableAmount('b', 11)))}\nCost: ${format(this.cost(getBuyableAmount('b', 11)))} buyable points`
             },
             unlocked() {return true},
-            purchaseLimit: new Decimal(5),
+            purchaseLimit() {
+                return hasUpgrade('u', 111) ? new Decimal(10) : new Decimal(5);
+            },
         },
     },
 })

@@ -14,6 +14,11 @@ let VERSION = {
 	name: "Buyables!",
 }
 let changelog = `<h1>Changelog:</h1><br><br>
+	<h2>v0.11 (5/28)</h2><br>
+		- Changed Formatting For First Buyable.<br>
+		- 5 New Upgrades.<br>
+		- Not Published Yet...<br>
+		- Endgame: 1e29 Points.<br><br>
 	<h2>v0.10 (5/26)</h2><br>
 		- 5 New Upgrades<br>
 		- New Layer: Buyables!<br>
@@ -143,6 +148,7 @@ function getPointGen() {
 	if (hasUpgrade('u', 75)) gain = gain.times(upgradeEffect('u', 75))
 	// Buyable 11 effect from Buyables layer
 	gain = gain.times(layers.b.buyables[11].effect(getBuyableAmount('b', 11)))
+	if (hasUpgrade('u', 114)) gain = gain.times(upgradeEffect('u', 114))
 	return gain
 }
 // You can add non-layer related variables that should to into "player" and be saved here, along with default values
@@ -153,7 +159,7 @@ var displayThings = [
 ]
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("5e26"))
+	return player.points.gte(new Decimal("1e29"))
 }
 // Less important things beyond this point!
 // Style for the background, can be a function
