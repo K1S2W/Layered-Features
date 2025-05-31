@@ -710,6 +710,29 @@ addLayer("u", {
             description: "Unlock A New Achievement.",
             cost: new Decimal("1e40"),
         },
+        121: {
+            unlocked() {
+                return [111, 112, 113, 114, 115].every(id => hasUpgrade('u', id))
+            },
+            effect() {
+                return Math.round(player.b.points.add(10).log(10))
+            },
+            effectDisplay() {return "+" + format(upgradeEffect(this.layer, this.id))},
+            title: "teh end",
+            description: "Adds Free Levels To \"Buyable Doubling\"",
+            tooltip() {
+                return "Round(Log10(Buyable Points + 10))"
+            },
+            cost: new Decimal("1.5e40"),
+        },
+        122: {
+            unlocked() {
+                return [121].every(id => hasUpgrade('u', id))
+            },
+            title: "teh end but fr",
+            description: "<marquee>NaN!!!</marquee>",
+            cost: new Decimal("1e42"),
+        },
     },
 })
 // Global Achievements Layer
@@ -975,7 +998,17 @@ addLayer("b", {
     buyables: {
         11: {
             cost(x) {return new Decimal(2).pow(x)},
-            effect(x) {return new Decimal(2).pow(x)},
+            effect(x) {
+                if (hasUpgrade('u', 122)) {
+                    return new Decimal(2).pow(new Decimal(x + upgradeEffect('u', 121)));
+                }
+                let extra = 0;
+                if (hasUpgrade("u", 121)) {
+                    extra = upgradeEffect('u', 121);
+                    if (extra === undefined || isNaN(extra)) extra = 0;
+                }
+                return new Decimal(2).pow(new Decimal(x).plus(extra));
+            },
             canAfford() {return player.b.points.gte(this.cost(getBuyableAmount('b', 11)))},
             buy() {
                 player.b.points = player.b.points.sub(this.cost(getBuyableAmount('b', 11)))
@@ -983,6 +1016,7 @@ addLayer("b", {
             },
             title: "Buyable Doubling",
             display() {
+                if (hasUpgrade("u", 121)) return  `Doubles Points, Upgrade Points, And Clicks.\nLevel: ${getBuyableAmount('b', 11)}/${this.purchaseLimit().toNumber()} + ${upgradeEffect('u', 121)}\nEffect: x${format(this.effect(getBuyableAmount('b', 11)))}\nCost: ${format(this.cost(getBuyableAmount('b', 11)))} buyable points`
                 return `Doubles Points, Upgrade Points, And Clicks.\nLevel: ${getBuyableAmount('b', 11)}/${this.purchaseLimit().toNumber()}\nEffect: x${format(this.effect(getBuyableAmount('b', 11)))}\nCost: ${format(this.cost(getBuyableAmount('b', 11)))} buyable points`
             },
             unlocked() {return true},

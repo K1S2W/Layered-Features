@@ -10,10 +10,15 @@ let modInfo = {
 }
 // Set your version in num and name
 let VERSION = {
-	num: "0.11.1",
-	name: "Buyables!",
+	num: "0.12",
+	name: "Abandonment",
 }
+//ideas: font setting fr
 let changelog = `<h1>Changelog:</h1><br><br>
+	<h2>v0.12</h2><br>
+		- THIS GAME WAS DENIED FROM galaxy.click (low quality?!)<br>
+		- I Will Likely Abandon This (To make a new game)<br>
+		- 2 New Upgrades<br><br>
 	<h3>v0.11.1 (5/29)</h3><br>
 		- Removed Discord Stuff :D<br>
 		- 6 New Themes<br>
