@@ -15,7 +15,12 @@ let VERSION = {
 }
 //ideas: font setting fr
 let changelog = `<h1>Changelog:</h1><br><br>
-	<h2>v0.12</h2><br>
+	<h3>v0.12.1 (9/27)</h3><br>
+		- Fixed A Couple Of Upgrade Descriptions.<br>
+		- Fixed Achievement Layer Not Appearing After Buying Upgrade 15.<br>
+		- No Idea How To Fix Achievements Not Showing Up.<br>
+		- 100% Abandoned Now.<br><br>
+	<h2>v0.12 (5/30)</h2><br>
 		- THIS GAME WAS DENIED FROM galaxy.click (low quality?!)<br>
 		- I Will Likely Abandon This (To make a new game)<br>
 		- 2 New Upgrades<br><br>

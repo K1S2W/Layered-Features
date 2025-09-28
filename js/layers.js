@@ -341,7 +341,7 @@ addLayer("u", {
                 return [41, 42, 43, 44, 45].every(id => hasUpgrade('u', id))
             },
             title: "Improvement Row v2",
-            description: "\"Misc Upgrades\" Also Affects Prestige Points.",
+            description: "\"Misc Upgrades\" Also Affects Upgrade Points.",
             cost: new Decimal("5e9"),
         },
         52:{
@@ -349,7 +349,7 @@ addLayer("u", {
                 return [41, 42, 43, 44, 45].every(id => hasUpgrade('u', id))
             },
             title: "These Rows Are So Repetative",
-            description: "\"Useless For Now...\" Also Affects Prestige Points.",
+            description: "\"Useless For Now...\" Also Affects Upgrade Points.",
             cost: new Decimal("2e11"),
         },
         53:{
@@ -357,7 +357,7 @@ addLayer("u", {
                 return [41, 42, 43, 44, 45].every(id => hasUpgrade('u', id))
             },
             title: "Daily Updates = Bad Balancing?",
-            description: "\"Themes Are Uselful?\" Also Affects Prestige Points.",
+            description: "\"Themes Are Uselful?\" Also Affects Upgrade Points.",
             cost: new Decimal("3e11"),
         },
         54:{
@@ -365,7 +365,7 @@ addLayer("u", {
                 return [41, 42, 43, 44, 45].every(id => hasUpgrade('u', id))
             },
             title: "Repitition Is Basically Every TMT Mod Anyways",
-            description: "\"Afk!\" Also Affects Prestige Points.",
+            description: "\"Afk!\" Also Affects Upgrade Points.",
             cost: new Decimal("3e12"),
         },
         55:{
@@ -743,7 +743,7 @@ addLayer("a", {
     row: "side", // Side layer for achievements
     type: "none",
     startData() { return {
-        unlocked: false,
+        unlocked: true,
         seenThemes: [], // Track seen themes
     }},
     color: () => {
