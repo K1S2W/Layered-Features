@@ -348,7 +348,7 @@ addLayer("u", {
             unlocked() {
                 return [41, 42, 43, 44, 45].every(id => hasUpgrade('u', id))
             },
-            title: "These Rows Are So Repetative",
+            title: "These Rows Are So Repetitive",
             description: "\"Useless For Now...\" Also Affects Upgrade Points.",
             cost: new Decimal("2e11"),
         },
