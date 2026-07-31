@@ -15,6 +15,9 @@ let VERSION = {
 }
 //ideas: font setting fr
 let changelog = `<h1>Changelog:</h1><br><br>
+	<h3>v0.12.2 (7/31)</h3><br>
+		- Fixed A Couple Of Upgrade Descriptions.<br>
+		- Fixed Another Typo.<br><br>
 	<h3>v0.12.1 (9/27)</h3><br>
 		- Fixed A Couple Of Upgrade Descriptions.<br>
 		- Fixed Achievement Layer Not Appearing After Buying Upgrade 15.<br>
@@ -46,7 +49,7 @@ let changelog = `<h1>Changelog:</h1><br><br>
 		- Fixed A Bug With \"Useless For Now...\".<br>
 		- 10 New Upgrades!<br>
 		- Random Theme!<br>
-		- Made Themes Upercase.<br>
+		- Made Themes Uppercase.<br>
 		- Endgame: 1e24 Points<br><br>
 	<h2>v0.8 (5/24)</h2><br>
 		- 5 New Upgrades.<br>
@@ -62,7 +65,7 @@ let changelog = `<h1>Changelog:</h1><br><br>
 		- Endgame: 1e19 Points<br><br>
 	<h2>v0.6 (5/23)</h2><br>
 		- 5 New Upgrades.<br>
-		- Changed How Upgrades Are Unlocked Againx2.<br>
+		- Changed How Upgrades Are Unlocked Again x2.<br>
 		- Fixed A Bug With Achievements Not Showing Up. (1/2)<br>
 		- 1 More Achievement.<br>
 		- New Layer (?): Secret Achievements!<br>

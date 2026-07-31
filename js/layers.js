@@ -113,7 +113,7 @@ addLayer("u", {
             },
             effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"}, // Add formatting to the effect, required
             title: "New Type!",
-            description: "Multiply Points By Upgrade Points.",
+            description: "Multiply Points Based On Upgrade Points.",
             tooltip() {
                 if (hasUpgrade(this.layer, 91)) return "Log8(Upgrade Points + 8)"
                 if (hasUpgrade(this.layer, 31)) return "Log9(Upgrade Points + 9)"
@@ -132,7 +132,7 @@ addLayer("u", {
             },
             effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
             title: "Self Powered",
-            description: "Multiply Points By Itself.",
+            description: "Multiply Points Based On Itself.",
             tooltip() {
                 if (hasUpgrade(this.layer, 91)) return "Log8(Points + 8)"
                 if (hasUpgrade(this.layer, 32)) return "Log9(Points + 9)"
@@ -151,7 +151,7 @@ addLayer("u", {
             },
             effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
             title: "Copy Paste",
-            description: "Multiply Upgrade Points By Itself.",
+            description: "Multiply Upgrade Points Based On Itself.",
             tooltip() {
                 if (hasUpgrade(this.layer, 91)) return "Log8(Upgrade Points + 8)"
                 if (hasUpgrade(this.layer, 33)) return "Log9(Upgrade Points + 9)"
@@ -170,7 +170,7 @@ addLayer("u", {
             },
             effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
             title: "Once Again",
-            description: "Multiply Upgrade Points By Points.",
+            description: "Multiply Upgrade Points Based On Points.",
             tooltip() {
                 if (hasUpgrade(this.layer, 91)) return "Log8(Points + 8)"
                 if (hasUpgrade(this.layer, 34)) return "Log9(Points + 9)"
@@ -188,9 +188,9 @@ addLayer("u", {
             effectDisplay() {return format(upgradeEffect(this.layer, this.id))+"x"},
             title: "Direct Multiplier",
             description() {
-                if (hasUpgrade(this.layer, 83)) return "Multiply Points, Upgrade Points, And Clicks By Upgrades Bought."
-                if (hasUpgrade(this.layer, 35)) return "Multiply Points And Upgrade Points By Upgrades Bought."
-                return "Multiply Points By Upgrades Bought."
+                if (hasUpgrade(this.layer, 83)) return "Multiply Points, Upgrade Points, And Clicks Based On Upgrades Bought."
+                if (hasUpgrade(this.layer, 35)) return "Multiply Points And Upgrade Points Based On Upgrades Bought."
+                return "Multiply Points Based On Upgrades Bought."
             },
             tooltip: "(Upgrades Bought)^1",
             cost: new Decimal(25000),
